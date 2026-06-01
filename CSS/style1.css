@@ -100,3 +100,16 @@ text-align:center;
 .back-btn:hover{
 background:#24913f;
 }
+.back-btn{
+display:inline-block;
+padding:10px 20px;
+background:#1e3c72;
+color:white;
+text-decoration:none;
+border-radius:6px;
+margin-bottom:20px;
+}
+
+.back-btn:hover{
+background:#16305a;
+}
