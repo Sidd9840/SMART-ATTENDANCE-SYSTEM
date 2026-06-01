@@ -146,3 +146,23 @@ margin-top:25px;
 display:flex;
 justify-content:center;
 }
+/* Back Button */
+
+.back-btn{
+display:block;
+width:100%;
+padding:12px;
+background:#1e3c72;
+color:white;
+text-decoration:none;
+border-radius:8px;
+margin-top:15px;
+font-size:16px;
+text-align:center;
+box-sizing:border-box;
+transition:0.3s;
+}
+
+.back-btn:hover{
+background:#16305a;
+}
