@@ -97,17 +97,17 @@ box-sizing:border-box;
 text-align:center;
 }
 
-.back-btn:hover{
-background:#24913f;
-}
 .back-btn{
-display:inline-block;
-padding:10px 20px;
+display:block;
+width:100%;
+padding:12px;
 background:#1e3c72;
 color:white;
 text-decoration:none;
 border-radius:6px;
-margin-bottom:20px;
+margin-top:15px;
+text-align:center;
+box-sizing:border-box;
 }
 
 .back-btn:hover{
