@@ -1,32 +1,47 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Smart Attendance System</title>
     <link rel="stylesheet" href="CSS/style1.css">
 </head>
-
 <body>
 
-    <div class="login-container">
+    <div class="home-container">
 
         <h1>Smart Attendance System</h1>
-        <h2>Teacher Login</h2>
 
-        <form id="loginForm">
+        <p>
+            A smart and efficient way to manage student attendance.
+        </p>
 
-            <input type="text" id="username" placeholder="Username" required>
+        <div class="button-group">
+            <a href="teacherLogin.html">
+                <button>Teacher Login</button>
+            </a>
 
-            <input type="password" id="password" placeholder="Password" required>
+            <a href="studentLogin.html">
+                <button>Student Login</button>
+            </a>
+        </div>
 
-            <button type="submit">Login</button>
+        <div class="features">
+            <div class="card">
+                <h3>Add Students</h3>
+                <p>Manage student records easily.</p>
+            </div>
 
-        </form>
+            <div class="card">
+                <h3>Mark Attendance</h3>
+                <p>Track daily attendance quickly.</p>
+            </div>
+
+            <div class="card">
+                <h3>Generate Reports</h3>
+                <p>View attendance statistics.</p>
+            </div>
+        </div>
 
     </div>
 
-    <script src="JS/login1.js"></script>
-
 </body>
-
 </html>
