@@ -65,3 +65,11 @@ body{
 .card p{
     font-size:14px;
 }
+.footer{
+    margin-top:30px;
+    text-align:center;
+    color:#666;
+    font-size:14px;
+    border-top:1px solid #ddd;
+    padding-top:15px;
+}
