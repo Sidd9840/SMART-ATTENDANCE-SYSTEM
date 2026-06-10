@@ -1,117 +1,42 @@
-/* eslint-disable */
-let locationVerified = false;
+let students =
+JSON.parse(localStorage.getItem("students")) || [];
 
-const collegeLat = 30.0869;
-const collegeLon = 78.2676;
-const allowedDistance = 500000;
+let table =
+document.getElementById("attendanceTable");
 
-function checkLocation() 
-{
-    if(navigator.geolocation)
-    {
-        navigator.geolocation.getCurrentPosition(success, error);
-    }
-    else
-    {
-        alert("Geolocation not supported");
-    }
-}
+students.forEach(function(student,index){
 
-function success(position)
-{
-    let userLat = position.coords.latitude;
-    let userLon = position.coords.longitude;
+    let row = table.insertRow();
 
-    let distance = calculateDistance(userLat, userLon, collegeLat, collegeLon);
+    row.insertCell(0).innerHTML = student.name;
+    row.insertCell(1).innerHTML = student.roll;
 
-    if(distance <= allowedDistance)
-    {
-        locationVerified = true;
-        document.getElementById("location-result").innerHTML =
-        "Location Verified ✅ Attendance Allowed";
-    }
-    else
-    {
-        locationVerified = false;
-        document.getElementById("location-result").innerHTML =
-        "Outside Campus ❌ Attendance Blocked";
-    }
-}
+    row.insertCell(2).innerHTML =
+    `<input type="checkbox" id="att${index}">`;
 
-function error()
-{
-    alert("Please allow location access");
-}
+});
 
-function calculateDistance(lat1, lon1, lat2, lon2)
-{
-    const R = 6371000;
-    const dLat = (lat2 - lat1) * Math.PI / 180;
-    const dLon = (lon2 - lon1) * Math.PI / 180;
+function saveAttendance(){
 
-    const a =
-    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-    Math.cos(lat1 * Math.PI / 180) *
-    Math.cos(lat2 * Math.PI / 180) *
-    Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    let attendance = [];
 
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    students.forEach(function(student,index){
 
-    return R * c;
-}
+        attendance.push({
+            name: student.name,
+            roll: student.roll,
+            status:
+            document.getElementById(`att${index}`).checked
+            ? "Present"
+            : "Absent"
+        });
 
-function isAttendanceTime()
-{
-    let now = new Date();
-    let hour = now.getHours();
+    });
 
-    // Attendance allowed from 9 AM to 15 PM
-    if(hour >= 9 && hour < 16)
-    {
-        return true;
-    }
+    localStorage.setItem(
+        "attendance",
+        JSON.stringify(attendance)
+    );
 
-    return false;
-}
-
-function submitAttendance()
-{
-    let roll = document.getElementById("roll").value;
-    let status = document.getElementById("status").value;
-
-    if(roll === "")
-    {
-        alert("Enter Roll Number");
-        return false;
-    }
-
-    if(locationVerified === false)
-    {
-        alert("Verify Location First");
-        return false;
-    }
-
-    if(isAttendanceTime() === false)
-    {
-        alert("Attendance Time Closed");
-        return false;
-    }
-
-    let attendance = {
-        roll: roll,
-        status: status,
-       date: new Date().toISOString().split("T")[0]
-    };
-
-    let records = JSON.parse(localStorage.getItem("attendance")) || [];
-    records.push(attendance);
-
-    localStorage.setItem("attendance", JSON.stringify(records));
-
-    alert("Attendance Submitted Successfully");
-
-    document.querySelector("form").reset();
-    locationVerified = false;
-
-    return false;
+    window.location.href = "report.html";
 }
