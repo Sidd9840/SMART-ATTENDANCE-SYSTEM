@@ -10,7 +10,7 @@ document.getElementById("loginForm")
     document.getElementById("password").value;
 
     if(username === "teacher" &&
-       password === "1234")
+       password === "teacher@2026")
     {
         alert("Login Successful");
 
