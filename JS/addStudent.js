@@ -15,10 +15,13 @@ document.getElementById("studentForm")
 
     students.push(student);
 
-    localStorage.setItem("students", JSON.stringify(students));
-
-    alert("Student Added Successfully");
+    localStorage.setItem(
+        "students",
+        JSON.stringify(students)
+    );
 
     document.getElementById("studentForm").reset();
+
+    window.location.href = "studentList.html";
 
 });
