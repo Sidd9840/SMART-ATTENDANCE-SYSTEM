@@ -12,10 +12,7 @@ document.getElementById("loginForm")
     if(username === "teacher" &&
        password === "teacher@2026")
     {
-        alert("Login Successful");
-
-        window.location.href =
-        "dashboard.html";
+        window.location.href = "dashboard.html";
     }
     else
     {
