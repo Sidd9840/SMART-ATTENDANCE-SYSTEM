@@ -3,17 +3,12 @@ document.getElementById("loginForm")
 
     e.preventDefault();
 
-    var username =
-    document.getElementById("username").value;
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
 
-    var password =
-    document.getElementById("password").value;
-
-    if(username === "teacher" &&
-       password === "1234")
+    if(username === "teacher" && password === "1234")
     {
         alert("Login Successful");
-
         window.location.href = "dashboard.html";
     }
     else
