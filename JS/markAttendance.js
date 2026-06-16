@@ -1,40 +1,53 @@
-console.log("Attendance JS Loaded");
+const collegeLat = 28.6280;
+const collegeLng = 77.3649;
+const allowedDistance = 100;
 
-let students = JSON.parse(localStorage.getItem("students")) || [];
+let saveBtn = document.getElementById("saveBtn");
+saveBtn.disabled = true;
 
-console.log(students);
+navigator.geolocation.getCurrentPosition(
+    function (position) {
 
-let table = document.getElementById("attendanceTable");
+        let userLat = position.coords.latitude;
+        let userLng = position.coords.longitude;
 
-students.forEach(function(student, index){
+        let distance = getDistance(
+            userLat,
+            userLng,
+            collegeLat,
+            collegeLng
+        );
 
-    let row = table.insertRow();
+        if (distance <= allowedDistance) {
+            saveBtn.disabled = false;
+            alert("Inside College Campus");
+        } else {
+            alert("Outside College Campus");
+        }
+    },
+    function () {
+        alert("Location Permission Required");
+    }
+);
 
-    row.insertCell(0).innerHTML = student.name;
-    row.insertCell(1).innerHTML = student.roll;
+function getDistance(lat1, lon1, lat2, lon2) {
 
-    row.insertCell(2).innerHTML =
-    `<input type="checkbox" id="att${index}">`;
+    let R = 6371000;
 
-});
+    let dLat = (lat2 - lat1) * Math.PI / 180;
+    let dLon = (lon2 - lon1) * Math.PI / 180;
 
-function saveAttendance(){
+    let a =
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(lat1 * Math.PI / 180) *
+        Math.cos(lat2 * Math.PI / 180) *
+        Math.sin(dLon / 2) *
+        Math.sin(dLon / 2);
 
-    let attendance = [];
+    let c = 2 * Math.atan2(
+        Math.sqrt(a),
+        Math.sqrt(1 - a)
+    );
 
-    students.forEach(function(student, index){
-
-        attendance.push({
-            name: student.name,
-            roll: student.roll,
-            status: document.getElementById(`att${index}`).checked
-            ? "Present"
-            : "Absent"
-        });
-
-    });
-
-    localStorage.setItem("attendance", JSON.stringify(attendance));
-
-    window.location.href = "report.html";
+    return R * c;
 }
