@@ -138,3 +138,47 @@ td{
     padding:10px;
     border:1px solid #ddd;
 }
+
+/* ---------- Teacher Login ---------- */
+
+.loginForm{
+    width:80%;
+    margin:30px auto 0;
+}
+
+.loginForm input{
+    width:100%;
+    padding:15px;
+    margin:12px 0;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:16px;
+    box-sizing:border-box;
+}
+
+.loginForm button{
+    width:100%;
+    padding:15px;
+    margin-top:20px;
+    border:none;
+    border-radius:8px;
+    background:#1e3c72;
+    color:white;
+    font-size:18px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.loginForm button:hover{
+    background:#2a5298;
+}
+
+.content a{
+    color:#1e3c72;
+    font-weight:bold;
+    text-decoration:none;
+}
+
+.content a:hover{
+    text-decoration:underline;
+}
