@@ -1,10 +1,13 @@
+// College Location (CDAC Noida)
 const collegeLat = 28.6280;
 const collegeLng = 77.3649;
 const allowedDistance = 100;
 
+// Save Attendance Button
 let saveBtn = document.getElementById("saveBtn");
 saveBtn.disabled = true;
 
+// Geo Location Check
 navigator.geolocation.getCurrentPosition(
     function (position) {
 
@@ -19,17 +22,25 @@ navigator.geolocation.getCurrentPosition(
         );
 
         if (distance <= allowedDistance) {
+
             saveBtn.disabled = false;
-            alert("Inside College Campus");
+            alert("Inside College Campus. Attendance Allowed.");
+
         } else {
-            alert("Outside College Campus");
+
+            alert("Outside College Campus. Attendance Denied.");
+
         }
+
     },
     function () {
+
         alert("Location Permission Required");
+
     }
 );
 
+// Distance Formula
 function getDistance(lat1, lon1, lat2, lon2) {
 
     let R = 6371000;
@@ -50,4 +61,63 @@ function getDistance(lat1, lon1, lat2, lon2) {
     );
 
     return R * c;
+
+}
+
+// Student Data (Demo)
+const students = [
+
+    {
+        name: "Siddharth Singh Tomar",
+        roll: "101"
+    }
+
+];
+
+// Create Table
+let table = document.getElementById("attendanceTable");
+
+students.forEach(function(student){
+
+    let row = table.insertRow();
+
+    row.insertCell(0).innerHTML = student.name;
+    row.insertCell(1).innerHTML = student.roll;
+
+    let cell = row.insertCell(2);
+
+    cell.innerHTML =
+    `<input type="checkbox" checked id="${student.roll}">`;
+
+});
+
+// Save Attendance
+function saveAttendance(){
+
+    let attendance = [];
+
+    students.forEach(function(student){
+
+        let present =
+        document.getElementById(student.roll).checked;
+
+        attendance.push({
+
+            name: student.name,
+            roll: student.roll,
+            status: present ? "Present" : "Absent"
+
+        });
+
+    });
+
+    localStorage.setItem(
+        "attendance",
+        JSON.stringify(attendance)
+    );
+
+    alert("Attendance Saved Successfully");
+
+    window.location.href = "report.html";
+
 }
