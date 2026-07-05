@@ -8,72 +8,70 @@ if (!students) {
 
         {
             name: "Siddharth Singh Tomar",
-            roll: "101",
+            username: "101",
             password: "123456"
         },
 
         {
             name: "Barnali",
-            roll: "102",
+            username: "102",
             password: "123456"
         },
 
         {
             name: "Aakriti",
-            roll: "103",
+            username: "103",
             password: "123456"
         },
 
         {
             name: "Sonali",
-            roll: "104",
+            username: "104",
             password: "123456"
         },
 
         {
             name: "Nikhil",
-            roll: "105",
+            username: "105",
             password: "123456"
         }
 
     ];
 
     localStorage.setItem("students", JSON.stringify(students));
-
 }
 
-// Student Login
+// Login Form
 
-function studentLogin() {
+document.getElementById("loginForm").addEventListener("submit", function(e){
 
-    let roll = document.getElementById("studentRoll").value.trim();
+    e.preventDefault();
 
-    let password = document.getElementById("studentPassword").value.trim();
+    let username = document.getElementById("username").value.trim();
+    let password = document.getElementById("password").value.trim();
 
     let students = JSON.parse(localStorage.getItem("students")) || [];
 
-    let validUser = students.find(function(student) {
+    let validUser = students.find(function(student){
 
-        return student.roll === roll &&
+        return student.username === username &&
                student.password === password;
 
     });
 
-    if (validUser) {
+    if(validUser){
 
-        // Logged-in Student Save
         localStorage.setItem("loggedInStudent", JSON.stringify(validUser));
 
         alert("Login Successful");
 
         window.location.href = "markAttendance.html";
 
-    } else {
+    }
+    else{
 
-        alert("Invalid Roll Number or Password");
+        alert("Invalid Username or Password");
 
     }
 
-    return false;
-
-}
+});
