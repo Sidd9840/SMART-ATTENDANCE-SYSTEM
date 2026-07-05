@@ -1,37 +1,54 @@
-// Demo Students (Only First Time)
+// -----------------------------
+// Demo Students (First Time Only)
+// -----------------------------
 
 let students = JSON.parse(localStorage.getItem("students"));
 
-if (!students) {
+if (students === null) {
 
     students = [
 
         {
             name: "Siddharth Singh Tomar",
+            roll: "101",
+            course: "Java",
+            email: "siddu17022002@gmail.com",
             username: "101",
             password: "123456"
         },
 
         {
             name: "Barnali",
+            roll: "102",
+            course: "CDAC",
+            email: "barnali@gmail.com",
             username: "102",
             password: "123456"
         },
 
         {
-            name: "Aakriti",
+            name: "Aakriti Singh",
+            roll: "103",
+            course: "AI",
+            email: "aakritisingh@gmail.com",
             username: "103",
             password: "123456"
         },
 
         {
-            name: "Sonali",
+            name: "Sonali Singh Tomar",
+            roll: "104",
+            course: "C++",
+            email: "sonali123@gmail.com",
             username: "104",
             password: "123456"
         },
 
         {
-            name: "Nikhil",
+            name: "Nikhil Pundir",
+            roll: "105",
+            course: "C++",
+            email: "nikhil1452@gmail.com",
             username: "105",
             password: "123456"
         }
@@ -39,9 +56,12 @@ if (!students) {
     ];
 
     localStorage.setItem("students", JSON.stringify(students));
+
 }
 
-// Login Form
+// -----------------------------
+// Student Login
+// -----------------------------
 
 document.getElementById("loginForm").addEventListener("submit", function(e){
 
@@ -50,7 +70,7 @@ document.getElementById("loginForm").addEventListener("submit", function(e){
     let username = document.getElementById("username").value.trim();
     let password = document.getElementById("password").value.trim();
 
-    let students = JSON.parse(localStorage.getItem("students")) || [];
+    let students = JSON.parse(localStorage.getItem("students"));
 
     let validUser = students.find(function(student){
 
