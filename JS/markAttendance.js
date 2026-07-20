@@ -65,15 +65,40 @@ function getDistance(lat1, lon1, lat2, lon2) {
 }
 
 // Student Data (Demo)
-const students = [
+let students = [];
 
-    {
-        name: "Siddharth Singh Tomar",
-        roll: "101"
-    }
+fetch("http://localhost:8080/students")
 
-];
+.then(response => response.json())
 
+.then(data => {
+
+    students = data;
+
+    let table =
+    document.getElementById("attendanceTable");
+
+    data.forEach(function(student){
+
+        let row = table.insertRow();
+
+        row.insertCell(0).innerHTML =
+        student.name;
+
+        row.insertCell(1).innerHTML =
+        student.rollNo;
+
+        let cell =
+        row.insertCell(2);
+
+        cell.innerHTML =
+        `<input type="checkbox"
+        checked
+        id="${student.id}">`;
+
+    });
+
+});
 // Create Table
 let table = document.getElementById("attendanceTable");
 
