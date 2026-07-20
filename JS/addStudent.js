@@ -10,7 +10,7 @@ document.getElementById("studentForm")
     email: document.getElementById("email").value,
     password: "123456"
 };
-
+console.log(student);
   fetch("http://localhost:8080/students", {
     method: "POST",
     headers: {
