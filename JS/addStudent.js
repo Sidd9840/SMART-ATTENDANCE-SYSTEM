@@ -10,18 +10,22 @@ document.getElementById("studentForm")
         email: document.getElementById("email").value
     };
 
-    let students =
-    JSON.parse(localStorage.getItem("students")) || [];
-
-    students.push(student);
-
-    localStorage.setItem(
-        "students",
-        JSON.stringify(students)
-    );
+  fetch("http://localhost:8080/students", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify(student)
+})
+.then(response => response.json())
+.then(data => {
+    alert("Student Added Successfully");
 
     document.getElementById("studentForm").reset();
 
     window.location.href = "studentList.html";
-
+})
+.catch(error => {
+    console.error(error);
+    alert("Error adding student");
 });
