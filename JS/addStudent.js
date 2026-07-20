@@ -4,11 +4,12 @@ document.getElementById("studentForm")
     e.preventDefault();
 
     let student = {
-        name: document.getElementById("studentName").value,
-        roll: document.getElementById("roll").value,
-        course: document.getElementById("course").value,
-        email: document.getElementById("email").value
-    };
+    name: document.getElementById("studentName").value,
+    rollNo: document.getElementById("rollNo").value,
+    course: document.getElementById("course").value,
+    email: document.getElementById("email").value,
+    password: "123456"
+};
 
   fetch("http://localhost:8080/students", {
     method: "POST",
@@ -28,4 +29,5 @@ document.getElementById("studentForm")
 .catch(error => {
     console.error(error);
     alert("Error adding student");
+});
 });
