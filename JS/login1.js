@@ -3,20 +3,57 @@ document.getElementById("loginForm")
 
     e.preventDefault();
 
-    var username =
-    document.getElementById("username").value;
+    let loginData = {
 
-    var password =
-    document.getElementById("password").value;
+        email: document.getElementById("email").value,
 
-    if(username === "teacher" &&
-       password === "teacher@2026")
-    {
-        window.location.href = "dashboard.html";
-    }
-    else
-    {
-        alert("Invalid Username or Password");
-    }
+        password: document.getElementById("password").value
+
+    };
+
+    fetch("http://localhost:8080/teachers/login", {
+
+        method: "POST",
+
+        headers: {
+
+            "Content-Type":"application/json"
+
+        },
+
+        body: JSON.stringify(loginData)
+
+    })
+
+    .then(response => response.json())
+
+    .then(data => {
+
+        if(data && data.id){
+
+            alert("Login Successful");
+
+            localStorage.setItem("teacher",
+            JSON.stringify(data));
+
+            window.location.href="dashboard.html";
+
+        }
+
+        else{
+
+            alert("Invalid Email or Password");
+
+        }
+
+    })
+
+    .catch(error=>{
+
+        console.error(error);
+
+        alert("Server Error");
+
+    });
 
 });
