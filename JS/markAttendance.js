@@ -119,30 +119,53 @@ students.forEach(function(student){
 // Save Attendance
 function saveAttendance(){
 
-    let attendance = [];
+    let teacher =
+    JSON.parse(localStorage.getItem("teacher"));
 
     students.forEach(function(student){
 
         let present =
-        document.getElementById(student.roll).checked;
+        document.getElementById(student.id).checked;
 
-        attendance.push({
+        let attendance = {
 
-            name: student.name,
-            roll: student.roll,
-            status: present ? "Present" : "Absent"
+            studentId: student.id,
+
+            teacherId: teacher.id,
+
+            studentName: student.name,
+
+            subject: teacher.subject,
+
+            attendanceDate:
+            new Date().toISOString().split("T")[0],
+
+            attendanceTime:
+            new Date().toLocaleTimeString(),
+
+            status:
+            present ? "Present" : "Absent"
+
+        };
+
+        fetch("http://localhost:8080/attendance",{
+
+            method:"POST",
+
+            headers:{
+
+                "Content-Type":"application/json"
+
+            },
+
+            body:JSON.stringify(attendance)
 
         });
 
     });
 
-    localStorage.setItem(
-        "attendance",
-        JSON.stringify(attendance)
-    );
-
     alert("Attendance Saved Successfully");
 
-    window.location.href = "report.html";
+    window.location.href="report.html";
 
 }
