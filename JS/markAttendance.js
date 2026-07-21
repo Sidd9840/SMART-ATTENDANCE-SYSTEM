@@ -122,12 +122,6 @@ function saveAttendance(){
 
             subject: teacher.subject,
 
-            attendanceDate:
-            new Date().toISOString().split("T")[0],
-
-            attendanceTime:
-            new Date().toLocaleTimeString(),
-
             status:
             present ? "Present" : "Absent"
 
