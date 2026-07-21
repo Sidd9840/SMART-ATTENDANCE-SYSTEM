@@ -99,22 +99,7 @@ fetch("http://localhost:8080/students")
     });
 
 });
-// Create Table
-let table = document.getElementById("attendanceTable");
 
-students.forEach(function(student){
-
-    let row = table.insertRow();
-
-    row.insertCell(0).innerHTML = student.name;
-    row.insertCell(1).innerHTML = student.roll;
-
-    let cell = row.insertCell(2);
-
-    cell.innerHTML =
-    `<input type="checkbox" checked id="${student.roll}">`;
-
-});
 
 // Save Attendance
 function saveAttendance(){
