@@ -100,51 +100,59 @@ fetch("http://localhost:8080/students")
 
 });
 
-
-// Save Attendance
 function saveAttendance(){
 
     let teacher =
     JSON.parse(localStorage.getItem("teacher"));
 
-    students.forEach(function(student){
+    Promise.all(
 
-        let present =
-        document.getElementById(student.id).checked;
+        students.map(student => {
 
-        let attendance = {
+            let present =
+            document.getElementById(student.id).checked;
 
-            studentId: student.id,
+            let attendance = {
 
-            teacherId: teacher.id,
+                studentId: student.id,
+                teacherId: teacher.id,
+                studentName: student.name,
+                subject: teacher.subject,
+                status: present ? "Present" : "Absent"
 
-            studentName: student.name,
+            };
 
-            subject: teacher.subject,
+            return fetch("http://localhost:8080/attendance", {
 
-            status:
-            present ? "Present" : "Absent"
+                method: "POST",
 
-        };
+                headers: {
+                    "Content-Type": "application/json"
+                },
 
-        fetch("http://localhost:8080/attendance",{
+                body: JSON.stringify(attendance)
 
-            method:"POST",
+            });
 
-            headers:{
+        })
 
-                "Content-Type":"application/json"
+    )
 
-            },
+    .then(() => {
 
-            body:JSON.stringify(attendance)
+        alert("Attendance Saved Successfully");
 
-        });
+        window.location.href = "report.html";
+
+    })
+
+    .catch(error => {
+
+        console.error(error);
+
+        alert("Error Saving Attendance");
 
     });
 
-    alert("Attendance Saved Successfully");
-
-    window.location.href="report.html";
-
 }
+
