@@ -21,7 +21,6 @@ const student = JSON.parse(localStorage.getItem("student"));
 if (!student) {
 
     alert("Please Login First");
-
     window.location.href = "studentLogin.html";
 
 }
@@ -43,12 +42,10 @@ function(position){
     userLng = position.coords.longitude;
 
     distance = getDistance(
-
         userLat,
         userLng,
         collegeLat,
         collegeLng
-
     );
 
     if(distance <= allowedDistance){
@@ -70,7 +67,7 @@ function(position){
 
 },
 
-function(error){
+function(){
 
     document.getElementById("locationStatus").innerHTML =
     "Location Permission Denied";
@@ -82,7 +79,7 @@ function(error){
 );
 
 // -------------------------------------
-// Distance Formula (Haversine)
+// Distance Formula
 // -------------------------------------
 
 function getDistance(lat1, lon1, lat2, lon2){
@@ -93,38 +90,24 @@ function getDistance(lat1, lon1, lat2, lon2){
     let dLon = (lon2-lon1) * Math.PI/180;
 
     let a =
-
         Math.sin(dLat/2) * Math.sin(dLat/2)
-
         +
-
         Math.cos(lat1*Math.PI/180)
-
         *
-
         Math.cos(lat2*Math.PI/180)
-
         *
-
         Math.sin(dLon/2)
-
         *
-
         Math.sin(dLon/2);
 
     let c =
-
         2 *
-
         Math.atan2(
-
             Math.sqrt(a),
-
             Math.sqrt(1-a)
-
         );
 
-    return R * c;
+    return R*c;
 
 }
 
@@ -134,39 +117,67 @@ function getDistance(lat1, lon1, lat2, lon2){
 
 function saveAttendance(){
 
-    const attendance = {
+    // Get Current Attendance Session
 
-        studentId: student.id,
+    fetch("http://localhost:8080/attendance-session/current")
 
-        studentName: student.name,
+    .then(response => {
 
-        subject: "Java",      // Change later if you add subject selection
+        if(!response.ok){
 
-        status: "Present",
+            throw new Error("No Attendance Session Started");
 
-        latitude: userLat,
+        }
 
-        longitude: userLng,
-
-        distance: distance
-
-    };
-
-    fetch("http://localhost:8080/attendance",{
-
-        method:"POST",
-
-        headers:{
-
-            "Content-Type":"application/json"
-
-        },
-
-        body:JSON.stringify(attendance)
+        return response.json();
 
     })
 
-    .then(async response => {
+    .then(session => {
+
+        if(session == null){
+
+            alert("Teacher has not started attendance.");
+
+            return;
+
+        }
+
+        const attendance = {
+
+            studentId: student.id,
+
+            studentName: student.name,
+
+            subject: session.subject,
+
+            status: "Present",
+
+            latitude: userLat,
+
+            longitude: userLng,
+
+            distance: distance
+
+        };
+
+        return fetch("http://localhost:8080/attendance",{
+
+            method:"POST",
+
+            headers:{
+                "Content-Type":"application/json"
+            },
+
+            body:JSON.stringify(attendance)
+
+        });
+
+    })
+
+    .then(async response=>{
+
+        if(!response) return;
 
         const data = await response.text();
 
@@ -176,17 +187,16 @@ function saveAttendance(){
 
                 alert(data);
 
-            }
-            else{
+            }else{
 
                 alert("Attendance Marked Successfully");
 
-                window.location.href = "studentAttendance.html";
+                window.location.href =
+                "studentAttendance.html";
 
             }
 
-        }
-        else{
+        }else{
 
             alert(data);
 
@@ -198,7 +208,7 @@ function saveAttendance(){
 
         console.error(error);
 
-        alert("Unable to connect to server.");
+        alert(error.message);
 
     });
 
