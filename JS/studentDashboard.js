@@ -28,9 +28,24 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(data => {
 
             document.getElementById("present").innerText =
-                data.present;
+                data.presentClasses;
 
             document.getElementById("total").innerText =
-                data.total;
+                data.totalClasses;
 
-            document.getElementById("
+            document.getElementById("percentage").innerText =
+                data.percentage + "%";
+
+        })
+
+        .catch(error => {
+
+            console.log(error);
+
+            document.getElementById("present").innerText = "0";
+            document.getElementById("total").innerText = "0";
+            document.getElementById("percentage").innerText = "0%";
+
+        });
+
+});
