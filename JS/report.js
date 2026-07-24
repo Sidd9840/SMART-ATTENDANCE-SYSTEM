@@ -1,15 +1,86 @@
-fetch("http://localhost:8080/attendance")
+// ----------------------------
+// Load All Attendance
+// ----------------------------
 
-.then(response => response.json())
+window.onload = function () {
 
-.then(attendanceList => {
+    loadAttendance();
 
-    let table =
-    document.getElementById("reportTable");
+};
 
-    attendanceList.forEach(function(record){
+// ----------------------------
+// Show All Attendance
+// ----------------------------
 
-        let row = table.insertRow();
+function loadAttendance() {
+
+    fetch("http://localhost:8080/attendance")
+
+    .then(response => response.json())
+
+    .then(data => {
+
+        showData(data);
+
+    })
+
+    .catch(error => {
+
+        console.log(error);
+
+    });
+
+}
+
+// ----------------------------
+// Search By Month & Year
+// ----------------------------
+
+function searchAttendance() {
+
+    let month = document.getElementById("month").value;
+
+    let year = document.getElementById("year").value;
+
+    if (month == "" || year == "") {
+
+        alert("Please Select Month and Year");
+
+        return;
+
+    }
+
+    fetch("http://localhost:8080/attendance/month?month=" + month + "&year=" + year)
+
+    .then(response => response.json())
+
+    .then(data => {
+
+        showData(data);
+
+    })
+
+    .catch(error => {
+
+        console.log(error);
+
+    });
+
+}
+
+// ----------------------------
+// Show Data In Table
+// ----------------------------
+
+function showData(attendanceList) {
+
+    let body = document.getElementById("reportBody");
+
+    body.innerHTML = "";
+
+    attendanceList.forEach(record => {
+
+        let row = body.insertRow();
 
         row.insertCell(0).innerHTML =
         record.studentName;
@@ -23,33 +94,32 @@ fetch("http://localhost:8080/attendance")
         row.insertCell(3).innerHTML =
         record.attendanceTime;
 
+        let statusClass =
+        record.status == "Present"
+        ? "report-present"
+        : "report-absent";
+
         row.insertCell(4).innerHTML =
-        record.status;
+        `<span class="${statusClass}">
+            ${record.status}
+        </span>`;
 
-        // Action Column
-        let actionCell = row.insertCell(5);
-
-        actionCell.innerHTML =
-        `<button onclick="editAttendance(${record.id},
+        row.insertCell(5).innerHTML =
+        `<button class="report-edit"
+        onclick="editAttendance(${record.id},
         '${record.status}')">
         ✏ Edit
         </button>`;
 
     });
 
-})
+}
 
-.catch(error => {
-
-    console.error(error);
-
-});
-
-// ---------------------------
+// ----------------------------
 // Edit Attendance
-// ---------------------------
+// ----------------------------
 
-function editAttendance(id, currentStatus){
+function editAttendance(id,currentStatus){
 
     let newStatus = prompt(
 
@@ -70,43 +140,49 @@ function editAttendance(id, currentStatus){
     if(newStatus != "Present" &&
        newStatus != "Absent"){
 
-        alert("Please enter Present or Absent");
+        alert("Enter Present or Absent");
 
         return;
 
     }
 
-    fetch("http://localhost:8080/attendance/" + id,{
+    fetch(
 
-        method:"PUT",
+        "http://localhost:8080/attendance/" + id,
 
-        headers:{
-            "Content-Type":"application/json"
-        },
+        {
 
-        body:JSON.stringify({
+            method:"PUT",
 
-            status:newStatus
+            headers:{
 
-        })
+                "Content-Type":"application/json"
 
-    })
+            },
+
+            body:JSON.stringify({
+
+                status:newStatus
+
+            })
+
+        }
+
+    )
 
     .then(response=>response.json())
 
     .then(data=>{
 
-        alert("Attendance Updated Successfully");
+        alert("Attendance Updated");
 
-        location.reload();
+        loadAttendance();
 
     })
 
     .catch(error=>{
 
         console.log(error);
-
-        alert("Update Failed");
 
     });
 
