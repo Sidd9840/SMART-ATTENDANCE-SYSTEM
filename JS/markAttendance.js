@@ -4,7 +4,7 @@
 
 const collegeLat = 28.6280;
 const collegeLng = 77.3649;
-const allowedDistance = 30;
+const allowedDistance = 9999999;
 
 // User Location
 let userLat = 0;
