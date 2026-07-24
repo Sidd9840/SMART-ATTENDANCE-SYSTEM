@@ -1,50 +1,45 @@
-// -------------------------------
+// -------------------------------------
 // College Location (CDAC Noida)
-// -------------------------------
+// -------------------------------------
 
 const collegeLat = 28.6280;
 const collegeLng = 77.3649;
-const allowedDistance = 30;   // Better for classroom demo
+const allowedDistance = 30;
 
+// User Location
 let userLat = 0;
 let userLng = 0;
 let distance = 0;
 
-let saveBtn = document.getElementById("saveBtn");
+// Save Button
+const saveBtn = document.getElementById("saveBtn");
 saveBtn.disabled = true;
 
 // Logged In Student
-let student =
-JSON.parse(localStorage.getItem("student"));
+const student = JSON.parse(localStorage.getItem("student"));
 
-if(student == null){
+if (!student) {
 
     alert("Please Login First");
 
-    window.location.href="studentLogin.html";
+    window.location.href = "studentLogin.html";
 
 }
 
 // Show Student Details
-document.getElementById("studentName").innerHTML =
-student.name;
+document.getElementById("studentName").innerHTML = student.name;
+document.getElementById("rollNo").innerHTML = student.rollNo;
+document.getElementById("course").innerHTML = student.course;
 
-document.getElementById("rollNo").innerHTML =
-student.rollNo;
-
-document.getElementById("course").innerHTML =
-student.course;
-
-// -------------------------------
+// -------------------------------------
 // Geo Location
-// -------------------------------
+// -------------------------------------
 
 navigator.geolocation.getCurrentPosition(
 
 function(position){
 
     userLat = position.coords.latitude;
-
     userLng = position.coords.longitude;
 
     distance = getDistance(
@@ -60,149 +55,150 @@ function(position){
 
         saveBtn.disabled = false;
 
-        document.getElementById("locationStatus")
-        .innerHTML =
-        "Inside Campus";
+        document.getElementById("locationStatus").innerHTML =
+        "✅ Inside Campus";
 
     }
     else{
 
-        document.getElementById("locationStatus")
-        .innerHTML =
-        "Outside Campus";
+        document.getElementById("locationStatus").innerHTML =
+        "❌ Outside Campus";
 
-        alert("Outside College Campus");
+        alert("You are outside the allowed campus area.");
 
     }
 
 },
 
-function(){
+function(error){
 
-    alert("Location Permission Required");
+    document.getElementById("locationStatus").innerHTML =
+    "Location Permission Denied";
+
+    alert("Please allow location permission.");
 
 }
 
 );
 
-// -------------------------------
-// Distance Formula
-// -------------------------------
+// -------------------------------------
+// Distance Formula (Haversine)
+// -------------------------------------
 
 function getDistance(lat1, lon1, lat2, lon2){
 
     let R = 6371000;
 
-    let dLat =
-    (lat2-lat1)*Math.PI/180;
-
-    let dLon =
-    (lon2-lon1)*Math.PI/180;
+    let dLat = (lat2-lat1) * Math.PI/180;
+    let dLon = (lon2-lon1) * Math.PI/180;
 
     let a =
 
-    Math.sin(dLat/2)*
-    Math.sin(dLat/2)
+        Math.sin(dLat/2) * Math.sin(dLat/2)
 
-    +
+        +
 
-    Math.cos(lat1*Math.PI/180)
+        Math.cos(lat1*Math.PI/180)
 
-    *
+        *
 
-    Math.cos(lat2*Math.PI/180)
+        Math.cos(lat2*Math.PI/180)
 
-    *
+        *
 
-    Math.sin(dLon/2)
+        Math.sin(dLon/2)
 
-    *
+        *
 
-    Math.sin(dLon/2);
+        Math.sin(dLon/2);
 
-    let c=
+    let c =
 
-    2*
+        2 *
 
-    Math.atan2(
+        Math.atan2(
 
-        Math.sqrt(a),
+            Math.sqrt(a),
 
-        Math.sqrt(1-a)
+            Math.sqrt(1-a)
 
-    );
+        );
 
-    return R*c;
+    return R * c;
 
 }
 
-// -------------------------------
+// -------------------------------------
 // Save Attendance
-// -------------------------------
+// -------------------------------------
 
 function saveAttendance(){
 
-    let attendance={
+    const attendance = {
 
-        studentId:
-        student.id,
+        studentId: student.id,
 
-        studentName:
-        student.name,
+        studentName: student.name,
 
-        subject:
-        student.course,
+        subject: "Java",      // Change later if you add subject selection
 
-        status:
-        "Present",
+        status: "Present",
 
-        latitude:
-        userLat,
+        latitude: userLat,
 
-        longitude:
-        userLng,
+        longitude: userLng,
 
-        distance:
-        distance
+        distance: distance
 
     };
 
-    fetch(
+    fetch("http://localhost:8080/attendance",{
 
-        "http://localhost:8080/attendance",
+        method:"POST",
 
-        {
+        headers:{
 
-            method:"POST",
+            "Content-Type":"application/json"
 
-            headers:{
+        },
 
-                "Content-Type":"application/json"
+        body:JSON.stringify(attendance)
 
-            },
+    })
 
-            body:JSON.stringify(attendance)
+    .then(async response => {
+
+        const data = await response.text();
+
+        if(response.ok){
+
+            if(data.includes("Attendance already marked")){
+
+                alert(data);
+
+            }
+            else{
+
+                alert("Attendance Marked Successfully");
+
+                window.location.href = "studentAttendance.html";
+
+            }
 
         }
+        else{
 
-    )
+            alert(data);
 
-    .then(response=>response.json())
-
-    .then(data=>{
-
-        alert("Attendance Marked Successfully");
-
-        window.location.href=
-        "studentAttendance.html";
+        }
 
     })
 
     .catch(error=>{
 
-        console.log(error);
+        console.error(error);
 
-        alert("Error");
+        alert("Unable to connect to server.");
 
     });
 
