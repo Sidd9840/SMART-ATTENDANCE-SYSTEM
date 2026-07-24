@@ -4,16 +4,36 @@
 
 const collegeLat = 28.6280;
 const collegeLng = 77.3649;
-const allowedDistance = 100;
+const allowedDistance = 30;   // Better for classroom demo
 
-// User Location
 let userLat = 0;
 let userLng = 0;
 let distance = 0;
 
-// Save Attendance Button
 let saveBtn = document.getElementById("saveBtn");
 saveBtn.disabled = true;
+
+// Logged In Student
+let student =
+JSON.parse(localStorage.getItem("student"));
+
+if(student == null){
+
+    alert("Please Login First");
+
+    window.location.href="studentLogin.html";
+
+}
+
+// Show Student Details
+document.getElementById("studentName").innerHTML =
+student.name;
+
+document.getElementById("rollNo").innerHTML =
+student.rollNo;
+
+document.getElementById("course").innerHTML =
+student.course;
 
 // -------------------------------
 // Geo Location
@@ -21,38 +41,47 @@ saveBtn.disabled = true;
 
 navigator.geolocation.getCurrentPosition(
 
-    function(position){
+function(position){
 
-        userLat = position.coords.latitude;
-        userLng = position.coords.longitude;
+    userLat = position.coords.latitude;
 
-        distance = getDistance(
-            userLat,
-            userLng,
-            collegeLat,
-            collegeLng
-        );
+    userLng = position.coords.longitude;
 
-        if(distance <= allowedDistance){
+    distance = getDistance(
 
-            saveBtn.disabled = false;
+        userLat,
+        userLng,
+        collegeLat,
+        collegeLng
 
-            alert("Inside College Campus. Attendance Allowed.");
+    );
 
-        }
-        else{
+    if(distance <= allowedDistance){
 
-            alert("Outside College Campus. Attendance Denied.");
+        saveBtn.disabled = false;
 
-        }
-
-    },
-
-    function(){
-
-        alert("Location Permission Required");
+        document.getElementById("locationStatus")
+        .innerHTML =
+        "Inside Campus";
 
     }
+    else{
+
+        document.getElementById("locationStatus")
+        .innerHTML =
+        "Outside Campus";
+
+        alert("Outside College Campus");
+
+    }
+
+},
+
+function(){
+
+    alert("Location Permission Required");
+
+}
 
 );
 
@@ -64,71 +93,48 @@ function getDistance(lat1, lon1, lat2, lon2){
 
     let R = 6371000;
 
-    let dLat = (lat2-lat1) * Math.PI/180;
-    let dLon = (lon2-lon1) * Math.PI/180;
+    let dLat =
+    (lat2-lat1)*Math.PI/180;
+
+    let dLon =
+    (lon2-lon1)*Math.PI/180;
 
     let a =
-        Math.sin(dLat/2) * Math.sin(dLat/2)
-        +
-        Math.cos(lat1*Math.PI/180)
-        *
-        Math.cos(lat2*Math.PI/180)
-        *
-        Math.sin(dLon/2)
-        *
-        Math.sin(dLon/2);
 
-    let c =
-        2 * Math.atan2(
-            Math.sqrt(a),
-            Math.sqrt(1-a)
-        );
+    Math.sin(dLat/2)*
+    Math.sin(dLat/2)
+
+    +
+
+    Math.cos(lat1*Math.PI/180)
+
+    *
+
+    Math.cos(lat2*Math.PI/180)
+
+    *
+
+    Math.sin(dLon/2)
+
+    *
+
+    Math.sin(dLon/2);
+
+    let c=
+
+    2*
+
+    Math.atan2(
+
+        Math.sqrt(a),
+
+        Math.sqrt(1-a)
+
+    );
 
     return R*c;
 
 }
-
-// -------------------------------
-// Student List
-// -------------------------------
-
-let students = [];
-
-fetch("http://localhost:8080/students")
-
-.then(response => response.json())
-
-.then(data=>{
-
-    students = data;
-
-    let table =
-    document.getElementById("attendanceTable");
-
-    data.forEach(function(student){
-
-        let row =
-        table.insertRow();
-
-        row.insertCell(0).innerHTML =
-        student.name;
-
-        row.insertCell(1).innerHTML =
-        student.rollNo;
-
-        let cell =
-        row.insertCell(2);
-
-        cell.innerHTML =
-        `<input
-            type="checkbox"
-            checked
-            id="${student.id}">
-        `;
-
-    });
-
-});
 
 // -------------------------------
 // Save Attendance
@@ -136,66 +142,59 @@ fetch("http://localhost:8080/students")
 
 function saveAttendance(){
 
-    let teacher =
-    JSON.parse(localStorage.getItem("teacher"));
+    let attendance={
 
-    Promise.all(
+        studentId:
+        student.id,
 
-        students.map(student=>{
+        studentName:
+        student.name,
 
-            let present =
-            document.getElementById(student.id).checked;
+        subject:
+        student.course,
 
-            let attendance={
+        status:
+        "Present",
 
-                studentId:student.id,
+        latitude:
+        userLat,
 
-                teacherId:teacher.id,
+        longitude:
+        userLng,
 
-                studentName:student.name,
+        distance:
+        distance
 
-                subject:teacher.subject,
+    };
 
-                status:
-                present ? "Present":"Absent",
+    fetch(
 
-                latitude:userLat,
+        "http://localhost:8080/attendance",
 
-                longitude:userLng,
+        {
 
-                distance:distance
+            method:"POST",
 
-            };
+            headers:{
 
-            return fetch(
+                "Content-Type":"application/json"
 
-                "http://localhost:8080/attendance",
+            },
 
-                {
+            body:JSON.stringify(attendance)
 
-                    method:"POST",
-
-                    headers:{
-
-                        "Content-Type":"application/json"
-
-                    },
-
-                    body:JSON.stringify(attendance)
-
-                }
-
-            );
-
-        })
+        }
 
     )
 
-    .then(()=>{
+    .then(response=>response.json())
 
-        alert("Attendance Saved Successfully");
+    .then(data=>{
 
-        window.location.href="report.html";
+        alert("Attendance Marked Successfully");
+
+        window.location.href=
+        "studentAttendance.html";
 
     })
 
@@ -203,7 +202,7 @@ function saveAttendance(){
 
         console.log(error);
 
-        alert("Error Saving Attendance");
+        alert("Error");
 
     });
 
