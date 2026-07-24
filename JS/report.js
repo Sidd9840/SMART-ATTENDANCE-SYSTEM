@@ -33,16 +33,61 @@ function loadAttendance() {
 }
 
 // ----------------------------
+// Search Student
+// ----------------------------
+
+function searchStudent(){
+
+    let keyword =
+    document.getElementById("searchText").value.trim();
+
+    if(keyword == ""){
+
+        searchAttendance();
+
+        return;
+
+    }
+
+    fetch("http://localhost:8080/attendance/search?keyword=" + encodeURIComponent(keyword))
+
+    .then(response => response.json())
+
+    .then(data => {
+
+        showData(data);
+
+    })
+
+    .catch(error => {
+
+        console.log(error);
+
+    });
+
+}
+
+// ----------------------------
 // Search By Month & Year
 // ----------------------------
 
 function searchAttendance() {
 
-    let month = document.getElementById("month").value;
+    let month =
+    document.getElementById("month").value;
 
-    let year = document.getElementById("year").value;
+    let year =
+    document.getElementById("year").value;
 
-    if (month == "" || year == "") {
+    if(month == "" && year == ""){
+
+        loadAttendance();
+
+        return;
+
+    }
+
+    if(month == "" || year == ""){
 
         alert("Please Select Month and Year");
 
@@ -74,7 +119,8 @@ function searchAttendance() {
 
 function showData(attendanceList) {
 
-    let body = document.getElementById("reportBody");
+    let body =
+    document.getElementById("reportBody");
 
     body.innerHTML = "";
 
@@ -174,7 +220,7 @@ function editAttendance(id,currentStatus){
 
     .then(data=>{
 
-        alert("Attendance Updated");
+        alert("Attendance Updated Successfully");
 
         loadAttendance();
 
@@ -183,6 +229,8 @@ function editAttendance(id,currentStatus){
     .catch(error=>{
 
         console.log(error);
+
+        alert("Update Failed");
 
     });
 
