@@ -182,3 +182,38 @@ td{
 .content a:hover{
     text-decoration:underline;
 }
+
+.filter-section{
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:15px;
+    margin:25px 0;
+
+}
+
+.filter-section select{
+
+    padding:12px;
+    border-radius:8px;
+    font-size:16px;
+
+}
+
+.filter-section button{
+
+    background:#1e3c72;
+    color:white;
+    border:none;
+    padding:12px 25px;
+    border-radius:8px;
+    cursor:pointer;
+
+}
+
+.filter-section button:hover{
+
+    background:#2a5298;
+
+}
