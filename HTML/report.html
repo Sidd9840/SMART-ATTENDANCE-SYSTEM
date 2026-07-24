@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+
     <title>Attendance Report</title>
+
     <link rel="stylesheet" href="../CSS/style1.css">
+
 </head>
+
 <body>
 
 <div class="hero">
@@ -12,9 +16,14 @@
 
         <h1>Attendance Report</h1>
 
-        <!-- Filter Section -->
+        <!-- Search & Filter -->
 
-        <div class="filter-section">
+        <div class="report-filter">
+
+            <input
+                type="text"
+                id="searchText"
+                placeholder="Search Student Name">
 
             <select id="month">
 
@@ -46,18 +55,22 @@
             </select>
 
             <button onclick="searchAttendance()">
+
                 🔍 Search
+
             </button>
 
             <button onclick="loadAttendance()">
+
                 🔄 Show All
+
             </button>
 
         </div>
 
         <!-- Attendance Table -->
 
-        <table id="reportTable">
+        <table id="reportTable" class="report-table">
 
             <thead>
 
@@ -86,7 +99,7 @@
 
                 <button>
 
-                    Back to Dashboard
+                    ⬅ Back to Dashboard
 
                 </button>
 
