@@ -1,130 +1,88 @@
-document.addEventListener("DOMContentLoaded", function () {
+window.onload = function(){
 
-    // Dashboard Data
-    fetch("http://localhost:8080/dashboard")
-    .then(response => response.json())
-    .then(data => {
+    // Teacher Login Check
 
-        document.getElementById("totalStudents").innerText =
-        data.totalStudents;
+    let teacher = localStorage.getItem("teacher");
 
-        document.getElementById("totalTeachers").innerText =
-        data.totalTeachers;
+    if(teacher == null){
 
-        document.getElementById("totalAttendance").innerText =
-        data.totalAttendance;
-
-        document.getElementById("present").innerText =
-        data.present;
-
-        document.getElementById("absent").innerText =
-        data.absent;
-
-    })
-    .catch(error => {
-
-        console.log(error);
-
-    });
-
-    // Logout
-    const logoutBtn =
-    document.querySelector('a[href="../index.html"]');
-
-    logoutBtn.addEventListener("click", function (e) {
-
-        let confirmLogout =
-        confirm("Are you sure you want to logout?");
-
-        if (!confirmLogout) {
-
-            e.preventDefault();
-
-        }
-
-        localStorage.removeItem("teacher");
-
-    });
-
-});
-
-// --------------------------------------
-// Start Attendance Session
-// --------------------------------------
-
-function startAttendance(){
-
-    let subject =
-    prompt("Enter Subject Name");
-
-    if(subject == null || subject.trim() == ""){
+        window.location.href = "login.html";
 
         return;
 
     }
 
-    fetch(
-        "http://localhost:8080/attendance-session/start?subject="
-        + encodeURIComponent(subject),
-        {
-            method:"POST"
-        }
-    )
+    loadDashboard();
+
+};
+
+// ----------------------------
+// Dashboard Data
+// ----------------------------
+
+function loadDashboard(){
+
+    fetch("http://localhost:8080/dashboard")
 
     .then(response=>response.json())
 
     .then(data=>{
 
-        alert("Attendance Session Started");
+        document.getElementById("totalStudents").innerHTML =
+        data.totalStudents;
+
+        document.getElementById("totalTeachers").innerHTML =
+        data.totalTeachers;
+
+        document.getElementById("totalAttendance").innerHTML =
+        data.totalAttendance;
+
+        document.getElementById("present").innerHTML =
+        data.present;
+
+        document.getElementById("absent").innerHTML =
+        data.absent;
 
     })
 
     .catch(error=>{
 
         console.log(error);
-
-        alert("Unable to Start Attendance");
 
     });
 
 }
 
-// --------------------------------------
-// Close Attendance Session
-// --------------------------------------
+// ----------------------------
+// Start Attendance
+// ----------------------------
+
+function startAttendance(){
+
+    window.location.href =
+    "markAttendance.html";
+
+}
+
+// ----------------------------
+// Close Attendance
+// ----------------------------
 
 function closeAttendance(){
 
-    let confirmClose =
-    confirm("Close Attendance Session?");
+    alert("Attendance Session Closed");
 
-    if(!confirmClose){
+}
 
-        return;
+// ----------------------------
+// Logout
+// ----------------------------
 
-    }
+function logout(){
 
-    fetch(
-        "http://localhost:8080/attendance-session/close",
-        {
-            method:"POST"
-        }
-    )
+    localStorage.removeItem("teacher");
 
-    .then(response=>response.json())
-
-    .then(data=>{
-
-        alert("Attendance Session Closed");
-
-    })
-
-    .catch(error=>{
-
-        console.log(error);
-
-        alert("Unable to Close Attendance");
-
-    });
+    window.location.href =
+    "login.html";
 
 }
