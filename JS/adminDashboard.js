@@ -1,4 +1,26 @@
-document.addEventListener("DOMContentLoaded", function(){
+window.onload = function(){
+
+    // Check Admin Login
+
+    let admin = localStorage.getItem("admin");
+
+    if(admin == null){
+
+        window.location.href = "login.html";
+
+        return;
+
+    }
+
+    loadDashboard();
+
+};
+
+// ----------------------------
+// Dashboard Data
+// ----------------------------
+
+function loadDashboard(){
 
     fetch("http://localhost:8080/dashboard")
 
@@ -12,10 +34,21 @@ document.addEventListener("DOMContentLoaded", function(){
         document.getElementById("totalTeachers").innerHTML =
         data.totalTeachers;
 
-        // Subject module baad me banega
         document.getElementById("totalSubjects").innerHTML =
         0;
 
     });
 
-});
+}
+
+// ----------------------------
+// Logout
+// ----------------------------
+
+function logout(){
+
+    localStorage.removeItem("admin");
+
+    window.location.href = "login.html";
+
+}
