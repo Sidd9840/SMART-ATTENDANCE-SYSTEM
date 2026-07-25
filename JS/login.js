@@ -113,6 +113,8 @@ function login(){
 }
 function goHome(){
 
-    window.location.href = "../index.html";
+    alert("Home Clicked");
+
+    window.location.href="../index.html";
 
 }
