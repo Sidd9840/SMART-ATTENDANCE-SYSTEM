@@ -54,3 +54,20 @@ function deleteStudent(id){
     }
 
 }
+document.getElementById("backBtn").addEventListener("click", function () {
+
+    if (localStorage.getItem("admin")) {
+
+        window.location.href = "adminDashboard.html";
+
+    } else if (localStorage.getItem("teacher")) {
+
+        window.location.href = "dashboard.html";
+
+    } else {
+
+        window.location.href = "login.html";
+
+    }
+
+});
