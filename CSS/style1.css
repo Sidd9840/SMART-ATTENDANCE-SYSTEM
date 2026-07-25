@@ -217,3 +217,90 @@ td{
     background:#2a5298;
 
 }
+
+/* =========================
+   Report Page Only
+========================= */
+
+.report-filter{
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+    margin:20px 0;
+    flex-wrap:nowrap;
+
+}
+
+.report-filter input{
+
+    width:220px !important;
+    margin:0;
+    padding:12px;
+
+}
+
+.report-filter select{
+
+    width:150px;
+    padding:12px;
+    margin:0;
+
+}
+
+.report-filter button{
+
+    padding:12px 18px;
+    margin:0;
+    background:#1e3c72;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:15px;
+
+}
+
+.report-filter button:hover{
+
+    background:#2a5298;
+
+}
+
+.report-table{
+
+    width:100%;
+
+}
+
+.report-present{
+
+    color:green;
+    font-weight:bold;
+
+}
+
+.report-absent{
+
+    color:red;
+    font-weight:bold;
+
+}
+
+.report-edit{
+
+    background:#f39c12;
+    color:white;
+    border:none;
+    padding:8px 12px;
+    border-radius:5px;
+    cursor:pointer;
+
+}
+
+.report-edit:hover{
+
+    background:#d68910;
+
+}
