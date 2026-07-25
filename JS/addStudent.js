@@ -31,3 +31,22 @@ console.log(student);
     alert("Error adding student");
 });
 });
+function goBack(){
+
+    if(localStorage.getItem("admin")){
+
+        window.location.href = "adminDashboard.html";
+
+    }
+    else if(localStorage.getItem("teacher")){
+
+        window.location.href = "dashboard.html";
+
+    }
+    else{
+
+        window.location.href = "login.html";
+
+    }
+
+}
