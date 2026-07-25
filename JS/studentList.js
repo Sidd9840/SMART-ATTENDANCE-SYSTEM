@@ -75,3 +75,9 @@ document.getElementById("backBtn").addEventListener("click", function () {
     }
 
 });
+function editStudent(id){
+
+    window.location.href =
+    "editStudent.html?id=" + id;
+
+}
