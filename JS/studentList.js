@@ -13,11 +13,15 @@ fetch("http://localhost:8080/students")
         row.insertCell(2).innerHTML = student.course;
         row.insertCell(3).innerHTML = student.email;
 
-        row.insertCell(4).innerHTML =
-        `<button onclick="deleteStudent(${student.id})">
-            Delete
-        </button>`;
+       row.insertCell(4).innerHTML = `
+<button onclick="editStudent(${student.id})">
+Edit
+</button>
 
+<button onclick="deleteStudent(${student.id})">
+Delete
+</button>
+`;
     });
 
 })
