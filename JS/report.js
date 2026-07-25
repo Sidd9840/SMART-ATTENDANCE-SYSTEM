@@ -1,10 +1,24 @@
 // ----------------------------
-// Load All Attendance
+// Page Load
 // ----------------------------
 
 window.onload = function () {
 
-    loadAttendance();
+    document.getElementById("reportBody").innerHTML =
+
+    `<tr>
+
+        <td colspan="6"
+        style="text-align:center;
+        padding:30px;
+        font-size:18px;
+        color:#666;">
+
+        🔍 Please search to view attendance records.
+
+        </td>
+
+    </tr>`;
 
 };
 
@@ -41,25 +55,28 @@ function searchStudent(){
     let keyword =
     document.getElementById("searchText").value.trim();
 
-    if(keyword == ""){
+    if(keyword==""){
 
-        searchAttendance();
+        alert("Please Enter Student Name");
 
         return;
 
     }
 
-    fetch("http://localhost:8080/attendance/search?keyword=" + encodeURIComponent(keyword))
+    fetch(
+        "http://localhost:8080/attendance/search?keyword="
+        + encodeURIComponent(keyword)
+    )
 
-    .then(response => response.json())
+    .then(response=>response.json())
 
-    .then(data => {
+    .then(data=>{
 
         showData(data);
 
     })
 
-    .catch(error => {
+    .catch(error=>{
 
         console.log(error);
 
@@ -79,15 +96,7 @@ function searchAttendance() {
     let year =
     document.getElementById("year").value;
 
-    if(month == "" && year == ""){
-
-        loadAttendance();
-
-        return;
-
-    }
-
-    if(month == "" || year == ""){
+    if(month=="" || year==""){
 
         alert("Please Select Month and Year");
 
@@ -95,17 +104,22 @@ function searchAttendance() {
 
     }
 
-    fetch("http://localhost:8080/attendance/month?month=" + month + "&year=" + year)
+    fetch(
+        "http://localhost:8080/attendance/month?month="
+        + month +
+        "&year=" +
+        year
+    )
 
-    .then(response => response.json())
+    .then(response=>response.json())
 
-    .then(data => {
+    .then(data=>{
 
         showData(data);
 
     })
 
-    .catch(error => {
+    .catch(error=>{
 
         console.log(error);
 
@@ -122,39 +136,68 @@ function showData(attendanceList) {
     let body =
     document.getElementById("reportBody");
 
-    body.innerHTML = "";
+    body.innerHTML="";
 
-    attendanceList.forEach(record => {
+    if(attendanceList.length==0){
 
-        let row = body.insertRow();
+        body.innerHTML=
 
-        row.insertCell(0).innerHTML =
+        `<tr>
+
+            <td colspan="6"
+            style="text-align:center;
+            padding:25px;
+            color:red;">
+
+            No Attendance Found
+
+            </td>
+
+        </tr>`;
+
+        return;
+
+    }
+
+    attendanceList.forEach(record=>{
+
+        let row=body.insertRow();
+
+        row.insertCell(0).innerHTML=
         record.studentName;
 
-        row.insertCell(1).innerHTML =
+        row.insertCell(1).innerHTML=
         record.subject;
 
-        row.insertCell(2).innerHTML =
+        row.insertCell(2).innerHTML=
         record.attendanceDate;
 
-        row.insertCell(3).innerHTML =
+        row.insertCell(3).innerHTML=
         record.attendanceTime;
 
-        let statusClass =
-        record.status == "Present"
+        let statusClass=
+        record.status=="Present"
         ? "report-present"
         : "report-absent";
 
-        row.insertCell(4).innerHTML =
+        row.insertCell(4).innerHTML=
+
         `<span class="${statusClass}">
-            ${record.status}
+
+        ${record.status}
+
         </span>`;
 
-        row.insertCell(5).innerHTML =
+        row.insertCell(5).innerHTML=
+
         `<button class="report-edit"
+
         onclick="editAttendance(${record.id},
+
         '${record.status}')">
+
         ✏ Edit
+
         </button>`;
 
     });
@@ -167,7 +210,7 @@ function showData(attendanceList) {
 
 function editAttendance(id,currentStatus){
 
-    let newStatus = prompt(
+    let newStatus=prompt(
 
         "Enter Status (Present / Absent)",
 
@@ -175,16 +218,16 @@ function editAttendance(id,currentStatus){
 
     );
 
-    if(newStatus == null){
+    if(newStatus==null){
 
         return;
 
     }
 
-    newStatus = newStatus.trim();
+    newStatus=newStatus.trim();
 
-    if(newStatus != "Present" &&
-       newStatus != "Absent"){
+    if(newStatus!="Present" &&
+       newStatus!="Absent"){
 
         alert("Enter Present or Absent");
 
@@ -194,7 +237,7 @@ function editAttendance(id,currentStatus){
 
     fetch(
 
-        "http://localhost:8080/attendance/" + id,
+        "http://localhost:8080/attendance/"+id,
 
         {
 
