@@ -3,12 +3,18 @@ document.getElementById("studentForm")
 
     e.preventDefault();
 
-    let student = {
+   let student = {
+
     name: document.getElementById("studentName").value,
+
     rollNo: document.getElementById("rollNo").value,
+
     course: document.getElementById("course").value,
+
     email: document.getElementById("email").value,
-    password: "123456"
+
+    password: document.getElementById("password").value
+
 };
 console.log(student);
   fetch("http://localhost:8080/students", {
