@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+
     <title>Student Registration</title>
+
     <link rel="stylesheet" href="../CSS/style1.css">
+
 </head>
 
 <body>
@@ -13,13 +17,49 @@
 
 <h1>Student Registration</h1>
 
-<input type="text" id="rollNo" placeholder="Roll Number">
+<p>Complete Your Registration</p>
 
-<input type="text" id="course" placeholder="Course">
+<input
+type="text"
+id="name"
+placeholder="Name"
+readonly>
 
-<button onclick="registerStudent()">
-    Register
+<input
+type="email"
+id="email"
+placeholder="Email"
+readonly>
+
+<input
+type="text"
+id="rollNo"
+placeholder="Roll Number">
+
+<input
+type="text"
+id="course"
+placeholder="Course">
+
+<div class="buttons">
+
+<button
+type="button"
+onclick="registerStudent()">
+
+Register
+
 </button>
+
+</div>
+
+<br>
+
+<a href="register.html">
+
+Back
+
+</a>
 
 </div>
 
@@ -28,4 +68,5 @@
 <script src="../JS/studentRegister.js"></script>
 
 </body>
+
 </html>
