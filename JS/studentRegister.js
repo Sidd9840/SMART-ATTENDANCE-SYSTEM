@@ -1,21 +1,40 @@
-let data =
-JSON.parse(localStorage.getItem("registerData"));
+let data = JSON.parse(localStorage.getItem("registerData"));
 
-document.getElementById("name").value =
-data.name;
+if(data == null){
 
-document.getElementById("email").value =
-data.email;
+    alert("Please Register First");
+
+    window.location.href = "register.html";
+
+}
+
+document.getElementById("name").value = data.name;
+
+document.getElementById("email").value = data.email;
 
 function registerStudent(){
+
+    let rollNo =
+    document.getElementById("rollNo").value.trim();
+
+    let course =
+    document.getElementById("course").value.trim();
+
+    if(rollNo=="" || course==""){
+
+        alert("Please Fill All Fields");
+
+        return;
+
+    }
 
     let student={
 
         name:data.name,
 
-        rollNo:document.getElementById("rollNo").value,
+        rollNo:rollNo,
 
-        course:document.getElementById("course").value,
+        course:course,
 
         email:data.email,
 
@@ -23,7 +42,7 @@ function registerStudent(){
 
     };
 
-    fetch("http://localhost:8080/student/register",{
+    fetch("http://localhost:8080/students/register",{
 
         method:"POST",
 
@@ -52,6 +71,8 @@ function registerStudent(){
     .catch(error=>{
 
         console.log(error);
+
+        alert("Unable To Connect Server");
 
     });
 
