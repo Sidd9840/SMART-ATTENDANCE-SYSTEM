@@ -312,7 +312,7 @@ color:#555;
 
 }
 
-/* ================= WHY ================= */
+/* ================= WHY CHOOSE US ================= */
 
 .why{
 
@@ -326,11 +326,11 @@ background:white;
 
 text-align:center;
 
-font-size:38px;
-
-margin-bottom:50px;
+font-size:40px;
 
 color:#0b3d91;
+
+margin-bottom:50px;
 
 }
 
@@ -340,7 +340,7 @@ display:grid;
 
 grid-template-columns:repeat(3,1fr);
 
-gap:25px;
+gap:30px;
 
 }
 
@@ -350,13 +350,39 @@ background:#0b3d91;
 
 color:white;
 
-padding:30px;
+padding:35px;
 
-font-size:22px;
-
-border-radius:10px;
+border-radius:12px;
 
 text-align:center;
+
+transition:.3s;
+
+box-shadow:0 8px 20px rgba(0,0,0,.15);
+
+}
+
+.why-card:hover{
+
+transform:translateY(-8px);
+
+background:#1d4fa3;
+
+}
+
+.why-card h3{
+
+font-size:26px;
+
+margin-bottom:20px;
+
+}
+
+.why-card p{
+
+font-size:18px;
+
+line-height:30px;
 
 }
 
