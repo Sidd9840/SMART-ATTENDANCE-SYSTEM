@@ -59,30 +59,40 @@ function loadDashboard(){
 
 function startAttendance(){
 
-    window.location.href =
-    "markAttendance.html";
+    let subject = prompt("Enter Subject Name");
 
-}
+    if(subject == null || subject.trim() == ""){
 
-// ----------------------------
-// Close Attendance
-// ----------------------------
+        alert("Please Enter Subject");
 
-function closeAttendance(){
+        return;
 
-    alert("Attendance Session Closed");
+    }
 
-}
+    fetch(
+        "http://localhost:8080/attendance-session/start?subject="
+        + encodeURIComponent(subject),
 
-// ----------------------------
-// Logout
-// ----------------------------
+        {
+            method:"POST"
+        }
 
-function logout(){
+    )
 
-    localStorage.removeItem("teacher");
+    .then(response => response.json())
 
-    window.location.href =
-    "login.html";
+    .then(data => {
+
+        alert("Attendance Session Started");
+
+    })
+
+    .catch(error => {
+
+        console.log(error);
+
+        alert("Unable to Start Attendance");
+
+    });
 
 }
