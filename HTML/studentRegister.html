@@ -1,68 +1,31 @@
-function continueRegister(){
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Registration</title>
+    <link rel="stylesheet" href="../CSS/style1.css">
+</head>
 
-    let name =
-    document.getElementById("name").value.trim();
+<body>
 
-    let email =
-    document.getElementById("email").value.trim();
+<div class="hero">
 
-    let password =
-    document.getElementById("password").value;
+<div class="content">
 
-    let confirmPassword =
-    document.getElementById("confirmPassword").value;
+<h1>Student Registration</h1>
 
-    let role =
-    document.getElementById("role").value;
+<input type="text" id="rollNo" placeholder="Roll Number">
 
-    if(name=="" ||
-       email=="" ||
-       password=="" ||
-       confirmPassword=="" ||
-       role==""){
+<input type="text" id="course" placeholder="Course">
 
-        alert("Please Fill All Fields");
+<button onclick="registerStudent()">
+    Register
+</button>
 
-        return;
+</div>
 
-    }
+</div>
 
-    if(password!=confirmPassword){
+<script src="../JS/studentRegister.js"></script>
 
-        alert("Passwords Do Not Match");
-
-        return;
-
-    }
-
-    localStorage.setItem(
-
-        "registerData",
-
-        JSON.stringify({
-
-            name:name,
-
-            email:email,
-
-            password:password
-
-        })
-
-    );
-
-    if(role=="Student"){
-
-        window.location.href =
-        "studentRegister.html";
-
-    }
-
-    else{
-
-        window.location.href =
-        "teacherRegister.html";
-
-    }
-
-}
+</body>
+</html>
