@@ -30,20 +30,28 @@ type="text"
 id="employeeId"
 placeholder="Employee ID">
 
+<span id="employeeIdError" class="error"></span>
+
 <input
 type="text"
 id="subject"
 placeholder="Subject">
+
+<span id="subjectError" class="error"></span>
 
 <input
 type="text"
 id="department"
 placeholder="Department">
 
+<span id="departmentError" class="error"></span>
+
 <input
 type="text"
 id="phone"
 placeholder="Phone Number">
+
+<span id="phoneError" class="error"></span>
 
 <input
 type="email"
@@ -51,11 +59,15 @@ id="email"
 placeholder="Email"
 readonly>
 
+<div class="buttons">
+
 <button onclick="registerTeacher()">
 
 Register
 
 </button>
+
+</div>
 
 </div>
 
