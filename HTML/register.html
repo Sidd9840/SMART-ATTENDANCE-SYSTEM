@@ -26,20 +26,28 @@
                 id="name"
                 placeholder="Enter Full Name">
 
+            <span id="nameError" class="error"></span>
+
             <input
                 type="email"
                 id="email"
                 placeholder="Enter Email">
+
+            <span id="emailError" class="error"></span>
 
             <input
                 type="password"
                 id="password"
                 placeholder="Enter Password">
 
+            <span id="passwordError" class="error"></span>
+
             <input
                 type="password"
                 id="confirmPassword"
                 placeholder="Confirm Password">
+
+            <span id="confirmPasswordError" class="error"></span>
 
             <select id="role">
 
@@ -54,6 +62,8 @@
                 </option>
 
             </select>
+
+            <span id="roleError" class="error"></span>
 
             <button onclick="continueRegister()">
 
