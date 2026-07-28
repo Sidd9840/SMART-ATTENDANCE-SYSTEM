@@ -1,1 +1,284 @@
+/* ==========================
+   Reset
+========================== */
 
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#1e3c72,#2a5298);
+}
+/* ==========================
+   Hero Section
+========================== */
+
+.hero{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:30px;
+
+}
+/* ==========================
+   Register Card
+========================== */
+
+.content{
+
+    width:480px;
+
+    max-width:95%;
+
+    background:#ffffff;
+
+    border-radius:20px;
+
+    padding:40px;
+
+    text-align:center;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.20);
+
+    animation:fadeIn .6s ease;
+
+}
+/* ==========================
+   Heading
+========================== */
+
+.content h1{
+
+    color:#1e3c72;
+
+    font-size:40px;
+
+    margin-bottom:8px;
+
+}
+
+.content p{
+
+    color:#666;
+
+    font-size:16px;
+
+    margin-bottom:25px;
+
+}
+
+/* ==========================
+   Register Form
+========================== */
+
+.loginForm{
+
+    width:100%;
+
+}
+/* ==========================
+   Input Fields
+========================== */
+
+.loginForm input,
+.loginForm select{
+
+    width:100%;
+
+    height:52px;
+
+    padding:0 16px;
+
+    margin:10px 0;
+
+    border:1px solid #d1d5db;
+
+    border-radius:10px;
+
+    font-size:16px;
+
+    outline:none;
+
+    transition:.3s;
+
+    background:#fff;
+
+} 
+.loginForm input:focus,
+.loginForm select:focus{
+
+    border-color:#1e3c72;
+
+    box-shadow:0 0 8px rgba(30,60,114,.25);
+
+}
+/* ==========================
+   Error Messages
+========================== */
+
+.error{
+
+    display:block;
+
+    color:#dc2626;
+
+    font-size:13px;
+
+    text-align:left;
+
+    margin-top:-5px;
+
+    margin-bottom:8px;
+
+    min-height:18px;
+
+}
+/* ==========================
+   Continue Button
+========================== */
+
+.loginForm button{
+
+    width:100%;
+
+    height:52px;
+
+    margin-top:18px;
+
+    background:#1e3c72;
+
+    color:white;
+
+    border:none;
+
+    border-radius:10px;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:background .3s, box-shadow .3s;
+
+    box-shadow:0 8px 18px rgba(0,0,0,.15);
+
+}
+.loginForm button:hover{
+
+    background:#2952a3;
+
+    box-shadow:0 8px 18px rgba(0,0,0,.22);
+
+}
+.loginForm button:hover{
+
+    background:#2952a3;
+
+    box-shadow:0 8px 18px rgba(0,0,0,.22);
+
+}
+/* ==========================
+   Responsive
+========================== */
+
+@media(max-width:768px){
+
+.content{
+
+    width:95%;
+
+    padding:30px 20px;
+
+}
+
+.content h1{
+
+    font-size:30px;
+
+}
+
+.loginForm button{
+
+    font-size:16px;
+
+}
+
+}
+/* ==========================
+   Animation
+========================== */
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+/* ==========================
+   Home Button
+========================== */
+
+.buttons{
+
+    display:flex;
+
+    justify-content:center;
+
+    margin-top:18px;
+
+}
+
+.home-btn{
+
+    width:170px;
+
+    height:48px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#6b7280;
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:background .3s, box-shadow .3s;
+
+}
+
+.home-btn:hover{
+
+    background:#4b5563;
+
+    box-shadow:0 8px 18px rgba(0,0,0,.20);
+
+}
