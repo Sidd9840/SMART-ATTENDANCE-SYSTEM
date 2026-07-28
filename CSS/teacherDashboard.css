@@ -198,10 +198,10 @@ body{
 
 }
 /* ==========================
-   Action Buttons
+   Teacher Dashboard Buttons
 ========================== */
 
-.buttons{
+.action-buttons{
 
     display:flex;
 
@@ -213,7 +213,7 @@ body{
 
 }
 
-.buttons button{
+.action-buttons button{
 
     width:240px;
 
@@ -223,35 +223,80 @@ body{
 
     border-radius:12px;
 
+    color:white;
+
     font-size:17px;
 
     font-weight:bold;
 
     cursor:pointer;
 
-    color:white;
+}
 
-    background:#1e3c72;
+/* Start Button */
 
-    transition:.3s;
+.start-btn{
+
+    background:#16a34a;
 
 }
 
-.buttons button:hover{
+.start-btn:hover{
 
-    background:#2952a3;
+    background:#15803d;
 
 }
+
+/* Close Button */
+
+.close-btn{
+
+    background:#f59e0b;
+
+}
+
+.close-btn:hover{
+
+    background:#d97706;
+
+}
+
 /* Logout */
+
+.logout-section{
+
+    display:flex;
+
+    justify-content:center;
+
+    margin-top:20px;
+
+}
 
 .logout-btn{
 
-    background:#dc2626 !important;
+    width:500px;
+
+    height:52px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#dc2626;
+
+    color:white;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    cursor:pointer;
 
 }
 
 .logout-btn:hover{
 
-    background:#b91c1c !important;
+    background:#b91c1c;
 
 }
