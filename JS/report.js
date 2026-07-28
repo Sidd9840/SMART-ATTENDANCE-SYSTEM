@@ -20,6 +20,14 @@ window.onload = function () {
 
     </tr>`;
 
+    // Auto Select Current Month & Year
+
+    const today = new Date();
+
+    document.getElementById("month").value = today.getMonth() + 1;
+
+    document.getElementById("year").value = today.getFullYear();
+
 };
 
 // ----------------------------
