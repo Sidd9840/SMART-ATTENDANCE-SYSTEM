@@ -215,31 +215,56 @@ function saveAttendance(){
 
     })
 
-    .then(response=>{
+   .then(response=>{
 
-        if(!response) return;
+    if(!response) return;
 
-        return response.text();
+    return response.text();
 
-    })
+})
 
-    .then(message=>{
+.then(message=>{
 
-        if(!message) return;
+    if(!message) return;
 
-        if(message.includes("Attendance already marked")){
+    // Holiday
+    if(message.includes("Holiday")){
 
-            alert(message);
+        alert(message);
+        return;
 
-            return;
+    }
 
-        }
+    // Attendance Time Closed
+    if(message.includes("first 15 minutes")){
 
-        alert("Attendance Marked Successfully");
+        alert(message);
+        return;
 
-        window.location.href="studentAttendance.html";
+    }
 
-    })
+    // Already Marked
+    if(message.includes("already marked")){
+
+        alert(message);
+        return;
+
+    }
+
+    // Success
+    alert("Attendance Marked Successfully");
+
+    window.location.href="studentAttendance.html";
+
+})
+
+.catch(error=>{
+
+    console.log(error);
+
+    alert(error.message);
+
+});
 
     .catch(error=>{
 
