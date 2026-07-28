@@ -35,7 +35,7 @@ body{
 
 .content{
 
-    width:450px;
+    width:460px;
 
     max-width:95%;
 
@@ -43,11 +43,13 @@ body{
 
     border-radius:20px;
 
-    padding:40px;
+    padding:45px 40px;
 
     text-align:center;
 
-    box-shadow:0 12px 30px rgba(0,0,0,.20);
+    box-shadow:0 15px 35px rgba(0,0,0,.20);
+
+    animation:fadeIn .6s ease;
 
 }
 /* ==========================
@@ -58,9 +60,11 @@ body{
 
     color:#1e3c72;
 
-    font-size:34px;
+    font-size:42px;
 
-    margin-bottom:10px;
+    font-weight:bold;
+
+    margin-bottom:8px;
 
 }
 
@@ -68,11 +72,11 @@ body{
 
     color:#666;
 
-    font-size:16px;
+    font-size:17px;
 
-    margin-bottom:30px;
+    margin-bottom:28px;
 
-}
+}   
 /* ==========================
    Login Form
 ========================== */
@@ -93,13 +97,15 @@ body{
 
     width:100%;
 
-    padding:15px;
+    height:55px;
+
+    padding:0 18px;
 
     margin:12px 0;
 
     border:1px solid #d1d5db;
 
-    border-radius:10px;
+    border-radius:12px;
 
     font-size:16px;
 
@@ -124,9 +130,9 @@ body{
 
     width:100%;
 
-    padding:15px;
+    height:55px;
 
-    margin-top:20px;
+    margin-top:22px;
 
     background:#1e3c72;
 
@@ -134,7 +140,7 @@ body{
 
     border:none;
 
-    border-radius:10px;
+    border-radius:12px;
 
     font-size:18px;
 
@@ -144,7 +150,9 @@ body{
 
     transition:.3s;
 
-}
+    box-shadow:0 8px 18px rgba(0,0,0,.15);
+
+}   
 .loginForm button:hover{
 
     background:#2952a3;
@@ -242,5 +250,26 @@ body{
         transform:translateY(0);
 
     }
+
+}
+.home-link{
+
+    display:inline-block;
+
+    margin-top:18px;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    color:#1e3c72;
+
+    text-decoration:none;
+
+}
+
+.home-link:hover{
+
+    color:#2952a3;
 
 }
