@@ -26,19 +26,34 @@
                 id="email"
                 placeholder="Enter Email">
 
+            <span id="emailError" class="error"></span>
+
             <input
                 type="password"
                 id="password"
                 placeholder="Enter Password">
 
+            <span id="passwordError" class="error"></span>
+
             <select id="role">
 
                 <option value="">Select Role</option>
-                <option value="Admin">Admin</option>
-                <option value="Teacher">Teacher</option>
-                <option value="Student">Student</option>
+
+                <option value="Admin">
+                    Admin
+                </option>
+
+                <option value="Teacher">
+                    Teacher
+                </option>
+
+                <option value="Student">
+                    Student
+                </option>
 
             </select>
+
+            <span id="roleError" class="error"></span>
 
             <button onclick="login()">
                 Login
@@ -54,7 +69,9 @@
 
         <div class="buttons">
 
-            <button type="button" onclick="goHome()">
+            <button
+                type="button"
+                onclick="goHome()">
 
                 🏠 Home
 
