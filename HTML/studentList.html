@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+
     <title>Student List</title>
-    <link rel="stylesheet" href="../CSS/style1.css">
+
+    <link rel="stylesheet" href="../CSS/studentList.css">
+
 </head>
+
 <body>
 
 <div class="hero">
@@ -12,21 +17,43 @@
 
         <h1>Student List</h1>
 
-        <table border="1" width="100%" id="studentTable">
+        <p>Manage Registered Students</p>
 
-            <tr>
-    <th>Name</th>
-    <th>Roll No</th>
-    <th>Course</th>
-    <th>Email</th>
-    <th>Action</th>
-</tr>
+        <div class="table-container">
 
-        </table>
+            <table id="studentTable">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Name</th>
+                        <th>Roll No</th>
+                        <th>Course</th>
+                        <th>Email</th>
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                </tbody>
+
+            </table>
+
+        </div>
 
         <div class="buttons">
-    <button id="backBtn">Back to Dashboard</button>
-</div>
+
+            <button onclick="history.back()">
+
+                ⬅ Back to Dashboard
+
+            </button>
+
+        </div>
 
     </div>
 
@@ -35,4 +62,5 @@
 <script src="../JS/studentList.js"></script>
 
 </body>
+
 </html>
