@@ -515,3 +515,37 @@ padding:30px;
 }
 
 }
+/* ===== Mark Attendance Fix ===== */
+
+.dashboard-cards{
+    display:grid !important;
+    grid-template-columns:repeat(2, 250px) !important;
+    justify-content:center !important;
+    gap:20px !important;
+}
+
+.dashboard-cards .card{
+    width:250px !important;
+    height:140px !important;
+    padding:15px !important;
+}
+
+.dashboard-cards .card h2{
+    font-size:18px !important;
+    line-height:1.2 !important;
+    margin:10px 0 0 0 !important;
+    word-break:break-word;
+}
+
+.dashboard-cards .card h3{
+    font-size:18px !important;
+}
+
+.content{
+    width:750px !important;
+    padding:30px !important;
+}
+
+.content h1{
+    font-size:36px !important;
+}
