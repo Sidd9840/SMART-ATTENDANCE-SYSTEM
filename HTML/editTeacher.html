@@ -13,74 +13,88 @@
 
 <div class="hero">
 
-    <div class="content">
+<div class="content">
 
-        <h1>Edit Teacher</h1>
+<h1>Edit Teacher</h1>
 
-        <p>Update Teacher Details</p>
+<p>Update Teacher Details</p>
 
-        <div class="loginForm">
+<div class="loginForm">
 
-            <input
-                type="text"
-                id="name"
-                placeholder="Teacher Name">
+<input
+type="text"
+id="name"
+placeholder="Teacher Name">
 
-            <input
-                type="text"
-                id="employeeId"
-                placeholder="Employee ID">
+<span id="nameError" class="error"></span>
 
-            <input
-                type="email"
-                id="email"
-                placeholder="Email">
+<input
+type="text"
+id="employeeId"
+placeholder="Employee ID">
 
-            <input
-                type="password"
-                id="password"
-                placeholder="Password">
+<span id="employeeIdError" class="error"></span>
 
-            <input
-                type="text"
-                id="phone"
-                placeholder="Phone Number">
+<input
+type="email"
+id="email"
+placeholder="Email">
 
-            <input
-                type="text"
-                id="department"
-                placeholder="Department">
+<span id="emailError" class="error"></span>
 
-            <input
-                type="text"
-                id="subject"
-                placeholder="Subject">
+<input
+type="password"
+id="password"
+placeholder="Password">
 
-            <button onclick="updateTeacher()">
+<span id="passwordError" class="error"></span>
 
-                Update Teacher
+<input
+type="text"
+id="phone"
+placeholder="Phone Number">
 
-            </button>
+<span id="phoneError" class="error"></span>
 
-        </div>
+<input
+type="text"
+id="department"
+placeholder="Department">
 
-        <br>
+<span id="departmentError" class="error"></span>
 
-        <div class="buttons">
+<input
+type="text"
+id="subject"
+placeholder="Subject">
 
-            <a href="teacherList.html">
+<span id="subjectError" class="error"></span>
 
-                <button>
+<button onclick="updateTeacher()">
 
-                    ⬅ Back
+Update Teacher
 
-                </button>
+</button>
 
-            </a>
+</div>
 
-        </div>
+<br>
 
-    </div>
+<div class="buttons">
+
+<a href="teacherList.html">
+
+<button type="button">
+
+⬅ Back
+
+</button>
+
+</a>
+
+</div>
+
+</div>
 
 </div>
 
