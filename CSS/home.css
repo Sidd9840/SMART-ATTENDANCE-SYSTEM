@@ -251,7 +251,7 @@ transform:translateY(-15px);
 transform:translateY(0);
 
 }
-
+}
 /* =====================================
    ABOUT SECTION
 ===================================== */
@@ -289,6 +289,7 @@ transform:translateY(0);
     color:#555;
 
 }
+
 
 /* =====================================
    FEATURES
@@ -722,7 +723,3 @@ nav ul li{
 
 }
 
-}
-
-
-}
