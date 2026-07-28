@@ -58,39 +58,39 @@ function loadAttendance() {
 // Search Student
 // ----------------------------
 
-function searchStudent(){
+function searchStudent() {
 
-    let keyword =
-    document.getElementById("searchText").value.trim();
+    let keyword = document.getElementById("searchText").value.trim();
+    let month = document.getElementById("month").value;
+    let year = document.getElementById("year").value;
 
-    if(keyword==""){
-
+    if (keyword == "") {
         alert("Please Enter Student Name");
-
         return;
-
     }
 
     fetch(
         "http://localhost:8080/attendance/search?keyword="
         + encodeURIComponent(keyword)
+        + "&month=" + month
+        + "&year=" + year
     )
 
-    .then(response=>response.json())
+    .then(response => response.json())
 
-    .then(data=>{
+    .then(data => {
 
         showData(data);
 
     })
 
-    .catch(error=>{
+    .catch(error => {
 
         console.log(error);
 
     });
 
-}
+}    
 
 // ----------------------------
 // Search By Month & Year
