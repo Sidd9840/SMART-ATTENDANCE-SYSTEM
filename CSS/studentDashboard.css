@@ -1,0 +1,283 @@
+/* ==========================
+   Reset
+========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#1e3c72,#2a5298);
+}
+
+/* ==========================
+   Hero
+========================== */
+
+.hero{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:30px;
+
+}
+
+/* ==========================
+   Main Card
+========================== */
+
+.content{
+
+    width:1050px;
+
+    max-width:95%;
+
+    background:#ffffff;
+
+    border-radius:20px;
+
+    padding:40px;
+
+    text-align:center;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.20);
+
+}
+
+.content h1{
+
+    color:#1e3c72;
+
+    font-size:40px;
+
+    margin-bottom:10px;
+
+}
+
+/* ==========================
+   Dashboard Cards
+========================== */
+
+.dashboard-cards{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:22px;
+
+    margin:35px 0;
+
+}
+
+.dashboard-cards .card{
+
+    background:#ffffff;
+
+    border-left:5px solid #1e3c72;
+
+    border-radius:15px;
+
+    padding:25px;
+
+    box-shadow:0 8px 18px rgba(0,0,0,.12);
+
+}
+
+.dashboard-cards .card h3{
+
+    color:#1e3c72;
+
+    font-size:18px;
+
+    margin-bottom:12px;
+
+}
+
+.dashboard-cards .card h2{
+
+    color:#2a5298;
+
+    font-size:28px;
+
+    word-break:break-word;
+
+}
+
+/* ==========================
+   Dashboard Buttons
+========================== */
+
+.dashboard-buttons{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:25px;
+
+    margin-top:15px;
+
+    flex-wrap:wrap;
+
+}
+
+.dashboard-buttons a{
+
+    text-decoration:none;
+
+}
+
+.primary-btn,
+.secondary-btn{
+
+    width:260px;
+
+    height:55px;
+
+    border:none;
+
+    border-radius:12px;
+
+    color:white;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    box-shadow:0 8px 18px rgba(0,0,0,.15);
+
+}
+
+.primary-btn{
+
+    background:#1e3c72;
+
+}
+
+.primary-btn:hover{
+
+    background:#2952a3;
+
+}
+
+.secondary-btn{
+
+    background:#16a34a;
+
+}
+
+.secondary-btn:hover{
+
+    background:#15803d;
+
+}
+
+/* ==========================
+   Logout
+========================== */
+
+.logout-section{
+
+    margin-top:30px;
+
+}
+
+.logout-btn{
+
+    width:550px;
+
+    max-width:100%;
+
+    height:55px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#dc2626;
+
+    color:white;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    box-shadow:0 8px 18px rgba(0,0,0,.15);
+
+}
+
+.logout-btn:hover{
+
+    background:#b91c1c;
+
+}
+
+/* ==========================
+   Responsive
+========================== */
+
+@media(max-width:900px){
+
+.dashboard-cards{
+
+    grid-template-columns:repeat(2,1fr);
+
+}
+
+}
+
+@media(max-width:600px){
+
+.content{
+
+    padding:25px;
+
+}
+
+.content h1{
+
+    font-size:30px;
+
+}
+
+.dashboard-cards{
+
+    grid-template-columns:1fr;
+
+}
+
+.primary-btn,
+.secondary-btn,
+.logout-btn{
+
+    width:100%;
+
+}
+
+.dashboard-buttons{
+
+    flex-direction:column;
+
+    align-items:center;
+
+}
+
+}
