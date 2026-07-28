@@ -315,3 +315,176 @@ td{
     box-sizing:border-box;
 
 }
+
+/* ==============================
+   Admin Dashboard Design
+============================== */
+
+.dashboard-header{
+
+    margin-bottom:25px;
+
+}
+
+.dashboard-header h1{
+
+    font-size:40px;
+    color:#1e3c72;
+    margin-bottom:8px;
+
+}
+
+.dashboard-header p{
+
+    font-size:18px;
+    color:#666;
+
+}
+
+.welcome-section{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin:35px 0;
+    gap:30px;
+    flex-wrap:wrap;
+
+}
+
+.welcome-section h2{
+
+    color:#1e3c72;
+    margin-bottom:10px;
+
+}
+
+.dashboard-img{
+
+    width:260px;
+    max-width:100%;
+    animation:float 3s ease-in-out infinite;
+
+}
+
+.dashboard-cards{
+
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:wrap;
+    margin:30px 0;
+
+}
+
+.dashboard-cards .card{
+
+    width:220px;
+    background:white;
+    border-left:6px solid #1e3c72;
+    box-shadow:0 8px 20px rgba(0,0,0,.12);
+
+}
+
+.dashboard-cards .card h2{
+
+    font-size:40px;
+    color:#2a5298;
+
+}
+
+.section-title{
+
+    color:#1e3c72;
+    margin:35px 0 20px;
+
+}
+
+.features{
+
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+
+}
+
+.features .card{
+
+    width:auto;
+    padding:30px;
+
+}
+
+.features .card h3{
+
+    font-size:22px;
+
+}
+
+.features .card p{
+
+    font-size:15px;
+
+}
+
+.footer{
+
+    margin-top:40px;
+    font-size:15px;
+
+}
+
+@keyframes float{
+
+0%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(-10px);
+
+}
+
+100%{
+
+transform:translateY(0);
+
+}
+
+}
+
+@media(max-width:768px){
+
+.welcome-section{
+
+flex-direction:column;
+
+text-align:center;
+
+}
+
+.features{
+
+grid-template-columns:1fr;
+
+}
+
+.dashboard-cards{
+
+flex-direction:column;
+align-items:center;
+
+}
+
+.content{
+
+width:95%;
+
+padding:30px;
+
+}
+
+}
