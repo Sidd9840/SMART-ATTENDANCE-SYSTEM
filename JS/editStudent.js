@@ -1,6 +1,8 @@
 const studentId =
 new URLSearchParams(window.location.search).get("id");
 
+// Load Student
+
 fetch("http://localhost:8080/students/" + studentId)
 
 .then(response => response.json())
@@ -24,67 +26,223 @@ fetch("http://localhost:8080/students/" + studentId)
 
 });
 
+// Update Student
+
 document.getElementById("editStudentForm")
-.addEventListener("submit",function(e){
+.addEventListener("submit", function(e){
 
-e.preventDefault();
+    e.preventDefault();
 
-let student={
+    let name =
+    document.getElementById("studentName").value.trim();
 
-    name:
-    document.getElementById("studentName").value,
+    let rollNo =
+    document.getElementById("rollNo").value.trim();
 
-    rollNo:
-    document.getElementById("rollNo").value,
+    let course =
+    document.getElementById("course").value.trim();
 
-    course:
-    document.getElementById("course").value,
+    let email =
+    document.getElementById("email").value.trim();
 
-    email:
-    document.getElementById("email").value,
+    let password =
+    document.getElementById("password").value.trim();
 
-    password:
-    document.getElementById("password").value
+    // Clear Errors
 
-};
+    document.getElementById("nameError").innerHTML="";
+    document.getElementById("rollError").innerHTML="";
+    document.getElementById("courseError").innerHTML="";
+    document.getElementById("emailError").innerHTML="";
+    document.getElementById("passwordError").innerHTML="";
 
-fetch(
+    document.getElementById("studentName").classList.remove("input-error","input-success");
+    document.getElementById("rollNo").classList.remove("input-error","input-success");
+    document.getElementById("course").classList.remove("input-error","input-success");
+    document.getElementById("email").classList.remove("input-error","input-success");
+    document.getElementById("password").classList.remove("input-error","input-success");
 
-"http://localhost:8080/students/"+studentId,
+    // Name Validation
 
-{
+    if(name==""){
 
-method:"PUT",
+        document.getElementById("nameError").innerHTML =
+        "Student Name is required.";
 
-headers:{
+        document.getElementById("studentName").classList.add("input-error");
 
-"Content-Type":"application/json"
+        return;
 
-},
+    }
 
-body:JSON.stringify(student)
+    let namePattern = /^[A-Za-z ]+$/;
 
-}
+    if(!namePattern.test(name)){
 
-)
+        document.getElementById("nameError").innerHTML =
+        "Only alphabets are allowed.";
 
-.then(response=>response.json())
+        document.getElementById("studentName").classList.add("input-error");
 
-.then(data=>{
+        return;
 
-alert("Student Updated Successfully");
+    }
 
-window.location.href="studentList.html";
+    document.getElementById("studentName").classList.add("input-success");
 
-})
+    // Roll Number Validation
 
-.catch(error=>{
+    if(rollNo==""){
 
-console.log(error);
+        document.getElementById("rollError").innerHTML =
+        "Roll Number is required.";
+
+        document.getElementById("rollNo").classList.add("input-error");
+
+        return;
+
+    }
+
+    let rollPattern = /^[A-Za-z0-9-]+$/;
+
+    if(!rollPattern.test(rollNo)){
+
+        document.getElementById("rollError").innerHTML =
+        "Invalid Roll Number.";
+
+        document.getElementById("rollNo").classList.add("input-error");
+
+        return;
+
+    }
+
+    document.getElementById("rollNo").classList.add("input-success");
+
+    // Course Validation
+
+    if(course==""){
+
+        document.getElementById("courseError").innerHTML =
+        "Course is required.";
+
+        document.getElementById("course").classList.add("input-error");
+
+        return;
+
+    }
+
+    document.getElementById("course").classList.add("input-success");
+
+    // Email Validation
+
+    if(email==""){
+
+        document.getElementById("emailError").innerHTML =
+        "Email is required.";
+
+        document.getElementById("email").classList.add("input-error");
+
+        return;
+
+    }
+
+    let emailPattern =
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if(!emailPattern.test(email)){
+
+        document.getElementById("emailError").innerHTML =
+        "Please enter a valid Email.";
+
+        document.getElementById("email").classList.add("input-error");
+
+        return;
+
+    }
+
+    document.getElementById("email").classList.add("input-success");
+
+    // Password Validation
+
+    if(password==""){
+
+        document.getElementById("passwordError").innerHTML =
+        "Password is required.";
+
+        document.getElementById("password").classList.add("input-error");
+
+        return;
+
+    }
+
+    if(password.length < 6){
+
+        document.getElementById("passwordError").innerHTML =
+        "Password must be at least 6 characters.";
+
+        document.getElementById("password").classList.add("input-error");
+
+        return;
+
+    }
+
+    document.getElementById("password").classList.add("input-success");
+
+    // Student Object
+
+    let student = {
+
+        name:name,
+
+        rollNo:rollNo,
+
+        course:course,
+
+        email:email,
+
+        password:password
+
+    };
+
+    fetch(
+
+    "http://localhost:8080/students/" + studentId,
+
+    {
+
+        method:"PUT",
+
+        headers:{
+
+            "Content-Type":"application/json"
+
+        },
+
+        body:JSON.stringify(student)
+
+    })
+
+    .then(response=>response.json())
+
+    .then(data=>{
+
+        alert("Student Updated Successfully");
+
+        window.location.href="studentList.html";
+
+    })
+
+    .catch(error=>{
+
+        console.log(error);
+
+        alert("Unable to update student.");
+
+    });
 
 });
 
-});
+// Back
 
 function goBack(){
 
