@@ -242,3 +242,16 @@ body{
     background:#2952a3;
 
 }
+/* Logout */
+
+.logout-btn{
+
+    background:#dc2626 !important;
+
+}
+
+.logout-btn:hover{
+
+    background:#b91c1c !important;
+
+}
