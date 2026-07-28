@@ -1,96 +1,124 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+
     <title>Teacher Dashboard</title>
+
     <link rel="stylesheet" href="../CSS/teacherDashboard.css">
+
 </head>
+
 <body>
 
-<div class="hero">
+    <div class="hero">
 
-    <div class="content">
+        <div class="content">
 
-        <h1>Teacher Dashboard</h1>
+            <h1>Teacher Dashboard</h1>
 
-        <p>Manage Attendance Records</p>
+            <p>Manage Attendance Records</p>
 
-        <!-- Dashboard Summary -->
-        <div class="dashboard-cards">
+            <!-- Dashboard Cards -->
 
-            <div class="card">
-                <h3>Total Students</h3>
-                <h2 id="totalStudents">0</h2>
+            <div class="dashboard-cards">
+
+                <div class="card">
+                    <h3>Total Students</h3>
+                    <h2 id="totalStudents">0</h2>
+                </div>
+
+                <div class="card">
+                    <h3>Total Attendance</h3>
+                    <h2 id="totalAttendance">0</h2>
+                </div>
+
+                <div class="card">
+                    <h3>Present</h3>
+                    <h2 id="present">0</h2>
+                </div>
+
+                <div class="card">
+                    <h3>Absent</h3>
+                    <h2 id="absent">0</h2>
+                </div>
+
             </div>
 
-            <div class="card">
-                <h3>Total Attendance</h3>
-                <h2 id="totalAttendance">0</h2>
+            <!-- Features -->
+
+            <div class="features">
+
+                <div class="card">
+
+                    <a href="studentList.html">
+
+                        <h3>📋 Student List</h3>
+
+                        <p>View all students.</p>
+
+                    </a>
+
+                </div>
+
+                <div class="card">
+
+                    <a href="report.html">
+
+                        <h3>📊 Reports</h3>
+
+                        <p>View attendance reports.</p>
+
+                    </a>
+
+                </div>
+
             </div>
 
-            <div class="card">
-                <h3>Present</h3>
-                <h2 id="present">0</h2>
+            <!-- Action Buttons -->
+
+            <div class="action-buttons">
+
+                <button class="start-btn" onclick="startAttendance()">
+
+                    ▶ Start Attendance
+
+                </button>
+
+                <button class="close-btn" onclick="closeAttendance()">
+
+                    ⛔ Close Attendance
+
+                </button>
+
             </div>
 
-            <div class="card">
-                <h3>Absent</h3>
-                <h2 id="absent">0</h2>
+            <!-- Logout -->
+
+            <div class="logout-section">
+
+                <button class="logout-btn" onclick="logout()">
+
+                    🚪 Logout
+
+                </button>
+
             </div>
 
-        </div>
+            <!-- Footer -->
 
-        <!-- Features -->
-        <div class="features">
+            <div class="footer">
 
-            <div class="card">
-                <a href="studentList.html">
-                    <h3>📋 Student List</h3>
-                    <p>View all students.</p>
-                </a>
+                © 2026 Smart Attendance System | Developed by Siddharth Tomar
+
             </div>
 
-            <div class="card">
-                <a href="report.html">
-                    <h3>📊 Reports</h3>
-                    <p>View attendance reports.</p>
-                </a>
-            </div>
-
-        </div>
-
-        <!-- Attendance Session Buttons -->
-        <div class="action-buttons">
-
-    <button class="start-btn" onclick="startAttendance()">
-        ▶ Start Attendance
-    </button>
-
-    <button class="close-btn" onclick="closeAttendance()">
-        ⛔ Close Attendance
-    </button>
-
-</div>
-
-<div class="logout-section">
-
-    <button class="logout-btn" onclick="logout()">
-        🚪 Logout
-    </button>
-
-</div>
-
-</div>
-
-        <!-- Footer -->
-        <div class="footer">
-            © 2026 Smart Attendance System | Developed by Siddharth Tomar
         </div>
 
     </div>
 
-</div>
-
-<script src="../JS/dashboard.js"></script>
+    <script src="../JS/dashboard.js"></script>
 
 </body>
+
 </html>
