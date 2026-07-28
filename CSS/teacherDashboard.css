@@ -197,3 +197,48 @@ body{
     line-height:24px;
 
 }
+/* ==========================
+   Action Buttons
+========================== */
+
+.buttons{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:20px;
+
+    margin-top:30px;
+
+}
+
+.buttons button{
+
+    width:240px;
+
+    height:52px;
+
+    border:none;
+
+    border-radius:12px;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    color:white;
+
+    background:#1e3c72;
+
+    transition:.3s;
+
+}
+
+.buttons button:hover{
+
+    background:#2952a3;
+
+}
