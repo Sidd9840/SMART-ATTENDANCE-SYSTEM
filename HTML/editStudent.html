@@ -24,32 +24,37 @@
 <input
 type="text"
 id="studentName"
-placeholder="Student Name"
-required>
+placeholder="Student Name">
+
+<span id="nameError" class="error"></span>
 
 <input
 type="text"
 id="rollNo"
-placeholder="Roll Number"
-required>
+placeholder="Roll Number">
+
+<span id="rollError" class="error"></span>
 
 <input
 type="text"
 id="course"
-placeholder="Course"
-required>
+placeholder="Course">
+
+<span id="courseError" class="error"></span>
 
 <input
 type="email"
 id="email"
-placeholder="Email"
-required>
+placeholder="Email">
+
+<span id="emailError" class="error"></span>
 
 <input
 type="password"
 id="password"
-placeholder="Password"
-required>
+placeholder="Password">
+
+<span id="passwordError" class="error"></span>
 
 <div class="buttons">
 
@@ -65,9 +70,9 @@ Update Student
 
 <div class="buttons">
 
-<button onclick="goBack()">
+<button type="button" onclick="goBack()">
 
-← Back
+⬅ Back
 
 </button>
 
