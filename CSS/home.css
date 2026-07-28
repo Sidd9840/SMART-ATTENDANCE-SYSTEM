@@ -157,53 +157,39 @@ nav ul li a:hover{
 ===================================== */
 
 .hero-buttons{
-
     margin-top:40px;
+    display:flex;
+    gap:20px;
+    align-items:center;
+}
 
+.hero-buttons a{
+    text-decoration:none;
 }
 
 .hero-buttons button{
-
     padding:16px 42px;
-
     border:none;
-
     border-radius:50px;
-
     font-size:18px;
-
     cursor:pointer;
-
     background:#0b3d91;
-
     color:white;
-
-    margin-right:20px;
-
     transition:.3s;
-
     box-shadow:0 8px 20px rgba(0,0,0,.20);
-
 }
 
 .hero-buttons button:hover{
-
     transform:translateY(-5px);
-
     background:#1252bb;
-
 }
 
 .register{
-
     background:#28a745;
-
 }
 
 .register:hover{
-
     background:#218838;
-
 }
 
 /* =====================================
