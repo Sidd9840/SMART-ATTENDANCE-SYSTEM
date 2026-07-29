@@ -1,0 +1,374 @@
+/* ==========================
+   Reset
+========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+
+    background:linear-gradient(135deg,#1e3c72,#2a5298);
+
+}
+
+/* ==========================
+   Hero
+========================== */
+
+.hero{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:30px;
+
+}
+
+/* ==========================
+   Main Container
+========================== */
+
+.content{
+
+    width:1200px;
+
+    max-width:95%;
+
+    background:#ffffff;
+
+    border-radius:20px;
+
+    padding:40px;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.20);
+
+}
+
+/* ==========================
+   Header
+========================== */
+
+.dashboard-header{
+
+    text-align:center;
+
+    margin-bottom:30px;
+
+}
+
+.dashboard-header h1{
+
+    color:#1e3c72;
+
+    font-size:38px;
+
+    margin-bottom:10px;
+
+}
+
+.dashboard-header p{
+
+    color:#666;
+
+    font-size:18px;
+
+}
+
+/* ==========================
+   Welcome Section
+========================== */
+
+.welcome-section{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:30px;
+
+    margin-bottom:40px;
+
+    flex-wrap:wrap;
+
+}
+
+.welcome-section h2{
+
+    color:#1e3c72;
+
+    margin-bottom:12px;
+
+}
+
+.welcome-section p{
+
+    color:#555;
+
+    line-height:1.7;
+
+    max-width:600px;
+
+}
+
+.dashboard-img{
+
+    width:180px;
+
+    height:auto;
+
+}
+
+/* ==========================
+   Dashboard Cards
+========================== */
+
+.dashboard-cards{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:25px;
+
+    margin-bottom:40px;
+
+}
+
+.dashboard-cards .card{
+
+    background:#ffffff;
+
+    border-left:6px solid #1e3c72;
+
+    border-radius:15px;
+
+    padding:25px;
+
+    box-shadow:0 8px 18px rgba(0,0,0,.12);
+
+    text-align:center;
+
+}
+
+.dashboard-cards .card h3{
+
+    color:#1e3c72;
+
+    margin-bottom:15px;
+
+}
+
+.dashboard-cards .card h2{
+
+    font-size:38px;
+
+    color:#16a34a;
+
+}
+
+/* ==========================
+   Section Title
+========================== */
+
+.section-title{
+
+    text-align:center;
+
+    color:#1e3c72;
+
+    margin-bottom:25px;
+
+}
+
+/* ==========================
+   Quick Actions
+========================== */
+
+.features{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:25px;
+
+}
+
+.features .card{
+
+    background:#f8fafc;
+
+    border-radius:15px;
+
+    padding:25px;
+
+    text-align:center;
+
+    transition:.3s;
+
+    box-shadow:0 8px 18px rgba(0,0,0,.12);
+
+}
+
+.features .card:hover{
+
+    transform:translateY(-5px);
+
+    background:#eef4ff;
+
+}
+
+.features .card a{
+
+    text-decoration:none;
+
+    color:inherit;
+
+}
+
+.features .card h3{
+
+    color:#1e3c72;
+
+    margin-bottom:12px;
+
+}
+
+.features .card p{
+
+    color:#555;
+
+}
+
+/* ==========================
+   Logout Button
+========================== */
+
+.buttons{
+
+    margin-top:35px;
+
+    text-align:center;
+
+}
+
+.buttons button{
+
+    width:300px;
+
+    height:55px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#dc2626;
+
+    color:white;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    box-shadow:0 8px 18px rgba(0,0,0,.15);
+
+}
+
+.buttons button:hover{
+
+    background:#b91c1c;
+
+}
+
+/* ==========================
+   Footer
+========================== */
+
+.footer{
+
+    text-align:center;
+
+    margin-top:35px;
+
+    color:#666;
+
+    font-size:15px;
+
+}
+
+.footer p{
+
+    margin-top:6px;
+
+}
+
+/* ==========================
+   Responsive
+========================== */
+
+@media(max-width:900px){
+
+.dashboard-cards{
+
+    grid-template-columns:1fr;
+
+}
+
+.features{
+
+    grid-template-columns:1fr;
+
+}
+
+.welcome-section{
+
+    flex-direction:column;
+
+    text-align:center;
+
+}
+
+.dashboard-img{
+
+    width:140px;
+
+}
+
+}
+
+@media(max-width:600px){
+
+.content{
+
+    padding:25px;
+
+}
+
+.dashboard-header h1{
+
+    font-size:30px;
+
+}
+
+.buttons button{
+
+    width:100%;
+
+}
+
+}
