@@ -1,0 +1,302 @@
+/* ==========================
+   Reset
+========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+/* ==========================
+   Body
+========================== */
+
+body{
+
+    background:linear-gradient(135deg,#1e3c72,#2a5298);
+
+}
+
+/* ==========================
+   Hero
+========================== */
+
+.hero{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:flex-start;
+
+    padding:30px;
+
+}
+
+/* ==========================
+   Container
+========================== */
+
+.content{
+
+    width:1200px;
+
+    max-width:95%;
+
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:30px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.18);
+
+}
+
+.content h1{
+
+    text-align:center;
+
+    color:#1e3c72;
+
+    margin-bottom:8px;
+
+}
+
+.content p{
+
+    text-align:center;
+
+    color:#666;
+
+    margin-bottom:25px;
+
+}
+
+/* ==========================
+   Table
+========================== */
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    border-radius:12px;
+
+    overflow:hidden;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.10);
+
+}
+
+thead{
+
+    background:#1e3c72;
+
+    color:#fff;
+
+}
+
+thead th{
+
+    padding:14px;
+
+    font-size:15px;
+
+}
+
+tbody td{
+
+    padding:12px;
+
+    text-align:center;
+
+    border-bottom:1px solid #ddd;
+
+}
+
+tbody tr:nth-child(even){
+
+    background:#f8f9fa;
+
+}
+
+tbody tr:hover{
+
+    background:#eef4ff;
+
+}
+
+/* ==========================
+   Action Buttons
+========================== */
+
+.edit-btn{
+
+    background:#0d6efd;
+
+    color:#fff;
+
+    border:none;
+
+    padding:8px 14px;
+
+    border-radius:6px;
+
+    cursor:pointer;
+
+    margin-right:5px;
+
+}
+
+.edit-btn:hover{
+
+    background:#0b5ed7;
+
+}
+
+.delete-btn{
+
+    background:#dc3545;
+
+    color:#fff;
+
+    border:none;
+
+    padding:8px 14px;
+
+    border-radius:6px;
+
+    cursor:pointer;
+
+}
+
+.delete-btn:hover{
+
+    background:#bb2d3b;
+
+}
+
+/* ==========================
+   Bottom Buttons
+========================== */
+
+.buttons{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:15px;
+
+    margin-top:25px;
+
+    flex-wrap:wrap;
+
+}
+
+.buttons a{
+
+    text-decoration:none;
+
+}
+
+.buttons button{
+
+    width:180px;
+
+    padding:12px;
+
+    border:none;
+
+    border-radius:8px;
+
+    color:white;
+
+    font-size:15px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+/* Add Teacher */
+
+.buttons a:first-child button{
+
+    background:#16a34a;
+
+}
+
+.buttons a:first-child button:hover{
+
+    background:#15803d;
+
+}
+
+/* Back */
+
+.buttons a:last-child button{
+
+    background:#f59e0b;
+
+}
+
+.buttons a:last-child button:hover{
+
+    background:#d97706;
+
+}
+
+/* ==========================
+   Responsive
+========================== */
+
+@media(max-width:992px){
+
+.content{
+
+    overflow-x:auto;
+
+}
+
+table{
+
+    min-width:900px;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.content{
+
+    width:95%;
+
+    padding:20px;
+
+}
+
+.buttons{
+
+    flex-direction:column;
+
+}
+
+.buttons button{
+
+    width:100%;
+
+}
+
+}
