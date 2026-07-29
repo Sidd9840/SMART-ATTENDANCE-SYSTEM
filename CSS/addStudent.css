@@ -1,182 +1,196 @@
+/* ==========================
+   Reset
+========================== */
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Arial,Helvetica,sans-serif;
+    font-family:Arial,sans-serif;
 }
 
+/* ==========================
+   Body
+========================== */
+
 body{
+    background:linear-gradient(135deg,#1e3c72,#2a5298);
+}
+
+/* ==========================
+   Hero
+========================== */
+
+.hero{
     min-height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
-    background:linear-gradient(135deg,#1f4e99,#355fa8);
+    padding:30px;
 }
 
-.hero{
-    width:100%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:40px 20px;
-}
+/* ==========================
+   Main Container
+========================== */
 
 .content{
-
-    width:560px;
-
-    background:#fff;
-
-    border-radius:20px;
-
+    width:650px;
+    max-width:95%;
+    background:#ffffff;
+    border-radius:18px;
     padding:35px;
-
-    box-shadow:0 12px 35px rgba(0,0,0,.25);
-
+    box-shadow:0 10px 25px rgba(0,0,0,.18);
 }
 
+/* ==========================
+   Heading
+========================== */
+
 .content h1{
-
     text-align:center;
-
-    color:#1f4e99;
-
-    font-size:50px;
-
+    color:#1e3c72;
     margin-bottom:10px;
-
 }
 
 .content p{
-
     text-align:center;
-
     color:#666;
-
-    margin-bottom:30px;
-
-    font-size:18px;
-
+    margin-bottom:25px;
 }
 
-form{
+/* ==========================
+   Form
+========================== */
 
+.loginForm{
     display:flex;
-
     flex-direction:column;
-
 }
 
-input{
-
+.loginForm input{
     width:100%;
-
-    height:55px;
-
-    margin-bottom:15px;
-
-    border:1px solid #d8d8d8;
-
-    border-radius:10px;
-
-    padding:0 15px;
-
+    padding:13px;
+    margin-top:10px;
+    border:1px solid #ccc;
+    border-radius:8px;
     font-size:16px;
-
     outline:none;
-
     transition:.3s;
-
 }
 
-input:focus{
-
-    border-color:#1f4e99;
-
-    box-shadow:0 0 8px rgba(31,78,153,.25);
-
+.loginForm input:focus{
+    border-color:#1e3c72;
+    box-shadow:0 0 5px rgba(30,60,114,.3);
 }
+
+/* ==========================
+   Validation
+========================== */
 
 .error{
-
     color:red;
-
     font-size:13px;
-
-    margin-top:-10px;
-
-    margin-bottom:12px;
-
+    margin-top:4px;
+    margin-left:3px;
+    min-height:18px;
 }
 
+.input-error{
+    border:2px solid red !important;
+}
+
+.input-success{
+    border:2px solid green !important;
+}
+
+/* ==========================
+   Add Student Button
+========================== */
+
+.loginForm button{
+    margin-top:20px;
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:8px;
+    background:#1e3c72;
+    color:white;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.loginForm button:hover{
+    background:#16315f;
+}
+
+/* ==========================
+   Bottom Buttons
+========================== */
+
 .buttons{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    margin-top:20px;
+    flex-wrap:wrap;
+}
 
-    margin-top:12px;
-
+.buttons a{
+    text-decoration:none;
 }
 
 .buttons button{
-
-    width:100%;
-
-    height:55px;
-
+    width:180px;
+    padding:12px;
     border:none;
-
-    border-radius:10px;
-
-    font-size:18px;
-
+    border-radius:8px;
+    font-size:15px;
     font-weight:bold;
-
     cursor:pointer;
-
     transition:.3s;
-
 }
 
-form .buttons button{
+/* Student List Button */
 
-    background:#24498f;
-
-    color:#fff;
-
+.buttons a:first-child button{
+    background:#16a34a;
+    color:white;
 }
 
-form .buttons button:hover{
-
-    background:#183a77;
-
+.buttons a:first-child button:hover{
+    background:#15803d;
 }
 
-body .buttons:last-child button{
+/* Back Button */
 
-    background:#f39c12;
-
-    color:#fff;
-
+.buttons a:last-child button{
+    background:#f59e0b;
+    color:white;
 }
 
-body .buttons:last-child button:hover{
-
-    background:#d68910;
-
+.buttons a:last-child button:hover{
+    background:#d97706;
 }
 
-@media(max-width:650px){
+/* ==========================
+   Responsive
+========================== */
 
-.content{
+@media(max-width:768px){
 
-    width:95%;
+    .content{
+        width:95%;
+        padding:25px;
+    }
 
-    padding:25px;
+    .buttons{
+        flex-direction:column;
+    }
 
-}
-
-.content h1{
-
-    font-size:38px;
-
-}
+    .buttons button{
+        width:100%;
+    }
 
 }
