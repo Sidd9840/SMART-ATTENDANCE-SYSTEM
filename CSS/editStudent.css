@@ -1,0 +1,240 @@
+/* ==========================
+   Reset
+========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#1e3c72,#2a5298);
+}
+
+/* ==========================
+   Hero
+========================== */
+
+.hero{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:30px;
+
+}
+
+/* ==========================
+   Main Card
+========================== */
+
+.content{
+
+    width:550px;
+
+    max-width:95%;
+
+    background:#ffffff;
+
+    border-radius:20px;
+
+    padding:40px;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.20);
+
+}
+
+.content h1{
+
+    text-align:center;
+
+    color:#1e3c72;
+
+    font-size:34px;
+
+    margin-bottom:10px;
+
+}
+
+.content p{
+
+    text-align:center;
+
+    color:#666;
+
+    margin-bottom:25px;
+
+    font-size:16px;
+
+}
+
+/* ==========================
+   Form
+========================== */
+
+form{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+form input{
+
+    width:100%;
+
+    padding:14px;
+
+    margin-top:12px;
+
+    border:2px solid #d1d5db;
+
+    border-radius:10px;
+
+    font-size:16px;
+
+    outline:none;
+
+    transition:.3s;
+
+}
+
+form input:focus{
+
+    border-color:#1e3c72;
+
+}
+
+/* ==========================
+   Validation
+========================== */
+
+.error{
+
+    color:#dc2626;
+
+    font-size:13px;
+
+    margin-top:5px;
+
+    margin-left:5px;
+
+}
+
+.input-error{
+
+    border:2px solid #dc2626 !important;
+
+}
+
+.input-success{
+
+    border:2px solid #16a34a !important;
+
+}
+
+/* ==========================
+   Buttons
+========================== */
+
+.buttons{
+
+    margin-top:20px;
+
+}
+
+.buttons button{
+
+    width:100%;
+
+    height:52px;
+
+    border:none;
+
+    border-radius:10px;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    color:white;
+
+    box-shadow:0 8px 18px rgba(0,0,0,.15);
+
+}
+
+/* Update Button */
+
+form .buttons button{
+
+    background:#16a34a;
+
+}
+
+form .buttons button:hover{
+
+    background:#15803d;
+
+    transform:translateY(-2px);
+
+}
+
+/* Back Button */
+
+.content > .buttons button{
+
+    background:#1e3c72;
+
+}
+
+.content > .buttons button:hover{
+
+    background:#2952a3;
+
+    transform:translateY(-2px);
+
+}
+
+/* ==========================
+   Responsive
+========================== */
+
+@media(max-width:600px){
+
+.content{
+
+    padding:25px;
+
+}
+
+.content h1{
+
+    font-size:28px;
+
+}
+
+form input{
+
+    font-size:15px;
+
+}
+
+.buttons button{
+
+    font-size:16px;
+
+}
+
+}
