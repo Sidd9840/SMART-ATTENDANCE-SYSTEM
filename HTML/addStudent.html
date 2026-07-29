@@ -1,12 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
 
     <title>Add Student</title>
 
@@ -18,75 +13,93 @@
 
 <div class="hero">
 
-    <div class="content">
+<div class="content">
 
-        <h1>Add Student</h1>
+<h1>Add Student</h1>
 
-        <p>Enter Student Details</p>
+<p>Create New Student Account</p>
 
-        <form id="studentForm" class="loginForm">
+<form id="studentForm">
 
-            <input
-                type="text"
-                id="studentName"
-                placeholder="Student Name"
-                required>
+<div class="loginForm">
 
-            <span id="nameError" class="error"></span>
+<input
+type="text"
+id="studentName"
+placeholder="Enter Student Name"
+required>
 
-            <input
-                type="text"
-                id="rollNo"
-                placeholder="Roll Number"
-                required>
+<span id="nameError" class="error"></span>
 
-            <span id="rollError" class="error"></span>
+<input
+type="text"
+id="rollNo"
+placeholder="Enter Roll Number"
+required>
 
-            <input
-                type="text"
-                id="course"
-                placeholder="Course"
-                required>
+<span id="rollError" class="error"></span>
 
-            <span id="courseError" class="error"></span>
+<input
+type="text"
+id="course"
+placeholder="Enter Course"
+required>
 
-            <input
-                type="email"
-                id="email"
-                placeholder="Email"
-                required>
+<span id="courseError" class="error"></span>
 
-            <span id="emailError" class="error"></span>
+<input
+type="email"
+id="email"
+placeholder="Enter Email"
+required>
 
-            <input
-                type="password"
-                id="password"
-                placeholder="Password"
-                required>
+<span id="emailError" class="error"></span>
 
-            <span id="passwordError" class="error"></span>
+<input
+type="password"
+id="password"
+placeholder="Enter Password"
+required>
 
-            <button type="submit">
+<span id="passwordError" class="error"></span>
 
-                Add Student
+<button type="submit">
 
-            </button>
+Save Student
 
-        </form>
-
-       <div class="buttons">
-
-    <a href="studentList.html" class="student-list-btn">
-        Student List
-    </a>
-
-    <a href="adminDashboard.html" class="back-btn">
-        Back
-    </a>
+</button>
 
 </div>
 
-    </div>
+</form>
+
+<br>
+
+<div class="buttons">
+
+<a href="studentList.html">
+
+<button type="button">
+
+📋 Student List
+
+</button>
+
+</a>
+
+<a href="adminDashboard.html">
+
+<button type="button">
+
+⬅ Back
+
+</button>
+
+</a>
+
+</div>
+
+</div>
 
 </div>
 
