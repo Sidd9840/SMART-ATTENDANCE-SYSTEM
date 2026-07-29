@@ -5,8 +5,7 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Add Student</title>
 
@@ -16,9 +15,9 @@
 
 <body>
 
-<div class="hero">
+<div class="container">
 
-<div class="content">
+<div class="card">
 
 <h1>Add Student</h1>
 
@@ -29,61 +28,60 @@
 <input
 type="text"
 id="studentName"
-placeholder="Student Name">
+placeholder="Student Name"
+required>
 
 <span id="nameError" class="error"></span>
 
 <input
 type="text"
 id="rollNo"
-placeholder="Roll Number">
+placeholder="Roll Number"
+required>
 
 <span id="rollError" class="error"></span>
 
 <input
 type="text"
 id="course"
-placeholder="Course">
+placeholder="Course"
+required>
 
 <span id="courseError" class="error"></span>
 
 <input
 type="email"
 id="email"
-placeholder="Email">
+placeholder="Email"
+required>
 
 <span id="emailError" class="error"></span>
 
 <input
 type="password"
 id="password"
-placeholder="Password">
+placeholder="Password"
+required>
 
 <span id="passwordError" class="error"></span>
 
-<div class="buttons">
-
-<button type="submit">
+<button
+type="submit"
+class="btn">
 
 Add Student
 
 </button>
 
-</div>
-
 </form>
 
-<div class="buttons">
-
 <button
-type="button"
+class="back-btn"
 onclick="goBack()">
 
 Back to Dashboard
 
 </button>
-
-</div>
 
 </div>
 
