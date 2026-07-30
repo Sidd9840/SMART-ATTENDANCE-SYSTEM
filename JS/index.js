@@ -1,36 +1,67 @@
 window.onload = function () {
 
-    const admin = localStorage.getItem("admin");
-    const teacher = localStorage.getItem("teacher");
-    const student = localStorage.getItem("student");
+    let admin = JSON.parse(localStorage.getItem("admin"));
+    let teacher = JSON.parse(localStorage.getItem("teacher"));
+    let student = JSON.parse(localStorage.getItem("student"));
 
-    // Navbar Login
-    const navLogin = document.querySelector('nav a[href="HTML/login.html"]');
-
-    // Hero Login
-    const heroLogin = document.querySelector('.hero-buttons a[href="HTML/login.html"]');
-
-    let dashboard = null;
+    let welcome = document.getElementById("welcomeUser");
+    let login = document.getElementById("loginLink");
+    let register = document.getElementById("registerLink");
 
     if (admin) {
-        dashboard = "HTML/adminDashboard.html";
-    } else if (teacher) {
-        dashboard = "HTML/dashboard.html";
-    } else if (student) {
-        dashboard = "HTML/studentDashboard.html";
+
+        welcome.style.display = "block";
+        welcome.innerHTML = "Welcome, " + admin.name + " 👋";
+
+        login.style.display = "none";
+        register.innerHTML = "Logout";
+        register.href = "#";
+
+        register.onclick = function () {
+
+            localStorage.removeItem("admin");
+
+            location.reload();
+
+        };
+
     }
 
-    if (dashboard) {
+    else if (teacher) {
 
-        navLogin.addEventListener("click", function (e) {
-            e.preventDefault();
-            window.location.href = dashboard;
-        });
+        welcome.style.display = "block";
+        welcome.innerHTML = "Welcome, " + teacher.name + " 👋";
 
-        heroLogin.addEventListener("click", function (e) {
-            e.preventDefault();
-            window.location.href = dashboard;
-        });
+        login.style.display = "none";
+        register.innerHTML = "Logout";
+        register.href = "#";
+
+        register.onclick = function () {
+
+            localStorage.removeItem("teacher");
+
+            location.reload();
+
+        };
+
+    }
+
+    else if (student) {
+
+        welcome.style.display = "block";
+        welcome.innerHTML = "Welcome, " + student.name + " 👋";
+
+        login.style.display = "none";
+        register.innerHTML = "Logout";
+        register.href = "#";
+
+        register.onclick = function () {
+
+            localStorage.removeItem("student");
+
+            location.reload();
+
+        };
 
     }
 
