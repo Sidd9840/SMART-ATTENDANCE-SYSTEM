@@ -315,3 +315,44 @@ body{
     font-size:15px;
 
 }
+.navbar{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    background:#1e3a8a;
+
+    padding:15px 40px;
+
+}
+
+.logo{
+
+    color:white;
+
+    font-size:24px;
+
+    font-weight:bold;
+
+}
+
+nav a{
+
+    color:white;
+
+    text-decoration:none;
+
+    margin-left:25px;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+}
+
+nav a:hover{
+
+    color:#ffd700;
+
+}
