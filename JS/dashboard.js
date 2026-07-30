@@ -144,3 +144,8 @@ function logout() {
     window.location.href = "login.html";
 
 }
+function goHome(){
+
+    window.location.href = "../index.html";
+
+}
