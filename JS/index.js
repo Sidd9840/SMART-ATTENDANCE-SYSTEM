@@ -1,71 +1,57 @@
 <script>
 
-window.onload=function(){
+window.onload = function () {
 
-    let admin=localStorage.getItem("admin");
-    let teacher=localStorage.getItem("teacher");
-    let student=localStorage.getItem("student");
+    let admin = localStorage.getItem("admin");
+    let teacher = localStorage.getItem("teacher");
+    let student = localStorage.getItem("student");
 
-    if(admin){
+    let dashboardPage = "";
 
-        document.getElementById("loginLink").style.display="none";
-        document.getElementById("registerLink").style.display="none";
+    if (admin) {
 
-        document.getElementById("heroLogin").style.display="none";
-        document.getElementById("heroRegister").style.display="none";
+        dashboardPage = "HTML/adminDashboard.html";
 
-        document.getElementById("dashboardLink").style.display="inline";
-        document.getElementById("logoutLink").style.display="inline";
+    } else if (teacher) {
 
-        document.getElementById("dashboardLink").href="HTML/adminDashboard.html";
-        document.getElementById("heroDashboard").style.display="inline";
-        document.getElementById("heroDashboard").href="HTML/adminDashboard.html";
+        dashboardPage = "HTML/dashboard.html";
 
-    }
+    } else if (student) {
 
-    else if(teacher){
-
-        document.getElementById("loginLink").style.display="none";
-        document.getElementById("registerLink").style.display="none";
-
-        document.getElementById("heroLogin").style.display="none";
-        document.getElementById("heroRegister").style.display="none";
-
-        document.getElementById("dashboardLink").style.display="inline";
-        document.getElementById("logoutLink").style.display="inline";
-
-        document.getElementById("dashboardLink").href="HTML/dashboard.html";
-        document.getElementById("heroDashboard").style.display="inline";
-        document.getElementById("heroDashboard").href="HTML/dashboard.html";
+        dashboardPage = "HTML/studentDashboard.html";
 
     }
 
-    else if(student){
+    // Agar koi login hai
+    if (dashboardPage !== "") {
 
-        document.getElementById("loginLink").style.display="none";
-        document.getElementById("registerLink").style.display="none";
+        // Navbar
+        document.getElementById("loginLink").style.display = "none";
+        document.getElementById("registerLink").style.display = "none";
 
-        document.getElementById("heroLogin").style.display="none";
-        document.getElementById("heroRegister").style.display="none";
+        document.getElementById("dashboardLink").style.display = "inline";
+        document.getElementById("logoutLink").style.display = "inline";
 
-        document.getElementById("dashboardLink").style.display="inline";
-        document.getElementById("logoutLink").style.display="inline";
+        document.getElementById("dashboardLink").href = dashboardPage;
 
-        document.getElementById("dashboardLink").href="HTML/studentDashboard.html";
-        document.getElementById("heroDashboard").style.display="inline";
-        document.getElementById("heroDashboard").href="HTML/studentDashboard.html";
+        // Hero Section
+        document.getElementById("heroLogin").style.display = "none";
+        document.getElementById("heroRegister").style.display = "none";
+
+        document.getElementById("heroDashboard").style.display = "inline";
+        document.getElementById("heroDashboard").href = dashboardPage;
 
     }
 
 }
 
-function logout(){
+function logout() {
 
     localStorage.removeItem("admin");
     localStorage.removeItem("teacher");
     localStorage.removeItem("student");
 
-    window.location.reload();
+    window.location.href = "HTML/login.html";
 
 }
 
