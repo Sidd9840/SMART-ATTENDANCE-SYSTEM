@@ -18,7 +18,7 @@ window.onload = function(){
 
 // ----------------------------
 // Dashboard Data
-// ----------------------------
+// ----------------------------    
 
 function loadDashboard(){
 
@@ -33,9 +33,6 @@ function loadDashboard(){
 
         document.getElementById("totalTeachers").innerHTML =
         data.totalTeachers;
-
-        document.getElementById("totalSubjects").innerHTML =
-        0;
 
     });
 
