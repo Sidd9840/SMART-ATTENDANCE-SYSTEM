@@ -187,28 +187,33 @@ body{
 }
 
 /* ==========================
-   Logout
+   Home & Logout
 ========================== */
 
 .logout-section{
 
+    display:flex;
+
+    justify-content:center;
+
+    gap:20px;
+
     margin-top:30px;
+
+    flex-wrap:wrap;
 
 }
 
+.home-btn,
 .logout-btn{
 
-    width:550px;
-
-    max-width:100%;
+    width:260px;
 
     height:55px;
 
     border:none;
 
     border-radius:12px;
-
-    background:#dc2626;
 
     color:white;
 
@@ -221,6 +226,24 @@ body{
     transition:.3s;
 
     box-shadow:0 8px 18px rgba(0,0,0,.15);
+
+}
+
+.home-btn{
+
+    background:#2563eb;
+
+}
+
+.home-btn:hover{
+
+    background:#1d4ed8;
+
+}
+
+.logout-btn{
+
+    background:#dc2626;
 
 }
 
@@ -266,12 +289,12 @@ body{
 
 .primary-btn,
 .secondary-btn,
+.home-btn,
 .logout-btn{
 
     width:100%;
 
 }
-
 .dashboard-buttons{
 
     flex-direction:column;
