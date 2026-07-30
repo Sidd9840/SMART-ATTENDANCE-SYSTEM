@@ -1,58 +1,40 @@
-<script>
-
 window.onload = function () {
 
     let admin = localStorage.getItem("admin");
     let teacher = localStorage.getItem("teacher");
     let student = localStorage.getItem("student");
 
-    let dashboardPage = "";
+    // Navbar Login Link
+    let navLogin = document.querySelector('nav a[href="HTML/login.html"]');
 
-    if (admin) {
+    // Navbar Register Link
+    let navRegister = document.querySelector('nav a[href="HTML/register.html"]');
 
-        dashboardPage = "HTML/adminDashboard.html";
+    // Hero Login Link
+    let heroLogin = document.querySelector('.hero-buttons a[href="HTML/login.html"]');
 
-    } else if (teacher) {
+    // Hero Register Link
+    let heroRegister = document.querySelector('.hero-buttons a[href="HTML/register.html"]');
 
-        dashboardPage = "HTML/dashboard.html";
+    if (admin != null) {
 
-    } else if (student) {
-
-        dashboardPage = "HTML/studentDashboard.html";
+        navLogin.href = "HTML/adminDashboard.html";
+        heroLogin.href = "HTML/adminDashboard.html";
 
     }
 
-    // Agar koi login hai
-    if (dashboardPage !== "") {
+    else if (teacher != null) {
 
-        // Navbar
-        document.getElementById("loginLink").style.display = "none";
-        document.getElementById("registerLink").style.display = "none";
+        navLogin.href = "HTML/dashboard.html";
+        heroLogin.href = "HTML/dashboard.html";
 
-        document.getElementById("dashboardLink").style.display = "inline";
-        document.getElementById("logoutLink").style.display = "inline";
+    }
 
-        document.getElementById("dashboardLink").href = dashboardPage;
+    else if (student != null) {
 
-        // Hero Section
-        document.getElementById("heroLogin").style.display = "none";
-        document.getElementById("heroRegister").style.display = "none";
-
-        document.getElementById("heroDashboard").style.display = "inline";
-        document.getElementById("heroDashboard").href = dashboardPage;
+        navLogin.href = "HTML/studentDashboard.html";
+        heroLogin.href = "HTML/studentDashboard.html";
 
     }
 
 }
-
-function logout() {
-
-    localStorage.removeItem("admin");
-    localStorage.removeItem("teacher");
-    localStorage.removeItem("student");
-
-    window.location.href = "HTML/login.html";
-
-}
-
-</script>
