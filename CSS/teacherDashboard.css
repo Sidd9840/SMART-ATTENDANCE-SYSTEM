@@ -261,60 +261,7 @@ body{
 
 }
 
-/* Logout */
 
-.logout-section{
-
-    display:flex;
-
-    justify-content:center;
-
-    margin-top:18px;
-
-}
-
-.logout-btn{
-
-    width:280px;
-
-    height:52px;
-
-    border:none;
-
-    border-radius:12px;
-
-    background:#dc2626;
-
-    color:white;
-
-    font-size:17px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-}
-
-.logout-btn:hover{
-
-    background:#b91c1c;
-
-}
-.footer{
-
-    margin-top:35px;
-
-    padding-top:20px;
-
-    border-top:1px solid #ddd;
-
-    text-align:center;
-
-    color:#666;
-
-    font-size:15px;
-
-}
 /* ==========================
    Logout + Home
 ========================== */
