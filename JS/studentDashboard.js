@@ -54,3 +54,10 @@ function goHome() {
     window.location.href = "../index.html";
 
 }
+function logout() {
+
+    localStorage.removeItem("student");
+
+    window.location.href = "studentLogin.html";
+
+}
