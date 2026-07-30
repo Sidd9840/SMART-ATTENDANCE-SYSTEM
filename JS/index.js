@@ -11,7 +11,7 @@ window.onload = function () {
     if (admin) {
 
         welcome.style.display = "block";
-        welcome.innerHTML = "Welcome, " + admin.name + " 👋";
+        welcome.innerHTML = "Welcome, " + admin.username + " 👋";
 
         login.style.display = "none";
         register.innerHTML = "Logout";
