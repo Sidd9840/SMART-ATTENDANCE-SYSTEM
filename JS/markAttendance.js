@@ -160,17 +160,27 @@ function saveAttendance(){
 
     fetch("http://localhost:8080/attendance-session/current")
 
-    .then(response=>{
+.then(async response => {
 
-        if(!response.ok){
+    if (!response.ok) {
 
-            throw new Error("Teacher has not started attendance.");
+        throw new Error("Teacher has not started attendance.");
 
-        }
+    }
 
-        return response.json();
+    const text = await response.text();
 
-    })
+    if (text == "" || text == "null") {
+
+        alert("Teacher has not started attendance.");
+
+        return null;
+
+    }
+
+    return JSON.parse(text);
+
+})
 
     .then(session=>{
 
