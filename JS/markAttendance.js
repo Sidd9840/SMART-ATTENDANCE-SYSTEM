@@ -50,7 +50,8 @@ function(position){
 
     userLat = position.coords.latitude;
     userLng = position.coords.longitude;
-
+    console.log("Latitude :", userLat);
+    console.log("Longitude:", userLng);
     distance = getDistance(
 
         userLat,
