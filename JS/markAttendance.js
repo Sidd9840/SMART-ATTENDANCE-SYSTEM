@@ -2,8 +2,8 @@
 // College Location
 // -------------------------------------
 
-const collegeLat = 29.01188879453576;
-const collegeLng = 77.68035790226565;
+const collegeLat = 28.618377898861013;
+const collegeLng = 77.36237345155507;
 const allowedDistance = 25;
 
 // -------------------------------------
