@@ -110,17 +110,32 @@ function continueRegister(){
 
     }
 
-    if(password.length < 6){
+    // Password Validation
 
-        document.getElementById("passwordError").innerHTML =
-        "Password must be at least 6 characters.";
+if(password==""){
 
-        document.getElementById("password").classList.add("input-error");
+    document.getElementById("passwordError").innerHTML =
+    "Password is required.";
 
-        return;
+    document.getElementById("password").classList.add("input-error");
 
-    }
+    return;
 
+}
+
+let passwordPattern =
+/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+if(!passwordPattern.test(password)){
+
+    document.getElementById("passwordError").innerHTML =
+    "Password must contain at least 8 characters, one uppercase, one lowercase, one number and one special character.";
+
+    document.getElementById("password").classList.add("input-error");
+
+    return;
+
+}
     document.getElementById("password").classList.add("input-success");
 
     // Confirm Password Validation
