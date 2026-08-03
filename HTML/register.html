@@ -35,20 +35,24 @@
 
             <span id="emailError" class="error"></span>
 
-           <input
+          <input
     type="password"
     id="password"
     placeholder="Enter Password">
 
-<small id="passwordHint" class="passwordHint">
+<div id="passwordRules" class="passwordRules">
 
-✔ Minimum 8 Characters <br>
-✔ One Uppercase Letter (A-Z) <br>
-✔ One Lowercase Letter (a-z) <br>
-✔ One Number (0-9) <br>
-✔ One Special Character (@#$%^&*)
+    <p id="length">❌ Minimum 8 Characters</p>
 
-</small>
+    <p id="upper">❌ One Uppercase Letter (A-Z)</p>
+
+    <p id="lower">❌ One Lowercase Letter (a-z)</p>
+
+    <p id="number">❌ One Number (0-9)</p>
+
+    <p id="special">❌ One Special Character (@#$%^&*)</p>
+
+</div>
 
 <span id="passwordError" class="error"></span>
 
