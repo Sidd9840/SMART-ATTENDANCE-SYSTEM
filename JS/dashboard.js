@@ -56,32 +56,57 @@ function loadDashboard() {
 
 function startAttendance() {
 
-    let subject = prompt("Enter Subject Name");
+  let subject = prompt("Enter Subject Name (Example: Java, C++, DBMS)");
 
-    if (subject == null || subject.trim() == "") {
+if (subject == null || subject.trim() == "") {
 
-        alert("Please Enter Subject");
+    alert("Please Enter Subject");
 
-        return;
+    return;
 
-    }
+}
+
+let lecture = prompt("Enter Lecture (Lecture 1 / Lecture 2 / Lecture 3 / Lecture 4)");
+
+if (lecture == null || lecture.trim() == "") {
+
+    alert("Please Enter Lecture");
+
+    return;
+
+}
+
+let classType = prompt("Enter Class Type (Theory / Lab)");
+
+if (classType == null || classType.trim() == "") {
+
+    alert("Please Enter Class Type");
+
+    return;
+
+}
     let teacher = JSON.parse(localStorage.getItem("teacher"));
     navigator.geolocation.getCurrentPosition(
 
         function(position){
 
-            let attendanceSession = {
+           let attendanceSession = {
 
-                subject: subject,
-                teacherId: teacher.id,
+    teacherId: teacher.id,
 
-                teacherLatitude: position.coords.latitude,
+    subject: subject,
 
-                teacherLongitude: position.coords.longitude,
+    lecture: lecture,
 
-                allowedDistance: 50
+    classType: classType,
 
-            };
+    teacherLatitude: position.coords.latitude,
+
+    teacherLongitude: position.coords.longitude,
+
+    allowedDistance: 50
+
+};
 
             fetch("http://localhost:8080/attendance-session/start",{
 
