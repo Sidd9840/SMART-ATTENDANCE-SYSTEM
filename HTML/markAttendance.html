@@ -39,87 +39,64 @@
         <h3>Distance</h3>
         <h2 id="distance">0 Meter</h2>
     </div>
+
+</div>
+
+<!-- Attendance Details -->
+
 <div class="form-group">
-            <label><b>Teacher</b></label>
+    <label><b>Teacher</b></label>
 
-            <select id="teacherId" onchange="loadTeacherSubject()">
+    <select id="teacherId" onchange="loadTeacherSubject()">
+        <option value="">Select Teacher</option>
+    </select>
+</div>
 
-                <option value="">Select Teacher</option>
+<div class="form-group">
+    <label><b>Subject</b></label>
 
-            </select>
-        </div>
+    <select id="subject">
+        <option value="">Select Subject</option>
+    </select>
+</div>
 
-        <br>
+<div class="form-group">
+    <label><b>Lecture</b></label>
 
-        <div class="form-group">
-            <label><b>Subject</b></label>
+    <select id="lecture">
+        <option value="">Select Lecture</option>
+        <option value="Lecture 1">Lecture 1</option>
+        <option value="Lecture 2">Lecture 2</option>
+        <option value="Lecture 3">Lecture 3</option>
+        <option value="Lecture 4">Lecture 4</option>
+    </select>
+</div>
 
-            <select id="subject">
+<div class="form-group">
+    <label><b>Class Type</b></label>
 
-                <option value="">Select Subject</option>
+    <select id="classType">
+        <option value="">Select Type</option>
+        <option value="Theory">Theory</option>
+        <option value="Lab">Lab</option>
+    </select>
+</div>
 
-            </select>
-        </div>
-
-        <br>
-
-        <div class="form-group">
-            <label><b>Lecture</b></label>
-
-            <select id="lecture">
-
-                <option value="">Select Lecture</option>
-
-                <option value="Lecture 1">Lecture 1</option>
-
-                <option value="Lecture 2">Lecture 2</option>
-
-                <option value="Lecture 3">Lecture 3</option>
-
-                <option value="Lecture 4">Lecture 4</option>
-
-            </select>
-        </div>
-
-        <br>
-
-        <div class="form-group">
-            <label><b>Class Type</b></label>
-
-            <select id="classType">
-
-                <option value="">Select Type</option>
-
-                <option value="Theory">Theory</option>
-
-                <option value="Lab">Lab</option>
-
-            </select>
-        </div>
 <br>
+
+<div class="buttons">
+
+    <button id="saveBtn" onclick="saveAttendance()">
+        ✅ Mark Attendance
+    </button>
+
 </div>
 
 <div class="buttons">
 
-<button id="saveBtn" onclick="saveAttendance()" disabled>
-
-✅ Mark Attendance
-
-</button>
-
-</div>
-
-<div class="buttons">
-
-<a href="studentDashboard.html">
-
-<button>
-
-⬅ Back
-
-</button>
-
-</a>
+    <button onclick="goBack()">
+        ⬅ Back
+    </button>
 
 </div>
 
