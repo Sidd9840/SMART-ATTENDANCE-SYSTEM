@@ -62,41 +62,92 @@ function startAttendance() {
     if (subject == null || subject.trim() == "") {
 
         alert("Please Enter Subject");
+
         return;
 
     }
 
-    fetch(
+    navigator.geolocation.getCurrentPosition(
 
-        "http://localhost:8080/attendance-session/start?subject="
-        + encodeURIComponent(subject),
+        function(position){
+
+            let attendanceSession = {
+
+                subject: subject,
+
+                teacherLatitude: position.coords.latitude,
+
+                teacherLongitude: position.coords.longitude,
+
+                allowedDistance: 50
+
+            };
+
+            fetch("http://localhost:8080/attendance-session/start",{
+
+                method:"POST",
+
+                headers:{
+
+                    "Content-Type":"application/json"
+
+                },
+
+                body:JSON.stringify(attendanceSession)
+
+            })
+
+            .then(response=>{
+
+                if(!response.ok){
+
+                    return response.text().then(msg=>{
+
+                        throw new Error(msg);
+
+                    });
+
+                }
+
+                return response.json();
+
+            })
+
+            .then(data=>{
+
+                alert("Attendance Session Started Successfully");
+
+            })
+
+            .catch(error=>{
+
+                console.log(error);
+
+                alert(error.message);
+
+            });
+
+        },
+
+        function(){
+
+            alert("Please Allow Location Permission.");
+
+        },
 
         {
 
-            method: "POST"
+            enableHighAccuracy:true,
+
+            timeout:5000,
+
+            maximumAge:0
 
         }
 
-    )
-
-    .then(response => response.json())
-
-    .then(data => {
-
-        alert("Attendance Session Started Successfully");
-
-    })
-
-    .catch(error => {
-
-        console.log(error);
-
-        alert("Unable to Start Attendance");
-
-    });
+    );
 
 }
-
 // ----------------------------
 // Close Attendance
 // ----------------------------
