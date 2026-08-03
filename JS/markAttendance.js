@@ -67,7 +67,7 @@ saveBtn.disabled = true;
 // -------------------------------------
 // Geo Location
 // -------------------------------------
-
+function getUserLocation(){
 navigator.geolocation.getCurrentPosition(
 
 function(position){
@@ -127,7 +127,7 @@ function(){
 }
 
 );
-
+}
 // -------------------------------------
 // Distance Formula
 // -------------------------------------
