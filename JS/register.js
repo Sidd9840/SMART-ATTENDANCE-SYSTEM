@@ -203,3 +203,56 @@ document.getElementById("password").classList.add("input-success");
     }
 
 }
+// ----------------------------
+// Live Password Validation
+// ----------------------------
+
+const passwordInput = document.getElementById("password");
+const passwordRules = document.getElementById("passwordRules");
+
+passwordInput.addEventListener("focus", function () {
+
+    passwordRules.style.display = "block";
+
+});
+
+passwordInput.addEventListener("blur", function () {
+
+    if(passwordInput.value===""){
+
+        passwordRules.style.display = "none";
+
+    }
+
+});
+
+passwordInput.addEventListener("input", function () {
+
+    let password = passwordInput.value;
+
+    document.getElementById("length").innerHTML =
+        password.length >= 8
+        ? "✅ Minimum 8 Characters"
+        : "❌ Minimum 8 Characters";
+
+    document.getElementById("upper").innerHTML =
+        /[A-Z]/.test(password)
+        ? "✅ One Uppercase Letter (A-Z)"
+        : "❌ One Uppercase Letter (A-Z)";
+
+    document.getElementById("lower").innerHTML =
+        /[a-z]/.test(password)
+        ? "✅ One Lowercase Letter (a-z)"
+        : "❌ One Lowercase Letter (a-z)";
+
+    document.getElementById("number").innerHTML =
+        /[0-9]/.test(password)
+        ? "✅ One Number (0-9)"
+        : "❌ One Number (0-9)";
+
+    document.getElementById("special").innerHTML =
+        /[@#$%^&*!?]/.test(password)
+        ? "✅ One Special Character (@#$%^&*)"
+        : "❌ One Special Character (@#$%^&*)";
+
+});
