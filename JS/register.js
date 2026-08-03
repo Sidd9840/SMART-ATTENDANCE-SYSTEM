@@ -97,20 +97,9 @@ function continueRegister(){
 
     document.getElementById("email").classList.add("input-success");
 
-    // Password Validation
+   
 
-    if(password==""){
-
-        document.getElementById("passwordError").innerHTML =
-        "Password is required.";
-
-        document.getElementById("password").classList.add("input-error");
-
-        return;
-
-    }
-
-    // Password Validation
+  // Password Validation
 
 if(password==""){
 
@@ -136,7 +125,8 @@ if(!passwordPattern.test(password)){
     return;
 
 }
-    document.getElementById("password").classList.add("input-success");
+
+document.getElementById("password").classList.add("input-success");
 
     // Confirm Password Validation
 
