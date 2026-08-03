@@ -6,30 +6,6 @@ let collegeLat = 0;
 let collegeLng = 0;
 let allowedDistance = 0;
 
-fetch("http://localhost:8080/campus-location")
-
-.then(response => response.json())
-
-.then(data => {
-
-    collegeLat = data.latitude;
-
-    collegeLng = data.longitude;
-
-    allowedDistance = data.allowedDistance;
-
-    getUserLocation();
-
-})
-
-.catch(error => {
-
-    console.log(error);
-
-    alert("Unable to load campus location.");
-
-});
-
 // -------------------------------------
 // Logged In Student
 // -------------------------------------
@@ -76,35 +52,6 @@ function(position){
     userLng = position.coords.longitude;
     console.log("Latitude :", userLat);
     console.log("Longitude:", userLng);
-    distance = getDistance(
-
-        userLat,
-        userLng,
-        collegeLat,
-        collegeLng
-
-    );
-
-    document.getElementById("distance").innerHTML =
-    Math.round(distance) + " Meter";
-
-    if(distance <= allowedDistance){
-
-        document.getElementById("locationStatus").innerHTML =
-        "✅ Inside Campus";
-
-        saveBtn.disabled = false;
-
-    }
-    else{
-
-        document.getElementById("locationStatus").innerHTML =
-        "❌ Outside Campus";
-
-        alert("You are outside campus.");
-
-    }
-
 },
 
 function(){
@@ -118,11 +65,11 @@ function(){
 
 {
 
-    enableHighAccuracy:false,
+    enableHighAccuracy:true,
 
     timeout:5000,
 
-    maximumAge:60000
+    maximumAge:0
 
 }
 
@@ -215,6 +162,31 @@ function saveAttendance(){
             return;
 
         }
+         collegeLat = session.teacherLatitude;
+
+    collegeLng = session.teacherLongitude;
+
+    allowedDistance = session.allowedDistance;
+
+    distance = getDistance(
+
+        userLat,
+        userLng,
+        collegeLat,
+        collegeLng
+
+    );
+
+    document.getElementById("distance").innerHTML =
+    Math.round(distance) + " Meter";
+
+    if(distance > allowedDistance){
+
+        alert("You are outside the classroom.");
+
+        return;
+
+    }
 
         let attendance={
 
@@ -310,5 +282,10 @@ function saveAttendance(){
 function goBack(){
 
     window.location.href="studentDashboard.html";
+
+}
+window.onload = function(){
+
+    getUserLocation();
 
 }
