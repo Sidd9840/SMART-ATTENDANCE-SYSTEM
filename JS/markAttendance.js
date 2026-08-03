@@ -138,8 +138,47 @@ function saveAttendance(){
     return;
 
 }
+    let teacherId = prompt("Enter Teacher ID");
 
-    fetch("http://localhost:8080/attendance-session/current")
+if (teacherId == null || teacherId.trim() == "") {
+    alert("Please Enter Teacher ID");
+    return;
+}
+
+let subject = prompt("Enter Subject");
+
+if (subject == null || subject.trim() == "") {
+    alert("Please Enter Subject");
+    return;
+}
+
+let lecture = prompt("Enter Lecture (Lecture 1 / Lecture 2 / Lecture 3 / Lecture 4)");
+
+if (lecture == null || lecture.trim() == "") {
+    alert("Please Enter Lecture");
+    return;
+}
+
+let classType = prompt("Enter Class Type (Theory / Lab)");
+
+if (classType == null || classType.trim() == "") {
+    alert("Please Enter Class Type");
+    return;
+}
+
+   fetch(
+
+"http://localhost:8080/attendance-session/current?teacherId="
+
++ teacherId +
+
+"&subject=" + encodeURIComponent(subject) +
+
+"&lecture=" + encodeURIComponent(lecture) +
+
+"&classType=" + encodeURIComponent(classType)
+
+)
 
 .then(async response => {
 
@@ -209,25 +248,29 @@ console.log("Distance =", distance);
 
     }
 
-        let attendance={
+       let attendance = {
 
-            studentId:student.id,
-            teacherId: session.teacherId,
+    studentId: student.id,
 
-            studentName:student.name,
+    teacherId: session.teacherId,
 
-            subject:session.subject,
+    studentName: student.name,
 
-            status:"Present",
+    subject: session.subject,
 
-            latitude:userLat,
+    lecture: lecture,
 
-            longitude:userLng,
+    classType: classType,
 
-            distance:distance
+    status: "Present",
 
-        };
+    latitude: userLat,
 
+    longitude: userLng,
+
+    distance: distance
+
+};
         return fetch("http://localhost:8080/attendance",{
 
             method:"POST",
