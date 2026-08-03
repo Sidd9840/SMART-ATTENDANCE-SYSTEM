@@ -1,1 +1,154 @@
+/* ==========================
+   Reset
+========================== */
 
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+
+    background:linear-gradient(135deg,#1e3c72,#2a5298);
+
+}
+
+/* ==========================
+   Hero
+========================== */
+
+.hero{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:20px;
+
+}
+
+/* ==========================
+   Main Card
+========================== */
+
+.content{
+
+    width:500px;
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:35px;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.20);
+
+    text-align:center;
+
+}
+
+.content h1{
+
+    color:#1e3c72;
+
+    margin-bottom:10px;
+
+}
+
+.content p{
+
+    color:#666;
+
+    margin-bottom:30px;
+
+}
+
+/* ==========================
+   Form
+========================== */
+
+.form{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+.form input{
+
+    height:50px;
+
+    padding:0 15px;
+
+    border:1px solid #ccc;
+
+    border-radius:10px;
+
+    font-size:16px;
+
+    outline:none;
+
+}
+
+.form input:focus{
+
+    border:2px solid #2563eb;
+
+}
+
+/* ==========================
+   Buttons
+========================== */
+
+.form button{
+
+    height:50px;
+
+    border:none;
+
+    border-radius:10px;
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.form button{
+
+    background:#16a34a;
+
+}
+
+.form button:hover{
+
+    background:#15803d;
+
+}
+
+.back-btn{
+
+    background:#2563eb !important;
+
+}
+
+.back-btn:hover{
+
+    background:#1d4ed8 !important;
+
+}
