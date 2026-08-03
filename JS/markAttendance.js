@@ -212,6 +212,7 @@ console.log("Distance =", distance);
         let attendance={
 
             studentId:student.id,
+            teacherId: session.teacherId,
 
             studentName:student.name,
 
