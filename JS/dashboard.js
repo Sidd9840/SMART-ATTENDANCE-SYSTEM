@@ -20,7 +20,7 @@ window.onload = function () {
 
 function loadDashboard() {
 
-    fetch("http://localhost:8080/dashboard")
+    fetch("http://192.168.1.28:8080/dashboard")
 
     .then(response => response.json())
 
@@ -80,7 +80,7 @@ function startAttendance() {
 
             };
 
-            fetch("http://localhost:8080/attendance-session/start",{
+            fetch("http://192.168.1.28:8080/attendance-session/start",{
 
                 method:"POST",
 
@@ -153,7 +153,7 @@ function closeAttendance() {
 
     fetch(
 
-        "http://localhost:8080/attendance-session/close",
+        "http://192.168.1.28:8080/attendance-session/close",
 
         {
 
