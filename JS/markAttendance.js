@@ -2,9 +2,33 @@
 // College Location
 // -------------------------------------
 
-const collegeLat = 28.618391960349108;
-const collegeLng = 77.36239522386064;
-const allowedDistance = 25;
+let collegeLat = 0;
+let collegeLng = 0;
+let allowedDistance = 0;
+
+fetch("http://localhost:8080/campus-location")
+
+.then(response => response.json())
+
+.then(data => {
+
+    collegeLat = data.latitude;
+
+    collegeLng = data.longitude;
+
+    allowedDistance = data.allowedDistance;
+
+    getUserLocation();
+
+})
+
+.catch(error => {
+
+    console.log(error);
+
+    alert("Unable to load campus location.");
+
+});
 
 // -------------------------------------
 // Logged In Student
