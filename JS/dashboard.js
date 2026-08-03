@@ -20,7 +20,9 @@ window.onload = function () {
 
 function loadDashboard() {
 
-    fetch("http://localhost:8080/dashboard")
+    let teacher = JSON.parse(localStorage.getItem("teacher"));
+
+    fetch("http://localhost:8080/dashboard?teacherId=" + teacher.id)
 
     .then(response => response.json())
 
