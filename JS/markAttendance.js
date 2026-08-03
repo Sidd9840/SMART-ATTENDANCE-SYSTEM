@@ -129,7 +129,16 @@ function getDistance(lat1, lon1, lat2, lon2){
 // -------------------------------------
 // Save Attendance
 // -------------------------------------
-let teacherId = document.getElementById("teacherId").value;
+
+function saveAttendance(){
+    if(userLat == 0 || userLng == 0){
+
+    alert("Location is not ready. Please wait a few seconds.");
+
+    return;
+
+}
+  let teacherId = document.getElementById("teacherId").value;
 
 let subject = document.getElementById("subject").value;
 
@@ -167,41 +176,6 @@ if(classType==""){
 
     return;
 
-}
-function saveAttendance(){
-    if(userLat == 0 || userLng == 0){
-
-    alert("Location is not ready. Please wait a few seconds.");
-
-    return;
-
-}
-    let teacherId = prompt("Enter Teacher ID");
-
-if (teacherId == null || teacherId.trim() == "") {
-    alert("Please Enter Teacher ID");
-    return;
-}
-
-let subject = prompt("Enter Subject");
-
-if (subject == null || subject.trim() == "") {
-    alert("Please Enter Subject");
-    return;
-}
-
-let lecture = prompt("Enter Lecture (Lecture 1 / Lecture 2 / Lecture 3 / Lecture 4)");
-
-if (lecture == null || lecture.trim() == "") {
-    alert("Please Enter Lecture");
-    return;
-}
-
-let classType = prompt("Enter Class Type (Theory / Lab)");
-
-if (classType == null || classType.trim() == "") {
-    alert("Please Enter Class Type");
-    return;
 }
 
    fetch(
@@ -387,8 +361,43 @@ function goBack(){
     window.location.href="studentDashboard.html";
 
 }
+function loadTeachers(){
+
+    fetch("http://localhost:8080/teachers")
+
+    .then(response => response.json())
+
+    .then(data => {
+
+        let teacher = document.getElementById("teacherId");
+
+        teacher.innerHTML =
+        "<option value=''>Select Teacher</option>";
+
+        data.forEach(t => {
+
+            teacher.innerHTML +=
+
+            "<option value='" + t.id + "'>"
+
+            + t.name +
+
+            "</option>";
+
+        });
+
+    })
+
+    .catch(error => {
+
+        console.log(error);
+
+    });
+
+}
 window.onload = function(){
 
     getUserLocation();
+    loadTeachers();
 
 }
