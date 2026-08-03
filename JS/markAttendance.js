@@ -138,7 +138,7 @@ function saveAttendance(){
     return;
 
 }
-  let teacherId = document.getElementById("teacherId").value;
+  let teacherId = parseInt(document.getElementById("teacherId").value);
 
 let subject = document.getElementById("subject").value;
 
@@ -378,11 +378,13 @@ function loadTeachers(){
 
             teacher.innerHTML +=
 
-            "<option value='" + t.id + "'>"
+"<option value='" + t.id +
 
-            + t.name +
+"' data-subject='" + t.subject + "'>"
 
-            "</option>";
++ t.name +
+
+"</option>";
 
         });
 
@@ -393,6 +395,31 @@ function loadTeachers(){
         console.log(error);
 
     });
+
+}
+function loadTeacherSubject() {
+
+    let teacher = document.getElementById("teacherId");
+
+    let subject = document.getElementById("subject");
+
+    let selected = teacher.options[teacher.selectedIndex];
+
+    let teacherSubject = selected.getAttribute("data-subject");
+
+    subject.innerHTML = "<option value=''>Select Subject</option>";
+
+    if (teacherSubject != null) {
+
+        subject.innerHTML +=
+
+        "<option value='" + teacherSubject + "'>" +
+
+        teacherSubject +
+
+        "</option>";
+
+    }
 
 }
 window.onload = function(){
