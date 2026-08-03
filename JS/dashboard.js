@@ -179,23 +179,85 @@ if (classType == null || classType.trim() == "") {
 
 function closeAttendance() {
 
-    fetch(
+    let teacher = JSON.parse(localStorage.getItem("teacher"));
 
-        "http://localhost:8080/attendance-session/close",
+    let subject = prompt("Enter Subject Name");
 
-        {
+    if (subject == null || subject.trim() == "") {
 
-            method: "POST"
+        alert("Please Enter Subject");
+
+        return;
+
+    }
+
+    let lecture = prompt("Enter Lecture (Lecture 1 / Lecture 2 / Lecture 3 / Lecture 4)");
+
+    if (lecture == null || lecture.trim() == "") {
+
+        alert("Please Enter Lecture");
+
+        return;
+
+    }
+
+    let classType = prompt("Enter Class Type (Theory / Lab)");
+
+    if (classType == null || classType.trim() == "") {
+
+        alert("Please Enter Class Type");
+
+        return;
+
+    }
+
+    let request = {
+
+        teacherId: teacher.id,
+
+        subject: subject,
+
+        lecture: lecture,
+
+        classType: classType
+
+    };
+
+    fetch("http://localhost:8080/attendance-session/close", {
+
+        method: "POST",
+
+        headers: {
+
+            "Content-Type": "application/json"
+
+        },
+
+        body: JSON.stringify(request)
+
+    })
+
+    .then(response => {
+
+        if (!response.ok) {
+
+            return response.text().then(msg => {
+
+                throw new Error(msg);
+
+            });
 
         }
 
-    )
+        return response.json();
 
-    .then(response => response.json())
+    })
 
     .then(data => {
 
         alert("Attendance Session Closed Successfully");
+
+        loadDashboard();
 
     })
 
@@ -203,7 +265,7 @@ function closeAttendance() {
 
         console.log(error);
 
-        alert("Unable to Close Attendance");
+        alert(error.message);
 
     });
 
