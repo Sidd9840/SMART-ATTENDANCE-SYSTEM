@@ -52,6 +52,9 @@ function(position){
     userLng = position.coords.longitude;
     console.log("Latitude :", userLat);
     console.log("Longitude:", userLng);
+
+    document.getElementById("locationStatus").innerHTML =
+    "✅ Location Found";
 },
 
 function(){
@@ -128,6 +131,13 @@ function getDistance(lat1, lon1, lat2, lon2){
 // -------------------------------------
 
 function saveAttendance(){
+    if(userLat == 0 || userLng == 0){
+
+    alert("Location is not ready. Please wait a few seconds.");
+
+    return;
+
+}
 
     fetch("http://localhost:8080/attendance-session/current")
 
@@ -162,7 +172,17 @@ function saveAttendance(){
             return;
 
         }
-         collegeLat = session.teacherLatitude;
+console.log("Session =", session);
+
+console.log("Student Latitude =", userLat);
+console.log("Student Longitude =", userLng);
+
+console.log("Teacher Latitude =", session.teacherLatitude);
+console.log("Teacher Longitude =", session.teacherLongitude);
+
+console.log("Allowed Distance =", session.allowedDistance);
+        
+    collegeLat = session.teacherLatitude;
 
     collegeLng = session.teacherLongitude;
 
@@ -176,7 +196,8 @@ function saveAttendance(){
         collegeLng
 
     );
-
+console.log("Distance =", distance);
+        
     document.getElementById("distance").innerHTML =
     Math.round(distance) + " Meter";
 
