@@ -15,12 +15,6 @@ window.onload = function(){
             document.getElementById("campusName").value =
             data.campusName;
 
-            document.getElementById("latitude").value =
-            data.latitude;
-
-            document.getElementById("longitude").value =
-            data.longitude;
-
             document.getElementById("allowedDistance").value =
             data.allowedDistance;
 
@@ -32,14 +26,14 @@ window.onload = function(){
 
         console.log(error);
 
-        alert("Unable to load campus location.");
+        alert("Unable to load campus settings.");
 
     });
 
 };
 
 // -------------------------------------
-// Save Campus Location
+// Save Campus Settings
 // -------------------------------------
 
 function saveCampusLocation(){
@@ -49,14 +43,10 @@ function saveCampusLocation(){
         campusName:
         document.getElementById("campusName").value,
 
-        latitude:
-        parseFloat(document.getElementById("latitude").value),
-
-        longitude:
-        parseFloat(document.getElementById("longitude").value),
-
         allowedDistance:
-        parseFloat(document.getElementById("allowedDistance").value)
+        parseFloat(
+            document.getElementById("allowedDistance").value
+        )
 
     };
 
@@ -78,7 +68,7 @@ function saveCampusLocation(){
 
     .then(data => {
 
-        alert("Campus Location Updated Successfully.");
+        alert("Campus Settings Updated Successfully.");
 
     })
 
@@ -86,7 +76,7 @@ function saveCampusLocation(){
 
         console.log(error);
 
-        alert("Unable to update campus location.");
+        alert("Unable to update campus settings.");
 
     });
 
