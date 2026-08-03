@@ -38,7 +38,7 @@ let distance = 0;
 
 const saveBtn = document.getElementById("saveBtn");
 
-saveBtn.disabled = true;
+saveBtn.disabled = false;
 
 // -------------------------------------
 // Geo Location
