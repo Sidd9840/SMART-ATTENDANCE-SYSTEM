@@ -139,7 +139,7 @@ function saveAttendance(){
 
 }
 
-    fetch("http://192.168.1.28:8080/attendance-session/current")
+    fetch("http://localhost:8080/attendance-session/current")
 
 .then(async response => {
 
@@ -227,7 +227,7 @@ console.log("Distance =", distance);
 
         };
 
-        return fetch("http://192.168.1.28:8080/attendance",{
+        return fetch("http://localhost:8080/attendance",{
 
             method:"POST",
 
