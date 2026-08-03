@@ -259,3 +259,19 @@ body{
     box-shadow:0 8px 18px rgba(0,0,0,.20);
 
 }
+.passwordRules{
+
+    display:none;
+    text-align:left;
+    font-size:13px;
+    margin-top:8px;
+    margin-bottom:10px;
+    color:#555;
+
+}
+
+.passwordRules p{
+
+    margin:4px 0;
+
+}
