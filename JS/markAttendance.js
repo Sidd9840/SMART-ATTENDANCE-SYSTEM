@@ -129,7 +129,45 @@ function getDistance(lat1, lon1, lat2, lon2){
 // -------------------------------------
 // Save Attendance
 // -------------------------------------
+let teacherId = document.getElementById("teacherId").value;
 
+let subject = document.getElementById("subject").value;
+
+let lecture = document.getElementById("lecture").value;
+
+let classType = document.getElementById("classType").value;
+
+if(teacherId==""){
+
+    alert("Please Select Teacher");
+
+    return;
+
+}
+
+if(subject==""){
+
+    alert("Please Select Subject");
+
+    return;
+
+}
+
+if(lecture==""){
+
+    alert("Please Select Lecture");
+
+    return;
+
+}
+
+if(classType==""){
+
+    alert("Please Select Class Type");
+
+    return;
+
+}
 function saveAttendance(){
     if(userLat == 0 || userLng == 0){
 
