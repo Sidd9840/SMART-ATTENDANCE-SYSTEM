@@ -63,7 +63,7 @@ function startAttendance() {
         return;
 
     }
-
+    let teacher = JSON.parse(localStorage.getItem("teacher"));
     navigator.geolocation.getCurrentPosition(
 
         function(position){
@@ -71,6 +71,7 @@ function startAttendance() {
             let attendanceSession = {
 
                 subject: subject,
+                teacherId: teacher.id,
 
                 teacherLatitude: position.coords.latitude,
 
