@@ -29,9 +29,6 @@ function loadDashboard() {
         document.getElementById("totalStudents").innerHTML =
         data.totalStudents;
 
-        document.getElementById("totalTeachers").innerHTML =
-        data.totalTeachers;
-
         document.getElementById("totalAttendance").innerHTML =
         data.totalAttendance;
 
