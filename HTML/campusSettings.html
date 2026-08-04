@@ -15,127 +15,83 @@
 
     <div class="content">
 
-       <h1>🏫 Campus Settings</h1>
+        <h1>🏫 Campus Settings</h1>
 
-        <p>Update Campus Geo Location</p>
+        <div class="form-group">
 
-        <div class="form">
+            <label><b>Campus Name</b></label>
 
             <input
                 type="text"
                 id="campusName"
-                placeholder="Campus Name"><!DOCTYPE html>
-<html>
-<head>
-    <title>Campus Settings</title>
-    <link rel="stylesheet" href="../CSS/campusSettings.css">
-</head>
+                placeholder="Enter Campus Name">
 
-<body>
+        </div>
 
-<div class="hero">
+        <div class="form-group">
 
-<div class="content">
+            <label><b>Latitude</b></label>
 
-<h1>🏫 Campus Settings</h1>
+            <input
+                type="text"
+                id="latitude"
+                placeholder="Enter Latitude">
 
-<div class="form-group">
+        </div>
 
-<label><b>Campus Name</b></label>
+        <div class="form-group">
 
-<input type="text" id="campusName"
-placeholder="Enter Campus Name">
+            <label><b>Longitude</b></label>
 
-</div>
+            <input
+                type="text"
+                id="longitude"
+                placeholder="Enter Longitude">
 
-<div class="form-group">
+        </div>
 
-<label><b>Latitude</b></label>
+        <div class="form-group">
 
-<input type="text" id="latitude"
-placeholder="Enter Latitude">
-
-</div>
-
-<div class="form-group">
-
-<label><b>Longitude</b></label>
-
-<input type="text" id="longitude"
-placeholder="Enter Longitude">
-
-</div>
-
-<div class="form-group">
-
-<label><b>Allowed Distance (Meters)</b></label>
-
-<input type="number" id="allowedDistance"
-placeholder="Enter Distance">
-
-</div>
-
-<div class="buttons">
-
-<button onclick="saveCampus()">
-
-💾 Save Campus
-
-</button>
-
-</div>
-
-<div class="buttons">
-
-<button onclick="updateCampus()">
-
-✏ Update Campus
-
-</button>
-
-</div>
-
-<div class="buttons">
-
-<a href="adminDashboard.html">
-
-<button>
-
-⬅ Back
-
-</button>
-
-</a>
-
-</div>
-
-</div>
-
-</div>
-
-<script src="../JS/campusSettings.js"></script>
-
-</body>
-</html>
-
-           
+            <label><b>Allowed Distance (Meters)</b></label>
 
             <input
                 type="number"
                 id="allowedDistance"
-                placeholder="Allowed Distance (Meter)">
+                placeholder="Enter Allowed Distance">
 
-            <button onclick="saveCampusLocation()">
+        </div>
 
-                💾 Save
+        <div class="buttons">
+
+            <button onclick="saveCampus()">
+
+                💾 Save Campus
+
+            </button>
+
+        </div>
+
+        <div class="buttons">
+
+            <button onclick="updateCampus()">
+
+                ✏ Update Campus
 
             </button>
 
-            <button class="back-btn" onclick="goBack()">
+        </div>
 
-                🔙 Back
+        <div class="buttons">
 
-            </button>
+            <a href="adminDashboard.html">
+
+                <button>
+
+                    ⬅ Back
+
+                </button>
+
+            </a>
 
         </div>
 
