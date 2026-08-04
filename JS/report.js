@@ -146,6 +146,11 @@ function showData(attendanceList) {
 
     body.innerHTML="";
 
+    let present = 0;
+let absent = 0;
+
+document.getElementById("totalRecords").innerHTML =
+attendanceList.length;
     if(attendanceList.length==0){
 
         body.innerHTML=
@@ -168,27 +173,35 @@ function showData(attendanceList) {
     }
 
     attendanceList.forEach(record=>{
+    if(record.status=="Present"){
 
+    present++;
+
+}else{
+
+    absent++;
+
+}
         let row=body.insertRow();
 
-        row.insertCell(0).innerHTML=
-        record.studentName;
+        row.insertCell(0).innerHTML = record.studentName;
 
-        row.insertCell(1).innerHTML=
-        record.subject;
+row.insertCell(1).innerHTML = record.subject;
 
-        row.insertCell(2).innerHTML=
-        record.attendanceDate;
+row.insertCell(2).innerHTML = record.lecture;
 
-        row.insertCell(3).innerHTML=
-        record.attendanceTime;
+row.insertCell(3).innerHTML = record.classType;
+
+row.insertCell(4).innerHTML = record.attendanceDate;
+
+row.insertCell(5).innerHTML = record.attendanceTime;
 
         let statusClass=
         record.status=="Present"
         ? "report-present"
         : "report-absent";
 
-        row.insertCell(4).innerHTML=
+        row.insertCell(6).innerHTML=
 
         `<span class="${statusClass}">
 
@@ -196,7 +209,7 @@ function showData(attendanceList) {
 
         </span>`;
 
-        row.insertCell(5).innerHTML=
+        row.insertCell(7).innerHTML=
 
         `<button class="report-edit"
 
@@ -211,7 +224,11 @@ function showData(attendanceList) {
     });
 
 }
+document.getElementById("presentCount").innerHTML =
+present;
 
+document.getElementById("absentCount").innerHTML =
+absent;
 // ----------------------------
 // Edit Attendance
 // ----------------------------
