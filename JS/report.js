@@ -306,8 +306,11 @@ function editAttendance(id,currentStatus){
 }
 function downloadPdf(){
 
+    let teacher = JSON.parse(localStorage.getItem("teacher"));
+
     window.open(
-        "http://localhost:8080/attendance/report/pdf",
+        "http://localhost:8080/attendance/report/pdf?teacherId="
+        + teacher.id,
         "_blank"
     );
 
