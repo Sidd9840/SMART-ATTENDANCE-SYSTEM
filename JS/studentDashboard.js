@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (student == null) {
 
-        window.location.href = "studentLogin.html";
+        window.location.href = "login.html";
         return;
 
     }
@@ -58,6 +58,6 @@ function logout() {
 
     localStorage.removeItem("student");
 
-    window.location.href = "studentLogin.html";
+    window.location.href = "login.html";
 
 }
