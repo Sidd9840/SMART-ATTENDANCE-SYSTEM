@@ -286,3 +286,8 @@ function editAttendance(id,currentStatus){
     });
 
 }
+function downloadPdf() {
+
+    window.open("http://localhost:8080/attendance/report/pdf");
+
+}
