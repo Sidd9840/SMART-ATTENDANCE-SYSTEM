@@ -22,7 +22,7 @@ window.onload = function(){
 
 function loadDashboard(){
 
-    fetch("http://localhost:8080/dashboard")
+    fetch("http://localhost:8080/admin/dashboard")
 
     .then(response=>response.json())
 
