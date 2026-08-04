@@ -2,7 +2,7 @@
 <html>
 <head>
 
-    <title>Attendance Report</title>
+    <h1>📋 Attendance Report</h1>
 
     <link rel="stylesheet" href="../CSS/report.css">
 
@@ -15,7 +15,26 @@
     <div class="content">
 
         <h1>Attendance Report</h1>
+        <div class="summary">
 
+    <div class="summary-card">
+        <h3>Total Records</h3>
+        <h2 id="totalRecords">0</h2>
+    </div>
+
+    <div class="summary-card">
+        <h3>Present</h3>
+        <h2 id="presentCount">0</h2>
+    </div>
+
+    <div class="summary-card">
+        <h3>Absent</h3>
+        <h2 id="absentCount">0</h2>
+    </div>
+
+</div>
+
+<br>
         <!-- Search & Filter -->
 
         <div class="report-filter">
@@ -24,6 +43,19 @@
                 type="text"
                 id="searchText"
                 placeholder="Search Student Name">
+                <select id="subject">
+
+    <option value="">All Subjects</option>
+
+    <option value="Java">Java</option>
+
+    <option value="C++">C++</option>
+
+    <option value="DBMS">DBMS</option>
+
+    <option value="Web Programming">Web Programming</option>
+
+</select>
 
             <select id="month">
 
@@ -78,12 +110,14 @@
 
                 <tr>
 
-                    <th>Student Name</th>
-                    <th>Subject</th>
-                    <th>Date</th>
-                    <th>Time</th>
-                    <th>Status</th>
-                    <th>Action</th>
+                  <th>Student Name</th>
+                  <th>Subject</th>
+                  <th>Lecture</th>
+                  <th>Class Type</th>
+                  <th>Date</th>
+                  <th>Time</th>
+                  <th>Status</th>
+                  <th>Action</th>
 
                 </tr>
 
@@ -92,7 +126,7 @@
             <tbody id="reportBody">
             <tr>
 
-    <td colspan="6">
+    <td colspan="8">
 
         Please search to view attendance records.
 
