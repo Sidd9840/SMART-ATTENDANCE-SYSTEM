@@ -223,12 +223,13 @@ row.insertCell(5).innerHTML = record.attendanceTime;
 
     });
 
-}
 document.getElementById("presentCount").innerHTML =
 present;
 
 document.getElementById("absentCount").innerHTML =
 absent;
+}
+
 // ----------------------------
 // Edit Attendance
 // ----------------------------
