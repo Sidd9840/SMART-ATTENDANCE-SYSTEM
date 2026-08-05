@@ -22,16 +22,16 @@ function loadCampus() {
         }
 
         document.getElementById("campusName").value =
-        data.campusName;
+        "CDAC Noida";
 
         document.getElementById("latitude").value =
-        data.latitude;
+        "28.6289";
 
         document.getElementById("longitude").value =
-        data.longitude;
+        "77.3648";
 
         document.getElementById("allowedDistance").value =
-        data.allowedDistance;
+        "300";
 
     })
 
