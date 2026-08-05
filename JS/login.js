@@ -52,15 +52,19 @@ function login() {
 
     }
 
-    if (password.length < 6) {
+   let passwordPattern =
+/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&*!]).{8,}$/;
 
-        document.getElementById("passwordError").innerHTML =
-                "Password must be at least 6 characters.";
+if(!passwordPattern.test(password)){
 
-        document.getElementById("password").classList.add("input-error");
-        return;
+    document.getElementById("passwordError").innerHTML =
+    "Invalid Password Format";
 
-    }
+    document.getElementById("password").classList.add("input-error");
+
+    return;
+
+}
 
     document.getElementById("password").classList.add("input-success");
 
@@ -174,7 +178,7 @@ function login() {
     .catch(error => {
 
         console.log(error);
-        alert(error.message);
+        alert("Invalid Email or Password");
 
     });
 
