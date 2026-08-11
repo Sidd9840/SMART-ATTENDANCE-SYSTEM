@@ -233,32 +233,60 @@ console.log("Teacher Longitude =", session.teacherLongitude);
 
 console.log("Allowed Distance =", session.allowedDistance);
         
-    collegeLat = session.teacherLatitude;
+// -------------------------------------
+// Get Geo-Fence Settings
+// -------------------------------------
 
-    collegeLng = session.teacherLongitude;
+collegeLat = Number(session.teacherLatitude);
+collegeLng = Number(session.teacherLongitude);
+allowedDistance = Number(session.allowedDistance);
 
-    allowedDistance = session.allowedDistance;
+// Validate geo-fence data
+if (
+    !Number.isFinite(collegeLat) ||
+    !Number.isFinite(collegeLng) ||
+    !Number.isFinite(allowedDistance) ||
+    allowedDistance <= 0
+) {
+    alert("Invalid geo-fence settings.");
+    return;
+}
 
-    distance = getDistance(
+// Calculate distance
+distance = getDistance(
+    userLat,
+    userLng,
+    collegeLat,
+    collegeLng
+);
 
-        userLat,
-        userLng,
-        collegeLat,
-        collegeLng
-
-    );
+console.log("Student Latitude =", userLat);
+console.log("Student Longitude =", userLng);
+console.log("Center Latitude =", collegeLat);
+console.log("Center Longitude =", collegeLng);
 console.log("Distance =", distance);
-        
-    document.getElementById("distance").innerHTML =
+console.log("Allowed Distance =", allowedDistance);
+
+// Show distance
+document.getElementById("distance").innerHTML =
     Math.round(distance) + " Meter";
 
-    if(distance > allowedDistance){
+// -------------------------------------
+// Geo-Fence Validation
+// -------------------------------------
 
-        alert("You are outside the classroom.");
+if (distance > allowedDistance) {
 
-        return;
+    alert(
+        "Attendance cannot be marked.\n" +
+        "Allowed distance: " + allowedDistance + " meters\n" +
+        "Your distance: " + Math.round(distance) + " meters"
+    );
 
-    }
+    return;
+}
+
+console.log("Inside geo-fence. Attendance allowed.");
 
        let attendance = {
 
