@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function loadTeacher() {
 
-    fetch("http://localhost:8080/teachers/" + id)
+    fetch("https://smart-attendance-backend-production-8d08.up.railway.app/teachers/" + id)
 
     .then(response => response.json())
 
@@ -270,7 +270,7 @@ function updateTeacher() {
 
     };
 
-    fetch("http://localhost:8080/teachers/" + id, {
+    fetch("https://smart-attendance-backend-production-8d08.up.railway.app/teachers/" + id, {
 
         method: "PUT",
 
