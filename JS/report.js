@@ -36,7 +36,7 @@ window.onload = function () {
 
 function loadAttendance() {
 
-    fetch("http://localhost:8080/attendance")
+  fetch("https://smart-attendance-backend-production-8d08.up.railway.app/attendance")
 
     .then(response => response.json())
 
@@ -70,7 +70,7 @@ function searchStudent() {
     }
 
     fetch(
-        "http://localhost:8080/attendance/search?keyword="
+        "https://smart-attendance-backend-production-8d08.up.railway.app/attendance/search?keyword="
         + encodeURIComponent(keyword)
         + "&month=" + month
         + "&year=" + year
@@ -113,7 +113,7 @@ function searchAttendance() {
     }
 
     fetch(
-        "http://localhost:8080/attendance/month?month="
+       "https://smart-attendance-backend-production-8d08.up.railway.app/attendance/month?month="
         + month +
         "&year=" +
         year
@@ -263,7 +263,7 @@ function editAttendance(id,currentStatus){
 
     fetch(
 
-        "http://localhost:8080/attendance/"+id,
+        "https://smart-attendance-backend-production-8d08.up.railway.app/attendance/"+id
 
         {
 
@@ -309,7 +309,7 @@ function downloadPdf(){
     let teacher = JSON.parse(localStorage.getItem("teacher"));
 
     window.open(
-        "http://localhost:8080/attendance/report/pdf?teacherId="
+        "https://smart-attendance-backend-production-8d08.up.railway.app/attendance/report/pdf?teacherId="
         + teacher.id,
         "_blank"
     );
