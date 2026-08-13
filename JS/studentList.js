@@ -1,4 +1,4 @@
-fetch("http://localhost:8080/students")
+fetch("https://smart-attendance-backend-production-8d08.up.railway.app/students")
 .then(response => response.json())
 .then(students => {
 
@@ -33,8 +33,7 @@ function deleteStudent(id){
 
     if(confirm("Are you sure you want to delete this student?")){
 
-        fetch("http://localhost:8080/students/" + id,{
-
+      fetch("https://smart-attendance-backend-production-8d08.up.railway.app/students/" + id,{
             method:"DELETE"
 
         })
