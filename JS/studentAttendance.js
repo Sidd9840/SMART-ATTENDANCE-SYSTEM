@@ -11,7 +11,7 @@ if(student == null){
 
 // Load Student Attendance
 
-fetch("http://localhost:8080/attendance/student/" + student.id)
+fetch("https://smart-attendance-backend-production-8d08.up.railway.app/attendance/student/" + student.id)
 
 .then(response => response.json())
 
