@@ -189,18 +189,15 @@ document.getElementById("password").classList.add("input-success");
 
     // Redirect
 
-    if(role=="Student"){
-
-        window.location.href =
-        "studentRegister.html";
-
-    }
-    else{
-
-        window.location.href =
-        "teacherRegister.html";
-
-    }
+   if(role == "Student"){
+    window.location.href = "studentRegister.html";
+}
+else if(role == "Teacher"){
+    window.location.href = "teacherRegister.html";
+}
+else if(role == "Admin"){
+    window.location.href = "adminRegister.html";
+}
 
 }
 // ----------------------------
