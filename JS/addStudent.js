@@ -173,7 +173,7 @@ document.getElementById("studentForm")
 
     };
 
-    fetch("http://localhost:8080/students",{
+    fetch("https://smart-attendance-backend-production-8d08.up.railway.app/students",{
 
         method:"POST",
 
