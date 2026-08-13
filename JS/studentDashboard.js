@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
         student.course;
 
     // Attendance Summary
-    fetch("http://localhost:8080/attendance/percentage/" + student.id)
+    fetch("https://smart-attendance-backend-production-8d08.up.railway.app/attendance/percentage/" + student.id)
 
         .then(response => response.json())
 
