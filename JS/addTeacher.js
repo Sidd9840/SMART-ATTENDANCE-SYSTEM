@@ -209,7 +209,7 @@ function saveTeacher() {
 
     // Save Teacher
 
-    fetch("http://localhost:8080/teachers",{
+   fetch("https://smart-attendance-backend-production-8d08.up.railway.app/teachers",{
 
         method:"POST",
 
