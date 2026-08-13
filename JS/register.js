@@ -195,8 +195,60 @@ document.getElementById("password").classList.add("input-success");
 else if(role == "Teacher"){
     window.location.href = "teacherRegister.html";
 }
-else if(role == "Admin"){
-    window.location.href = "adminRegister.html";
+else if(role == "Admin"){ 
+
+    let admin = {
+        username: name,
+        email: email,
+        password: password
+    };
+
+    fetch("http://localhost:8080/admin/register", {
+
+        method: "POST",
+
+        headers: {
+            "Content-Type": "application/json"
+        },
+
+        body: JSON.stringify(admin)
+
+    })
+
+    .then(response => {
+
+        if(!response.ok){
+
+            return response.text().then(message => {
+                throw new Error(message);
+            });
+
+        }
+
+        return response.text();
+
+    })
+
+    .then(message => {
+
+        alert(message);
+
+        if(message.toLowerCase().includes("success")){
+
+            window.location.href = "login.html";
+
+        }
+
+    })
+
+    .catch(error => {
+
+        console.error(error);
+
+        alert(error.message || "Admin registration failed.");
+
+    });
+
 }
 
 }
