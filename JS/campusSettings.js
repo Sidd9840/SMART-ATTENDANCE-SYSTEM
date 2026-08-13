@@ -9,7 +9,7 @@ window.onload = function () {
 // -----------------------------
 function loadCampus() {
 
-    fetch("http://localhost:8080/campus")
+    fetch("https://smart-attendance-backend-production-8d08.up.railway.app/campus")
 
     .then(response => response.json())
 
@@ -64,7 +64,7 @@ function saveCampus() {
 
     };
 
-    fetch("http://localhost:8080/campus", {
+    fetch("https://smart-attendance-backend-production-8d08.up.railway.app/campus", {
 
         method: "POST",
 
@@ -117,7 +117,7 @@ function updateCampus() {
 
     };
 
-    fetch("http://localhost:8080/campus", {
+   fetch("https://smart-attendance-backend-production-8d08.up.railway.app/campus", {
 
         method: "PUT",
 
