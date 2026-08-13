@@ -1,142 +1,231 @@
 /* -----------------------------
-   Admin Register Page
------------------------------ */
+   Admin Registration Page
+------------------------------ */
 
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
 }
 
 body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #0f2d63, #2f5ca8);
     min-height: 100vh;
-    background: #f4f7fb;
 
     display: flex;
     justify-content: center;
     align-items: center;
+
+    color: #222;
 }
 
-/* Register Container */
 
-.register-container {
-    width: 420px;
+/* -----------------------------
+   Main Container
+------------------------------ */
+
+.container {
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+}
+
+
+/* -----------------------------
+   Form Box
+------------------------------ */
+
+.form-box {
     background: white;
+    width: 100%;
+    padding: 40px 45px;
+    border-radius: 18px;
 
-    padding: 35px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
 
-    border-radius: 12px;
-
-    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-}
-
-/* Heading */
-
-.register-container h2 {
     text-align: center;
-    margin-bottom: 25px;
-    color: #333;
 }
 
-/* Form Group */
 
-.form-group {
-    margin-bottom: 18px;
+/* -----------------------------
+   Heading
+------------------------------ */
+
+.form-box h1 {
+    color: #173b78;
+    font-size: 36px;
+    margin-bottom: 8px;
 }
 
-/* Labels */
+.form-box > p {
+    color: #666;
+    font-size: 18px;
+    margin-bottom: 30px;
+}
 
-.form-group label {
+
+/* -----------------------------
+   Labels
+------------------------------ */
+
+.form-box label {
     display: block;
-    margin-bottom: 7px;
-    font-weight: bold;
-    color: #444;
-}
-
-/* Inputs */
-
-.form-group input {
-    width: 100%;
-    padding: 11px;
-
-    border: 1px solid #ccc;
-    border-radius: 6px;
-
-    font-size: 15px;
-
-    outline: none;
-}
-
-/* Input Focus */
-
-.form-group input:focus {
-    border-color: #007bff;
-}
-
-/* Error */
-
-.error {
-    display: block;
-
-    margin-top: 5px;
-
-    font-size: 13px;
-    color: red;
-}
-
-/* Success Input */
-
-.input-success {
-    border: 2px solid green !important;
-}
-
-/* Error Input */
-
-.input-error {
-    border: 2px solid red !important;
-}
-
-/* Register Button */
-
-.register-btn {
-    width: 100%;
-
-    padding: 12px;
-
-    margin-top: 10px;
-
-    border: none;
-    border-radius: 6px;
-
-    background: #007bff;
-    color: white;
+    text-align: left;
 
     font-size: 16px;
     font-weight: bold;
 
+    color: #173b78;
+
+    margin-top: 15px;
+    margin-bottom: 7px;
+}
+
+
+/* -----------------------------
+   Input Fields
+------------------------------ */
+
+.form-box input {
+    width: 100%;
+    height: 48px;
+
+    padding: 0 15px;
+
+    border: 1px solid #ccd3df;
+    border-radius: 10px;
+
+    font-size: 16px;
+
+    outline: none;
+
+    transition: 0.2s;
+}
+
+.form-box input:focus {
+    border-color: #173b78;
+
+    box-shadow: 0 0 0 3px rgba(23, 59, 120, 0.12);
+}
+
+
+/* -----------------------------
+   Error Message
+------------------------------ */
+
+.error-message {
+    display: block;
+
+    text-align: left;
+
+    color: #d93025;
+
+    font-size: 13px;
+
+    margin-top: 5px;
+
+    min-height: 16px;
+}
+
+
+/* -----------------------------
+   Register Button
+------------------------------ */
+
+.form-box button {
+    width: 100%;
+
+    height: 48px;
+
+    margin-top: 20px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #173b78;
+
+    color: white;
+
+    font-size: 17px;
+
+    font-weight: bold;
+
     cursor: pointer;
+
+    transition: 0.2s;
 }
 
-.register-btn:hover {
-    background: #0056b3;
+.form-box button:hover {
+    background: #0f2d63;
+
+    transform: translateY(-1px);
 }
 
-/* Back/Login */
+
+/* -----------------------------
+   Login Link
+------------------------------ */
 
 .login-link {
-    text-align: center;
+    margin-top: 22px;
 
-    margin-top: 18px;
+    color: #555;
 
-    font-size: 14px;
+    font-size: 15px;
 }
 
 .login-link a {
-    color: #007bff;
+    color: #173b78;
+
+    font-weight: bold;
+
     text-decoration: none;
 }
 
 .login-link a:hover {
     text-decoration: underline;
+}
+
+
+/* -----------------------------
+   Home Button
+------------------------------ */
+
+.form-box button:last-child {
+    width: 180px;
+
+    background: #2f5ca8;
+
+    margin-top: 15px;
+}
+
+.form-box button:last-child:hover {
+    background: #173b78;
+}
+
+
+/* -----------------------------
+   Mobile Responsive
+------------------------------ */
+
+@media (max-width: 600px) {
+
+    .container {
+        padding: 15px;
+    }
+
+    .form-box {
+        padding: 30px 25px;
+    }
+
+    .form-box h1 {
+        font-size: 30px;
+    }
+
+    .form-box > p {
+        font-size: 16px;
+    }
+
 }
