@@ -22,7 +22,7 @@ function loadDashboard() {
 
     let teacher = JSON.parse(localStorage.getItem("teacher"));
 
-   fetch("https://smart-attendance-backend-production-8d08.up.railway.app/dashboard?teacherId=" + teacher.id) fetch("http://localhost:8080/dashboard?teacherId=" + teacher.id)
+   fetch("https://smart-attendance-backend-production-8d08.up.railway.app/dashboard?teacherId=" + teacher.id)
 
     .then(response => response.json())
 
