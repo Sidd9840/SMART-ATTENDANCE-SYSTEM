@@ -22,7 +22,7 @@ window.onload = function(){
 
 function loadDashboard(){
 
-    fetch("http://localhost:8080/admin/dashboard")
+   fetch("https://smart-attendance-backend-production-8d08.up.railway.app/admin/dashboard")
 
     .then(response=>response.json())
 
