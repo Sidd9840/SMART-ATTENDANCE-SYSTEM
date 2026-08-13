@@ -158,7 +158,7 @@ function registerTeacher(){
 
     };
 
-    fetch("http://localhost:8080/teachers/register",{
+    fetch("https://smart-attendance-backend-production-8d08.up.railway.app/teachers/register",{
 
         method:"POST",
 
