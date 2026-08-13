@@ -92,15 +92,15 @@ if(!passwordPattern.test(password)){
 
     if (role == "Admin") {
 
-        url = "http://localhost:8080/admin/login";
+        url = "https://smart-attendance-backend-production-8d08.up.railway.app/admin/login";
 
     } else if (role == "Teacher") {
 
-        url = "http://localhost:8080/teachers/login";
+        url = "https://smart-attendance-backend-production-8d08.up.railway.app/teachers/login";
 
     } else {
 
-        url = "http://localhost:8080/students/login";
+        url = "https://smart-attendance-backend-production-8d08.up.railway.app/students/login";
 
     }
 
