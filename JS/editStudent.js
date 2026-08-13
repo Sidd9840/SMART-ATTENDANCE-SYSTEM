@@ -3,7 +3,7 @@ new URLSearchParams(window.location.search).get("id");
 
 // Load Student
 
-fetch("http://localhost:8080/students/" + studentId)
+fetch("https://smart-attendance-backend-production-8d08.up.railway.app/students/" + studentId)
 
 .then(response => response.json())
 
@@ -206,7 +206,7 @@ document.getElementById("editStudentForm")
 
     fetch(
 
-    "http://localhost:8080/students/" + studentId,
+  "https://smart-attendance-backend-production-8d08.up.railway.app/students/" + studentId,
 
     {
 
