@@ -22,7 +22,7 @@ function loadDashboard() {
 
     let teacher = JSON.parse(localStorage.getItem("teacher"));
 
-    fetch("http://localhost:8080/dashboard?teacherId=" + teacher.id)
+   fetch("https://smart-attendance-backend-production-8d08.up.railway.app/dashboard?teacherId=" + teacher.id) fetch("http://localhost:8080/dashboard?teacherId=" + teacher.id)
 
     .then(response => response.json())
 
@@ -108,7 +108,7 @@ if (classType == null || classType.trim() == "") {
 
 };
 
-            fetch("http://localhost:8080/attendance-session/start",{
+            fetch("https://smart-attendance-backend-production-8d08.up.railway.app/attendance-session/start",{
 
                 method:"POST",
 
@@ -223,7 +223,7 @@ function closeAttendance() {
 
     };
 
-    fetch("http://localhost:8080/attendance-session/close", {
+    fetch("https://smart-attendance-backend-production-8d08.up.railway.app/attendance-session/close", {
 
         method: "POST",
 
