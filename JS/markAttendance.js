@@ -179,8 +179,8 @@ if(classType==""){
 }
 
    fetch(
-
-"http://localhost:8080/attendance-session/current?teacherId="
+fetch(
+"https://smart-attendance-backend-production-8d08.up.railway.app/attendance-session/current?teacherId="
 
 + teacherId +
 
@@ -311,7 +311,7 @@ console.log("Inside geo-fence. Attendance allowed.");
     distance: distance
 
 };
-        return fetch("http://localhost:8080/attendance",{
+       return fetch("https://smart-attendance-backend-production-8d08.up.railway.app/attendance",{
 
             method:"POST",
 
@@ -391,7 +391,7 @@ function goBack(){
 }
 function loadTeachers(){
 
-    fetch("http://localhost:8080/teachers")
+   fetch("https://smart-attendance-backend-production-8d08.up.railway.app/teachers")
 
     .then(response => response.json())
 
