@@ -203,7 +203,7 @@ else if(role == "Admin"){
         password: password
     };
 
-    fetch("http://localhost:8080/admin/register", {
+    fetch("https://smart-attendance-backend-production-8d08.up.railway.app/admin/register", {
 
         method: "POST",
 
