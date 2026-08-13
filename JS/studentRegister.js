@@ -121,7 +121,7 @@ function registerStudent(){
 
     };
 
-    fetch("http://localhost:8080/students/register",{
+    fetch("https://smart-attendance-backend-production-8d08.up.railway.app/students/register",{
 
         method:"POST",
 
