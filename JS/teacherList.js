@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", loadTeachers);
 
 function loadTeachers(){
 
-    fetch("http://localhost:8080/teachers")
+    fetch("https://smart-attendance-backend-production-8d08.up.railway.app/teachers")
 
     .then(response => response.json())
 
@@ -70,7 +70,7 @@ function deleteTeacher(id){
 
     if(confirm("Are you sure you want to delete this teacher?")){
 
-        fetch("http://localhost:8080/teachers/" + id,{
+       fetch("https://smart-attendance-backend-production-8d08.up.railway.app/teachers/" + id,{
 
             method:"DELETE"
 
