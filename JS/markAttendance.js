@@ -178,7 +178,7 @@ if(classType==""){
 
 }
 
-   fetch(
+   
 fetch(
 "https://smart-attendance-backend-production-8d08.up.railway.app/attendance-session/current?teacherId="
 
