@@ -234,75 +234,63 @@ absent;
 // Edit Attendance
 // ----------------------------
 
-function editAttendance(id,currentStatus){
+function editAttendance(id, currentStatus) {
 
-    let newStatus=prompt(
-
+    let newStatus = prompt(
         "Enter Status (Present / Absent)",
-
         currentStatus
-
     );
 
-    if(newStatus==null){
-
+    if (newStatus == null) {
         return;
-
     }
 
-    newStatus=newStatus.trim();
+    newStatus = newStatus.trim();
 
-    if(newStatus!="Present" &&
-       newStatus!="Absent"){
+    if (newStatus != "Present" &&
+        newStatus != "Absent") {
 
         alert("Enter Present or Absent");
-
         return;
-
     }
 
     fetch(
-
-        "https://smart-attendance-backend-production-8d08.up.railway.app/attendance/"+id
-
+        "https://smart-attendance-backend-production-8d08.up.railway.app/attendance/" + id,
         {
+            method: "PUT",
 
-            method:"PUT"
-
-            headers:{
-
-                "Content-Type":"application/json"
-
+            headers: {
+                "Content-Type": "application/json"
             },
 
-            body:JSON.stringify({
-
-                status:newStatus
-
+            body: JSON.stringify({
+                status: newStatus
             })
-
         }
-
     )
 
-    .then(response=>response.json())
+    .then(response => {
 
-    .then(data=>{
+        if (!response.ok) {
+            throw new Error("Failed to update attendance");
+        }
+
+        return response.json();
+    })
+
+    .then(data => {
 
         alert("Attendance Updated Successfully");
 
         loadAttendance();
-
     })
 
-    .catch(error=>{
+    .catch(error => {
 
         console.log(error);
 
         alert("Update Failed");
-
     });
-
 }
 function downloadPdf(){
 
