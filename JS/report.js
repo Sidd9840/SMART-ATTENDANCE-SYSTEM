@@ -267,7 +267,7 @@ function editAttendance(id,currentStatus){
 
         {
 
-            method:"PUT",
+            method:"PUT"
 
             headers:{
 
