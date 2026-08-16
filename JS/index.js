@@ -1,68 +1,55 @@
 window.onload = function () {
 
-    let admin = JSON.parse(localStorage.getItem("admin"));
-    let teacher = JSON.parse(localStorage.getItem("teacher"));
-    let student = JSON.parse(localStorage.getItem("student"));
+    const welcome = document.getElementById("welcomeUser");
+    const login = document.getElementById("loginLink");
+    const register = document.getElementById("registerLink");
 
-    let welcome = document.getElementById("welcomeUser");
-    let login = document.getElementById("loginLink");
-    let register = document.getElementById("registerLink");
+    fetch("https://smart-attendance-backend-production-8d08.up.railway.app/auth/me", {
+        method: "GET",
+        credentials: "include"
+    })
 
-    if (admin) {
+    .then(response => response.json())
+
+    .then(data => {
+
+        if (!data.loggedIn) {
+            return;
+        }
 
         welcome.style.display = "block";
-        welcome.innerHTML = "Welcome, " + admin.username + " 👋";
+
+        let name = data.username || data.name;
+
+        welcome.innerHTML = "Welcome, " + name + " 👋";
 
         login.style.display = "none";
+
         register.innerHTML = "Logout";
         register.href = "#";
 
         register.onclick = function () {
 
-            localStorage.removeItem("admin");
+            fetch("https://smart-attendance-backend-production-8d08.up.railway.app/auth/logout", {
 
-            location.reload();
+                method: "POST",
+                credentials: "include"
 
-        };
+            })
+            .then(() => {
 
-    }
+                location.reload();
 
-    else if (teacher) {
-
-        welcome.style.display = "block";
-        welcome.innerHTML = "Welcome, " + teacher.name + " 👋";
-
-        login.style.display = "none";
-        register.innerHTML = "Logout";
-        register.href = "#";
-
-        register.onclick = function () {
-
-            localStorage.removeItem("teacher");
-
-            location.reload();
+            });
 
         };
 
-    }
+    })
 
-    else if (student) {
+    .catch(error => {
 
-        welcome.style.display = "block";
-        welcome.innerHTML = "Welcome, " + student.name + " 👋";
+        console.error("Authentication error:", error);
 
-        login.style.display = "none";
-        register.innerHTML = "Logout";
-        register.href = "#";
-
-        register.onclick = function () {
-
-            localStorage.removeItem("student");
-
-            location.reload();
-
-        };
-
-    }
+    });
 
 };
