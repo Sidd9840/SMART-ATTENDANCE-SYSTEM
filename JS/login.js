@@ -108,22 +108,22 @@ if(!passwordPattern.test(password)){
     // Login API
     // -----------------------------
 
-    fetch(url, {
+   fetch(url, {
 
-        method: "POST",
+    method: "POST",
 
-        headers: {
-            "Content-Type": "application/json"
-        },
+    headers: {
+        "Content-Type": "application/json"
+    },
 
-        body: JSON.stringify({
+    credentials: "include",
 
-            email: email,
-            password: password
-
-        })
-
+    body: JSON.stringify({
+        email: email,
+        password: password
     })
+
+})
 
     .then(response => {
 
@@ -154,10 +154,21 @@ if(!passwordPattern.test(password)){
 
         if (role == "Admin") {
 
-            localStorage.setItem("admin", JSON.stringify(data));
-            window.location.href = "adminDashboard.html";
+    window.location.href = "adminDashboard.html";
 
-        }
+}
+
+else if (role == "Teacher") {
+
+    window.location.href = "dashboard.html";
+
+}
+
+else {
+
+    window.location.href = "studentDashboard.html";
+
+}
 
         else if (role == "Teacher") {
 
