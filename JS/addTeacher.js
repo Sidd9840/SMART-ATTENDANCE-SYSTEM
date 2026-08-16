@@ -209,27 +209,29 @@ function saveTeacher() {
 
     // Save Teacher
 
-   fetch("https://smart-attendance-backend-production-8d08.up.railway.app/teachers",{
+  fetch("https://smart-attendance-backend-production-8d08.up.railway.app/teachers", {
 
-        method:"POST",
+    method: "POST",
 
-        headers:{
-            "Content-Type":"application/json"
-        },
+    headers: {
+        "Content-Type": "application/json"
+    },
 
-        body:JSON.stringify({
+    credentials: "include",
 
-            name:name,
-            employeeId:employeeId,
-            email:email,
-            password:password,
-            phone:phone,
-            department:department,
-            subject:subject
+    body: JSON.stringify({
 
-        })
+        name: name,
+        employeeId: employeeId,
+        email: email,
+        password: password,
+        phone: phone,
+        department: department,
+        subject: subject
 
     })
+
+})
 
     .then(response=>response.json())
 
