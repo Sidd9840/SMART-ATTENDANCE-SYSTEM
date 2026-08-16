@@ -27,8 +27,7 @@ fetch(
     document.getElementById("email").value =
     student.email;
 
-    document.getElementById("password").value =
-    student.password;
+   document.getElementById("password").value = "";
 
 });
 
