@@ -1,18 +1,50 @@
+let currentTeacher = null;
+
 window.onload = function () {
 
-    // Teacher Login Check
-    let teacher = localStorage.getItem("teacher");
+    // Teacher Login Check using Backend Session
 
-    if (teacher == null) {
+    fetch("https://smart-attendance-backend-production-8d08.up.railway.app/auth/me", {
+        method: "GET",
+        credentials: "include"
+    })
+
+    .then(response => {
+
+        if (!response.ok) {
+            throw new Error("Authentication check failed");
+        }
+
+        return response.json();
+
+    })
+
+    .then(data => {
+
+        if (!data.loggedIn || data.role !== "Teacher") {
+
+            window.location.href = "login.html";
+            return;
+
+        }
+
+        // Store only current user information in memory
+        currentTeacher = data;
+
+        loadDashboard();
+
+    })
+
+    .catch(error => {
+
+        console.error("Authentication error:", error);
 
         window.location.href = "login.html";
-        return;
 
-    }
-
-    loadDashboard();
+    });
 
 };
+
 
 // ----------------------------
 // Dashboard Data
@@ -20,25 +52,34 @@ window.onload = function () {
 
 function loadDashboard() {
 
-    let teacher = JSON.parse(localStorage.getItem("teacher"));
+    if (!currentTeacher) {
+        return;
+    }
 
-   fetch("https://smart-attendance-backend-production-8d08.up.railway.app/dashboard?teacherId=" + teacher.id)
+    fetch(
+        "https://smart-attendance-backend-production-8d08.up.railway.app/dashboard?teacherId="
+        + currentTeacher.id,
+        {
+            method: "GET",
+            credentials: "include"
+        }
+    )
 
     .then(response => response.json())
 
     .then(data => {
 
         document.getElementById("totalStudents").innerHTML =
-        data.totalStudents;
+            data.totalStudents;
 
         document.getElementById("totalAttendance").innerHTML =
-        data.totalAttendance;
+            data.totalAttendance;
 
         document.getElementById("present").innerHTML =
-        data.present;
+            data.present;
 
         document.getElementById("absent").innerHTML =
-        data.absent;
+            data.absent;
 
     })
 
@@ -50,86 +91,96 @@ function loadDashboard() {
 
 }
 
+
 // ----------------------------
 // Start Attendance
 // ----------------------------
 
 function startAttendance() {
 
-  let subject = prompt("Enter Subject Name (Example: Java, C++, DBMS)");
+    if (!currentTeacher) {
+        alert("Teacher session not found.");
+        return;
+    }
 
-if (subject == null || subject.trim() == "") {
+    let subject = prompt(
+        "Enter Subject Name (Example: Java, C++, DBMS)"
+    );
 
-    alert("Please Enter Subject");
+    if (subject == null || subject.trim() == "") {
 
-    return;
+        alert("Please Enter Subject");
+        return;
 
-}
+    }
 
-let lecture = prompt("Enter Lecture (Lecture 1 / Lecture 2 / Lecture 3 / Lecture 4)");
+    let lecture = prompt(
+        "Enter Lecture (Lecture 1 / Lecture 2 / Lecture 3 / Lecture 4)"
+    );
 
-if (lecture == null || lecture.trim() == "") {
+    if (lecture == null || lecture.trim() == "") {
 
-    alert("Please Enter Lecture");
+        alert("Please Enter Lecture");
+        return;
 
-    return;
+    }
 
-}
+    let classType = prompt(
+        "Enter Class Type (Theory / Lab)"
+    );
 
-let classType = prompt("Enter Class Type (Theory / Lab)");
+    if (classType == null || classType.trim() == "") {
 
-if (classType == null || classType.trim() == "") {
+        alert("Please Enter Class Type");
+        return;
 
-    alert("Please Enter Class Type");
+    }
 
-    return;
-
-}
-    let teacher = JSON.parse(localStorage.getItem("teacher"));
     navigator.geolocation.getCurrentPosition(
 
-        function(position){
+        function(position) {
 
-           let attendanceSession = {
+            let attendanceSession = {
 
-    teacherId: teacher.id,
+                teacherId: currentTeacher.id,
 
-    subject: subject,
+                subject: subject,
 
-    lecture: lecture,
+                lecture: lecture,
 
-    classType: classType,
+                classType: classType,
 
-    teacherLatitude: position.coords.latitude,
+                teacherLatitude: position.coords.latitude,
 
-    teacherLongitude: position.coords.longitude,
+                teacherLongitude: position.coords.longitude,
 
-    allowedDistance: 50
+                allowedDistance: 50
 
-};
+            };
 
-            fetch("https://smart-attendance-backend-production-8d08.up.railway.app/attendance-session/start",{
+            fetch(
+                "https://smart-attendance-backend-production-8d08.up.railway.app/attendance-session/start",
+                {
 
-                method:"POST",
+                    method: "POST",
 
-                headers:{
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
 
-                    "Content-Type":"application/json"
+                    credentials: "include",
 
-                },
+                    body: JSON.stringify(attendanceSession)
 
-                body:JSON.stringify(attendanceSession)
+                }
+            )
 
-            })
+            .then(response => {
 
-            .then(response=>{
+                if (!response.ok) {
 
-                if(!response.ok){
-
-                    return response.text().then(msg=>{
-
+                    return response.text().then(msg => {
                         throw new Error(msg);
-
                     });
 
                 }
@@ -138,13 +189,15 @@ if (classType == null || classType.trim() == "") {
 
             })
 
-            .then(data=>{
+            .then(data => {
 
-                alert("Attendance Session Started Successfully");
+                alert(
+                    "Attendance Session Started Successfully"
+                );
 
             })
 
-            .catch(error=>{
+            .catch(error => {
 
                 console.log(error);
 
@@ -154,7 +207,7 @@ if (classType == null || classType.trim() == "") {
 
         },
 
-        function(){
+        function() {
 
             alert("Please Allow Location Permission.");
 
@@ -162,58 +215,64 @@ if (classType == null || classType.trim() == "") {
 
         {
 
-            enableHighAccuracy:true,
+            enableHighAccuracy: true,
 
-            timeout:5000,
+            timeout: 5000,
 
-            maximumAge:0
+            maximumAge: 0
 
         }
 
     );
 
 }
+
+
 // ----------------------------
 // Close Attendance
 // ----------------------------
 
 function closeAttendance() {
 
-    let teacher = JSON.parse(localStorage.getItem("teacher"));
+    if (!currentTeacher) {
+        alert("Teacher session not found.");
+        return;
+    }
 
     let subject = prompt("Enter Subject Name");
 
     if (subject == null || subject.trim() == "") {
 
         alert("Please Enter Subject");
-
         return;
 
     }
 
-    let lecture = prompt("Enter Lecture (Lecture 1 / Lecture 2 / Lecture 3 / Lecture 4)");
+    let lecture = prompt(
+        "Enter Lecture (Lecture 1 / Lecture 2 / Lecture 3 / Lecture 4)"
+    );
 
     if (lecture == null || lecture.trim() == "") {
 
         alert("Please Enter Lecture");
-
         return;
 
     }
 
-    let classType = prompt("Enter Class Type (Theory / Lab)");
+    let classType = prompt(
+        "Enter Class Type (Theory / Lab)"
+    );
 
     if (classType == null || classType.trim() == "") {
 
         alert("Please Enter Class Type");
-
         return;
 
     }
 
     let request = {
 
-        teacherId: teacher.id,
+        teacherId: currentTeacher.id,
 
         subject: subject,
 
@@ -223,28 +282,29 @@ function closeAttendance() {
 
     };
 
-    fetch("https://smart-attendance-backend-production-8d08.up.railway.app/attendance-session/close", {
+    fetch(
+        "https://smart-attendance-backend-production-8d08.up.railway.app/attendance-session/close",
+        {
 
-        method: "POST",
+            method: "POST",
 
-        headers: {
+            headers: {
+                "Content-Type": "application/json"
+            },
 
-            "Content-Type": "application/json"
+            credentials: "include",
 
-        },
+            body: JSON.stringify(request)
 
-        body: JSON.stringify(request)
-
-    })
+        }
+    )
 
     .then(response => {
 
         if (!response.ok) {
 
             return response.text().then(msg => {
-
                 throw new Error(msg);
-
             });
 
         }
@@ -255,7 +315,9 @@ function closeAttendance() {
 
     .then(data => {
 
-        alert("Attendance Session Closed Successfully");
+        alert(
+            "Attendance Session Closed Successfully"
+        );
 
         loadDashboard();
 
@@ -271,18 +333,46 @@ function closeAttendance() {
 
 }
 
+
 // ----------------------------
 // Logout
 // ----------------------------
 
 function logout() {
 
-    localStorage.removeItem("teacher");
+    fetch(
+        "https://smart-attendance-backend-production-8d08.up.railway.app/auth/logout",
+        {
 
-    window.location.href = "login.html";
+            method: "POST",
+
+            credentials: "include"
+
+        }
+    )
+
+    .then(() => {
+
+        window.location.href = "login.html";
+
+    })
+
+    .catch(error => {
+
+        console.log(error);
+
+        window.location.href = "login.html";
+
+    });
 
 }
-function goHome(){
+
+
+// ----------------------------
+// Home
+// ----------------------------
+
+function goHome() {
 
     window.location.href = "../index.html";
 
