@@ -3,7 +3,13 @@ new URLSearchParams(window.location.search).get("id");
 
 // Load Student
 
-fetch("https://smart-attendance-backend-production-8d08.up.railway.app/students/" + studentId)
+fetch(
+    "https://smart-attendance-backend-production-8d08.up.railway.app/students/" + studentId,
+    {
+        method: "GET",
+        credentials: "include"
+    }
+)
 
 .then(response => response.json())
 
@@ -212,13 +218,13 @@ document.getElementById("editStudentForm")
 
         method:"PUT",
 
-        headers:{
+       headers:{
+    "Content-Type":"application/json"
+},
 
-            "Content-Type":"application/json"
+credentials:"include",
 
-        },
-
-        body:JSON.stringify(student)
+body:JSON.stringify(student)
 
     })
 
@@ -244,18 +250,43 @@ document.getElementById("editStudentForm")
 
 // Back
 
-function goBack(){
+function goBack() {
 
-    if(localStorage.getItem("admin")){
+    fetch(
+        "https://smart-attendance-backend-production-8d08.up.railway.app/auth/me",
+        {
+            method: "GET",
+            credentials: "include"
+        }
+    )
+    .then(response => response.json())
+    .then(data => {
 
-        window.location.href="adminDashboard.html";
+        if (!data.loggedIn) {
+            window.location.href = "login.html";
+            return;
+        }
 
-    }
+        if (data.role === "Admin") {
 
-    else{
+            window.location.href = "adminDashboard.html";
 
-        window.location.href="dashboard.html";
+        } else if (data.role === "Teacher") {
 
-    }
+            window.location.href = "dashboard.html";
+
+        } else {
+
+            window.location.href = "login.html";
+
+        }
+
+    })
+    .catch(error => {
+
+        console.log(error);
+        window.location.href = "login.html";
+
+    });
 
 }
