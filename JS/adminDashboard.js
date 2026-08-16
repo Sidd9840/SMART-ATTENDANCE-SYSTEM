@@ -1,56 +1,115 @@
-window.onload = function(){
+window.onload = function () {
 
-    // Check Admin Login
+    // Check Admin Login using Backend Session
 
-    let admin = localStorage.getItem("admin");
+    fetch("https://smart-attendance-backend-production-8d08.up.railway.app/auth/me", {
+        method: "GET",
+        credentials: "include"
+    })
 
-    if(admin == null){
+    .then(response => {
+
+        if (!response.ok) {
+            throw new Error("Authentication check failed");
+        }
+
+        return response.json();
+
+    })
+
+    .then(data => {
+
+        if (!data.loggedIn || data.role !== "Admin") {
+
+            window.location.href = "login.html";
+
+            return;
+
+        }
+
+        loadDashboard();
+
+    })
+
+    .catch(error => {
+
+        console.error("Authentication error:", error);
 
         window.location.href = "login.html";
 
-        return;
-
-    }
-
-    loadDashboard();
+    });
 
 };
 
+
 // ----------------------------
 // Dashboard Data
-// ----------------------------    
+// ----------------------------
 
-function loadDashboard(){
+function loadDashboard() {
 
-   fetch("https://smart-attendance-backend-production-8d08.up.railway.app/admin/dashboard")
+    fetch("https://smart-attendance-backend-production-8d08.up.railway.app/admin/dashboard", {
+        method: "GET",
+        credentials: "include"
+    })
 
-    .then(response=>response.json())
+    .then(response => response.json())
 
-    .then(data=>{
+    .then(data => {
 
         document.getElementById("totalStudents").innerHTML =
-        data.totalStudents;
+            data.totalStudents;
 
         document.getElementById("totalTeachers").innerHTML =
-        data.totalTeachers;
+            data.totalTeachers;
+
+    })
+
+    .catch(error => {
+
+        console.error("Dashboard error:", error);
 
     });
 
 }
 
+
 // ----------------------------
 // Logout
 // ----------------------------
 
-function logout(){
+function logout() {
 
-    localStorage.removeItem("admin");
+    fetch("https://smart-attendance-backend-production-8d08.up.railway.app/auth/logout", {
 
-    window.location.href = "login.html";
+        method: "POST",
+        credentials: "include"
+
+    })
+
+    .then(() => {
+
+        window.location.href = "login.html";
+
+    })
+
+    .catch(error => {
+
+        console.error("Logout error:", error);
+
+        window.location.href = "login.html";
+
+    });
 
 }
-function goHome(){
 
-    window.location.href="../index.html";
+
+// ----------------------------
+// Home
+// ----------------------------
+
+function goHome() {
+
+    window.location.href = "../index.html";
 
 }
