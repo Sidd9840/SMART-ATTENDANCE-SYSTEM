@@ -168,21 +168,7 @@ else {
 
     window.location.href = "studentDashboard.html";
 
-}
-
-        else if (role == "Teacher") {
-
-            localStorage.setItem("teacher", JSON.stringify(data));
-            window.location.href = "dashboard.html";
-
-        }
-
-        else {
-
-            localStorage.setItem("student", JSON.stringify(data));
-            window.location.href = "studentDashboard.html";
-
-        }
+}   
 
     })
 
