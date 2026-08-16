@@ -8,7 +8,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function loadTeacher() {
 
-    fetch("https://smart-attendance-backend-production-8d08.up.railway.app/teachers/" + id)
+    fetch(
+    "https://smart-attendance-backend-production-8d08.up.railway.app/teachers/" + id,
+    {
+        method: "GET",
+        credentials: "include"
+    }
+)
 
     .then(response => response.json())
 
@@ -22,9 +28,6 @@ function loadTeacher() {
 
         document.getElementById("email").value =
         teacher.email;
-
-        document.getElementById("password").value =
-        teacher.password;
 
         document.getElementById("phone").value =
         teacher.phone;
@@ -174,16 +177,7 @@ function updateTeacher() {
 
     // Password Validation
 
-    if(password==""){
-
-        document.getElementById("passwordError").innerHTML =
-        "Password is required.";
-
-        document.getElementById("password").classList.add("input-error");
-
-        return;
-
-    }
+    if(password !==""){
 
     if(password.length<6){
 
@@ -275,12 +269,12 @@ function updateTeacher() {
         method: "PUT",
 
         headers: {
+    "Content-Type": "application/json"
+},
 
-            "Content-Type": "application/json"
+credentials: "include",
 
-        },
-
-        body: JSON.stringify(teacher)
+body: JSON.stringify(teacher)
 
     })
 
