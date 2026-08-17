@@ -4,76 +4,51 @@ window.onload = function () {
     const login = document.getElementById("loginLink");
     const register = document.getElementById("registerLink");
 
-    // ---------------------------------
-    // Check Logged In Student
-    // ---------------------------------
+    fetch("https://smart-attendance-backend-production-8d08.up.railway.app/auth/me", {
+        method: "GET",
+        credentials: "include"
+    })
 
-    const student =
-        JSON.parse(localStorage.getItem("student"));
+    .then(response => response.json())
 
-    // ---------------------------------
-    // Check Logged In Teacher
-    // ---------------------------------
+    .then(data => {
 
-    const teacher =
-        JSON.parse(localStorage.getItem("teacher"));
+        if (!data.loggedIn) {
+            return;
+        }
 
+        welcome.style.display = "block";
 
-    // ---------------------------------
-    // No User Logged In
-    // ---------------------------------
+        let name = data.username || data.name;
 
-    if (student == null && teacher == null) {
+        welcome.innerHTML = "Welcome, " + name + " 👋";
 
-        return;
-    }
+        login.style.display = "none";
 
+        register.innerHTML = "Logout";
+        register.href = "#";
 
-    // ---------------------------------
-    // Logged In User
-    // ---------------------------------
+        register.onclick = function () {
 
-    welcome.style.display = "block";
+            fetch("https://smart-attendance-backend-production-8d08.up.railway.app/auth/logout", {
+                method: "POST",
+                credentials: "include"
+            })
 
+            .then(() => {
 
-    let name = "";
+                location.reload();
 
-    if (student != null) {
+            });
 
-        name = student.name;
+        };
 
-    }
-    else if (teacher != null) {
+    })
 
-        name = teacher.name;
+    .catch(error => {
 
-    }
+        console.error("Authentication error:", error);
 
-
-    welcome.innerHTML =
-        "Welcome, " + name + " 👋";
-
-
-    // Hide Login
-
-    login.style.display = "none";
-
-
-    // Logout
-
-    register.innerHTML = "Logout";
-
-    register.href = "#";
-
-
-    register.onclick = function () {
-
-        localStorage.removeItem("student");
-
-        localStorage.removeItem("teacher");
-
-        window.location.href = "index.html";
-
-    };
+    });
 
 };
