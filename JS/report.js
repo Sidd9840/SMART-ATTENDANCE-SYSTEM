@@ -12,18 +12,16 @@ if (teacher == null) {
 
 }
 
-
-// -------------------------------------
+// -----------------------------------------
 // Page Load
-// -------------------------------------
+// -----------------------------------------
 
 window.onload = function () {
 
     document.getElementById("reportBody").innerHTML =
 
-        `<tr>
-
-            <td colspan="9"
+    `<tr>
+        <td colspan="8"
             style="text-align:center;
             padding:30px;
             font-size:18px;
@@ -31,12 +29,10 @@ window.onload = function () {
 
             🔍 Please search to view attendance records.
 
-            </td>
+        </td>
+    </tr>`;
 
-        </tr>`;
-
-
-    // Auto Select Current Month & Year
+    // Current Month & Year
 
     const today = new Date();
 
@@ -49,11 +45,39 @@ window.onload = function () {
 };
 
 
-// -------------------------------------
+// -----------------------------------------
+// Get Logged In Teacher
+// -----------------------------------------
+
+function getLoggedInTeacher() {
+
+    let teacher =
+        JSON.parse(localStorage.getItem("teacher"));
+
+    if (teacher == null) {
+
+        alert("Please Login First");
+
+        window.location.href = "login.html";
+
+        return null;
+    }
+
+    return teacher;
+}
+
+
+// -----------------------------------------
 // Load Teacher Attendance
-// -------------------------------------
+// -----------------------------------------
 
 function loadAttendance() {
+
+    let teacher = getLoggedInTeacher();
+
+    if (teacher == null) {
+        return;
+    }
 
     fetch(
         "https://smart-attendance-backend-production-8d08.up.railway.app/attendance/teacher/"
@@ -64,8 +88,9 @@ function loadAttendance() {
 
         if (!response.ok) {
 
-            throw new Error("Unable to load attendance");
-
+            throw new Error(
+                "Unable to load attendance"
+            );
         }
 
         return response.json();
@@ -89,11 +114,17 @@ function loadAttendance() {
 }
 
 
-// -------------------------------------
+// -----------------------------------------
 // Search Student
-// -------------------------------------
+// -----------------------------------------
 
 function searchStudent() {
+
+    let teacher = getLoggedInTeacher();
+
+    if (teacher == null) {
+        return;
+    }
 
     let keyword =
         document.getElementById("searchText")
@@ -112,26 +143,32 @@ function searchStudent() {
         alert("Please Enter Student Name");
 
         return;
+    }
 
+
+    if (month == "" || year == "") {
+
+        alert("Please Select Month and Year");
+
+        return;
     }
 
 
     fetch(
-
         "https://smart-attendance-backend-production-8d08.up.railway.app/attendance/search"
         + "?teacherId=" + teacher.id
         + "&keyword=" + encodeURIComponent(keyword)
         + "&month=" + month
         + "&year=" + year
-
     )
 
     .then(response => {
 
         if (!response.ok) {
 
-            throw new Error("Search Failed");
-
+            throw new Error(
+                "Unable to search attendance"
+            );
         }
 
         return response.json();
@@ -155,11 +192,17 @@ function searchStudent() {
 }
 
 
-// -------------------------------------
+// -----------------------------------------
 // Search By Month & Year
-// -------------------------------------
+// -----------------------------------------
 
 function searchAttendance() {
+
+    let teacher = getLoggedInTeacher();
+
+    if (teacher == null) {
+        return;
+    }
 
     let month =
         document.getElementById("month").value;
@@ -173,25 +216,25 @@ function searchAttendance() {
         alert("Please Select Month and Year");
 
         return;
-
     }
 
 
     fetch(
-
-        "https://smart-attendance-backend-production-8d08.up.railway.app/attendance/teacher/month"
-        + "?teacherId=" + teacher.id
-        + "&month=" + month
-        + "&year=" + year
-
+        "https://smart-attendance-backend-production-8d08.up.railway.app/attendance/teacher/"
+        + teacher.id
+        + "/month?month="
+        + month
+        + "&year="
+        + year
     )
 
     .then(response => {
 
         if (!response.ok) {
 
-            throw new Error("Unable to load report");
-
+            throw new Error(
+                "Unable to load monthly attendance"
+            );
         }
 
         return response.json();
@@ -215,9 +258,9 @@ function searchAttendance() {
 }
 
 
-// -------------------------------------
-// Show Data In Table
-// -------------------------------------
+// -----------------------------------------
+// Show Attendance Data
+// -----------------------------------------
 
 function showData(attendanceList) {
 
@@ -242,33 +285,27 @@ function showData(attendanceList) {
 
             `<tr>
 
-                <td colspan="9"
-                style="text-align:center;
-                padding:25px;
-                color:red;">
+                <td colspan="8"
+                    style="text-align:center;
+                    padding:25px;
+                    color:red;">
 
-                No Attendance Found
+                    No Attendance Found
 
                 </td>
 
             </tr>`;
-
 
         document.getElementById("presentCount").innerHTML = 0;
 
         document.getElementById("absentCount").innerHTML = 0;
 
         return;
-
     }
 
 
     attendanceList.forEach(record => {
 
-
-        // ---------------------------------
-        // Count Present / Absent
-        // ---------------------------------
 
         if (record.status == "Present") {
 
@@ -280,10 +317,6 @@ function showData(attendanceList) {
 
         }
 
-
-        // ---------------------------------
-        // Create Row
-        // ---------------------------------
 
         let row = body.insertRow();
 
@@ -324,9 +357,7 @@ function showData(attendanceList) {
             record.attendanceTime;
 
 
-        // ---------------------------------
         // Status
-        // ---------------------------------
 
         let statusClass =
             record.status == "Present"
@@ -343,30 +374,9 @@ function showData(attendanceList) {
             </span>`;
 
 
-        // ---------------------------------
-        // Distance
-        // ---------------------------------
-
-        let distanceText = "-";
-
-
-        if (record.distance != null) {
-
-            distanceText =
-                Math.round(record.distance) + " Meter";
-
-        }
-
+        // Edit
 
         row.insertCell(7).innerHTML =
-            distanceText;
-
-
-        // ---------------------------------
-        // Edit
-        // ---------------------------------
-
-        row.insertCell(8).innerHTML =
 
             `<button
                 class="report-edit"
@@ -382,10 +392,6 @@ function showData(attendanceList) {
     });
 
 
-    // ---------------------------------
-    // Update Counts
-    // ---------------------------------
-
     document.getElementById("presentCount").innerHTML =
         present;
 
@@ -396,12 +402,11 @@ function showData(attendanceList) {
 }
 
 
-// -------------------------------------
+// -----------------------------------------
 // Edit Attendance
-// -------------------------------------
+// -----------------------------------------
 
 function editAttendance(id, currentStatus) {
-
 
     let newStatus = prompt(
 
@@ -415,7 +420,6 @@ function editAttendance(id, currentStatus) {
     if (newStatus == null) {
 
         return;
-
     }
 
 
@@ -427,10 +431,11 @@ function editAttendance(id, currentStatus) {
         newStatus != "Absent"
     ) {
 
-        alert("Enter Present or Absent");
+        alert(
+            "Enter Present or Absent"
+        );
 
         return;
-
     }
 
 
@@ -467,7 +472,6 @@ function editAttendance(id, currentStatus) {
             throw new Error(
                 "Failed to update attendance"
             );
-
         }
 
         return response.json();
@@ -480,24 +484,7 @@ function editAttendance(id, currentStatus) {
             "Attendance Updated Successfully"
         );
 
-
-        // Refresh according to current search
-
-        let keyword =
-            document.getElementById("searchText")
-            .value
-            .trim();
-
-
-        if (keyword != "") {
-
-            searchStudent();
-
-        } else {
-
-            searchAttendance();
-
-        }
+        loadAttendance();
 
     })
 
@@ -512,19 +499,19 @@ function editAttendance(id, currentStatus) {
 }
 
 
-// -------------------------------------
-// Download Teacher PDF
-// -------------------------------------
+// -----------------------------------------
+// Download PDF
+// -----------------------------------------
 
 function downloadPdf() {
+
+    let teacher =
+        getLoggedInTeacher();
 
 
     if (teacher == null) {
 
-        alert("Please Login First");
-
         return;
-
     }
 
 
