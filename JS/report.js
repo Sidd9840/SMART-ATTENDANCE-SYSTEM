@@ -120,16 +120,11 @@ function loadAttendance() {
 
 function searchStudent() {
 
-    let teacher = getLoggedInTeacher();
-
-    if (teacher == null) {
-        return;
-    }
-
     let keyword =
-        document.getElementById("searchText")
-        .value
-        .trim();
+        document.getElementById("searchText").value.trim();
+
+    let subject =
+        document.getElementById("subject").value;
 
     let month =
         document.getElementById("month").value;
@@ -154,10 +149,25 @@ function searchStudent() {
     }
 
 
+    let teacher =
+        JSON.parse(localStorage.getItem("teacher"));
+
+
+    if (teacher == null) {
+
+        alert("Please Login First");
+
+        window.location.href = "login.html";
+
+        return;
+    }
+
+
     fetch(
         "https://smart-attendance-backend-production-8d08.up.railway.app/attendance/search"
         + "?teacherId=" + teacher.id
         + "&keyword=" + encodeURIComponent(keyword)
+        + "&subject=" + encodeURIComponent(subject)
         + "&month=" + month
         + "&year=" + year
     )
@@ -166,9 +176,8 @@ function searchStudent() {
 
         if (!response.ok) {
 
-            throw new Error(
-                "Unable to search attendance"
-            );
+            throw new Error("Failed to search attendance");
+
         }
 
         return response.json();
