@@ -4,52 +4,76 @@ window.onload = function () {
     const login = document.getElementById("loginLink");
     const register = document.getElementById("registerLink");
 
-    fetch("https://smart-attendance-backend-production-8d08.up.railway.app/auth/me", {
-        method: "GET",
-        credentials: "include"
-    })
+    // ---------------------------------
+    // Check Logged In Student
+    // ---------------------------------
 
-    .then(response => response.json())
+    const student =
+        JSON.parse(localStorage.getItem("student"));
 
-    .then(data => {
+    // ---------------------------------
+    // Check Logged In Teacher
+    // ---------------------------------
 
-        if (!data.loggedIn) {
-            return;
-        }
+    const teacher =
+        JSON.parse(localStorage.getItem("teacher"));
 
-        welcome.style.display = "block";
 
-        let name = data.username || data.name;
+    // ---------------------------------
+    // No User Logged In
+    // ---------------------------------
 
-        welcome.innerHTML = "Welcome, " + name + " 👋";
+    if (student == null && teacher == null) {
 
-        login.style.display = "none";
+        return;
+    }
 
-        register.innerHTML = "Logout";
-        register.href = "#";
 
-        register.onclick = function () {
+    // ---------------------------------
+    // Logged In User
+    // ---------------------------------
 
-            fetch("https://smart-attendance-backend-production-8d08.up.railway.app/auth/logout", {
+    welcome.style.display = "block";
 
-                method: "POST",
-                credentials: "include"
 
-            })
-            .then(() => {
+    let name = "";
 
-                location.reload();
+    if (student != null) {
 
-            });
+        name = student.name;
 
-        };
+    }
+    else if (teacher != null) {
 
-    })
+        name = teacher.name;
 
-    .catch(error => {
+    }
 
-        console.error("Authentication error:", error);
 
-    });
+    welcome.innerHTML =
+        "Welcome, " + name + " 👋";
+
+
+    // Hide Login
+
+    login.style.display = "none";
+
+
+    // Logout
+
+    register.innerHTML = "Logout";
+
+    register.href = "#";
+
+
+    register.onclick = function () {
+
+        localStorage.removeItem("student");
+
+        localStorage.removeItem("teacher");
+
+        window.location.href = "index.html";
+
+    };
 
 };
